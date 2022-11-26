@@ -4,22 +4,38 @@
  */
 package interfaz;
 
+
+import controlador.Coordinador;
 import java.awt.Color;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author ander
  */
 public class iLogin extends javax.swing.JFrame {
+    
+    private Coordinador miCoordinador;
 
     /**
      * Creates new form NewJFrame
      */
     public iLogin() {
         initComponents();
+        setTitle("Login");
         getContentPane().setBackground(Color.white);
-        this.setLocation(200, 0);
+        this.setLocation(200, 0);  
     }
+    
+    public void setCoordinador(Coordinador miCoordinador) {
+        this.miCoordinador = miCoordinador;
+    }
+    
+    /**
+     * Componentes logicos
+     */
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,19 +46,19 @@ public class iLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        txtcontraseña = new javax.swing.JTextField();
+        titulo2 = new javax.swing.JLabel();
+        titulo1 = new javax.swing.JLabel();
+        logoRinber = new javax.swing.JLabel();
+        fondo = new javax.swing.JLabel();
+        subtitulo3 = new javax.swing.JLabel();
+        lineasTitulo = new javax.swing.JLabel();
+        subtitulo1 = new javax.swing.JLabel();
+        subtitulo2 = new javax.swing.JLabel();
         txtusuario = new javax.swing.JTextField();
         btn_ingresar = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        decorador2 = new javax.swing.JLabel();
+        decorador1 = new javax.swing.JLabel();
+        txtcontrasena = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -51,64 +67,55 @@ public class iLogin extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1215, 800));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(11, 43, 90));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Rinber S.A.S!");
-        jLabel2.setToolTipText("");
-        jLabel2.setPreferredSize(new java.awt.Dimension(679, 138));
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(110, 70, 320, 138);
+        titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        titulo2.setForeground(new java.awt.Color(11, 43, 90));
+        titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo2.setText("Rinber S.A.S!");
+        titulo2.setToolTipText("");
+        titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
+        getContentPane().add(titulo2);
+        titulo2.setBounds(110, 70, 320, 138);
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(11, 43, 90));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("¡Bienvenido a");
-        jLabel3.setToolTipText("");
-        jLabel3.setPreferredSize(new java.awt.Dimension(679, 138));
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(90, 40, 350, 80);
+        titulo1.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
+        titulo1.setForeground(new java.awt.Color(11, 43, 90));
+        titulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo1.setText("¡Bienvenido a");
+        titulo1.setToolTipText("");
+        titulo1.setPreferredSize(new java.awt.Dimension(679, 138));
+        getContentPane().add(titulo1);
+        titulo1.setBounds(90, 40, 350, 80);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/loguito.png"))); // NOI18N
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(1080, 10, 120, 130);
+        logoRinber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/loguito.png"))); // NOI18N
+        getContentPane().add(logoRinber);
+        logoRinber.setBounds(1080, 10, 120, 130);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo 3.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(580, 0, 630, 810);
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo 3.jpg"))); // NOI18N
+        getContentPane().add(fondo);
+        fondo.setBounds(580, 0, 630, 810);
 
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(11, 43, 90));
-        jLabel6.setText("Contraseña");
-        getContentPane().add(jLabel6);
-        jLabel6.setBounds(60, 510, 230, 30);
+        subtitulo3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo3.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo3.setText("Contraseña");
+        getContentPane().add(subtitulo3);
+        subtitulo3.setBounds(60, 510, 230, 30);
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(11, 43, 90));
-        jLabel5.setText("________________                                    _______________");
-        getContentPane().add(jLabel5);
-        jLabel5.setBounds(10, 230, 570, 30);
+        lineasTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lineasTitulo.setForeground(new java.awt.Color(11, 43, 90));
+        lineasTitulo.setText("________________                                    _______________");
+        getContentPane().add(lineasTitulo);
+        lineasTitulo.setBounds(10, 230, 570, 30);
 
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(11, 43, 90));
-        jLabel7.setText("Por favor ingresa tus datos");
-        getContentPane().add(jLabel7);
-        jLabel7.setBounds(210, 250, 190, 16);
+        subtitulo1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        subtitulo1.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo1.setText("Por favor ingresa tus datos");
+        getContentPane().add(subtitulo1);
+        subtitulo1.setBounds(210, 250, 190, 16);
 
-        jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(11, 43, 90));
-        jLabel8.setText("Usuario");
-        getContentPane().add(jLabel8);
-        jLabel8.setBounds(60, 350, 230, 30);
-
-        txtcontraseña.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtcontraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcontraseñaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtcontraseña);
-        txtcontraseña.setBounds(60, 560, 430, 40);
+        subtitulo2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo2.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo2.setText("Usuario");
+        getContentPane().add(subtitulo2);
+        subtitulo2.setBounds(60, 350, 230, 30);
 
         txtusuario.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtusuario.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +131,6 @@ public class iLogin extends javax.swing.JFrame {
         btn_ingresar.setForeground(new java.awt.Color(255, 255, 255));
         btn_ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/image (1).png"))); // NOI18N
         btn_ingresar.setText("Ingresar ");
-        btn_ingresar.setActionCommand("Ingresar ");
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ingresarActionPerformed(evt);
@@ -133,78 +139,61 @@ public class iLogin extends javax.swing.JFrame {
         getContentPane().add(btn_ingresar);
         btn_ingresar.setBounds(280, 680, 210, 40);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
-        getContentPane().add(jLabel9);
-        jLabel9.setBounds(30, 510, 30, 30);
+        decorador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        getContentPane().add(decorador2);
+        decorador2.setBounds(30, 510, 30, 30);
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
-        getContentPane().add(jLabel10);
-        jLabel10.setBounds(30, 350, 30, 30);
+        decorador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        getContentPane().add(decorador1);
+        decorador1.setBounds(30, 350, 30, 30);
+
+        txtcontrasena.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtcontrasena.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcontrasenaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtcontrasena);
+        txtcontrasena.setBounds(60, 560, 430, 40);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontraseñaActionPerformed
-
     private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
         
+        String respuesta = miCoordinador.validarIngreso(txtusuario.getText(),txtcontrasena.getText());
+        if(respuesta.equals("error")){
+            JOptionPane.showMessageDialog(null, "Los campos están vacíos");
+        }else{
+            JOptionPane.showMessageDialog(null, respuesta);
+            miCoordinador.asignarPrivilegios(respuesta);
+            miCoordinador.cerrarVentanaLogin();
+        }
     }//GEN-LAST:event_btn_ingresarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(iLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(iLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(iLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(iLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+    private void txtcontrasenaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontrasenaActionPerformed
+       
+    }//GEN-LAST:event_txtcontrasenaActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new iLogin().setVisible(true);
-            }
-        });
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ingresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField txtcontraseña;
+    private javax.swing.JLabel decorador1;
+    private javax.swing.JLabel decorador2;
+    private javax.swing.JLabel fondo;
+    private javax.swing.JLabel lineasTitulo;
+    private javax.swing.JLabel logoRinber;
+    private javax.swing.JLabel subtitulo1;
+    private javax.swing.JLabel subtitulo2;
+    private javax.swing.JLabel subtitulo3;
+    private javax.swing.JLabel titulo1;
+    private javax.swing.JLabel titulo2;
+    private javax.swing.JPasswordField txtcontrasena;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
