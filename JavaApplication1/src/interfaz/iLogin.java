@@ -17,11 +17,12 @@ import javax.swing.JOptionPane;
 public class iLogin extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
-
+    
     /**
      * Creates new form NewJFrame
      */
     public iLogin() {
+        
         initComponents();
         setTitle("Login");
         getContentPane().setBackground(Color.white);
@@ -31,6 +32,8 @@ public class iLogin extends javax.swing.JFrame {
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
+    
+    
     
     /**
      * Componentes logicos
@@ -164,13 +167,13 @@ public class iLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtusuarioActionPerformed
 
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
-        
-        String respuesta = miCoordinador.validarIngreso(txtusuario.getText(),txtcontrasena.getText());
+        String valorPass = new String(txtcontrasena.getPassword());
+        String respuesta = miCoordinador.validarIngreso(txtusuario.getText(),valorPass);
         if(respuesta.equals("error")){
             JOptionPane.showMessageDialog(null, "Los campos están vacíos");
         }else{
             JOptionPane.showMessageDialog(null, respuesta);
-            miCoordinador.asignarPrivilegios(respuesta);
+            // miCoordinador.asignarPrivilegios(respuesta);
             miCoordinador.cerrarVentanaLogin();
         }
     }//GEN-LAST:event_btn_ingresarActionPerformed

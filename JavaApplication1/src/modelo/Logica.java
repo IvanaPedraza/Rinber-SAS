@@ -5,32 +5,32 @@ import controlador.Coordinador;
 
 public class Logica {
     
-    
+
     private Coordinador miCoordinador;
-    final String usuario_prueba = "kelly";
-    final String contra_prueba = "12345";
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
     
+    Conexion miConexion = new Conexion();
     
     public String validarIngreso(String usuario, String contrasena){
         
+   
         String retorno="";
         if(usuario.equals("") && contrasena.equals("")){
             retorno = "error";
         }else{
-            if (usuario.equals(usuario_prueba)){
-                retorno = validarContraseña(usuario,contrasena);
-            }else{
-                retorno = "Usuario inválido";
-            }
+            
+            miConexion.definirUsuarioContra(usuario, contrasena);
+            
+            retorno = "hizo conexion";
         }
         return retorno;
         
     }
 
+    /*
     private String validarContraseña(String usuario,String contrasena) {
         String retorno="";
         if(contrasena.equals(contra_prueba)){
@@ -40,4 +40,5 @@ public class Logica {
         }
         return retorno;
     }
+    */
 }
