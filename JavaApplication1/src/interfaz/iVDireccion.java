@@ -17,6 +17,7 @@ import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import modelo.vo.direccionVo;
 
 public class iVDireccion extends javax.swing.JFrame {
     
@@ -125,7 +126,7 @@ public class iVDireccion extends javax.swing.JFrame {
         th.setFont(fuente);
         tablaLeer.getTableHeader().setBackground(azul);
         tablaLeer.getTableHeader().setForeground(Color.white);
-        tablaLeer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //tablaLeer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         JTableHeader th2;
         th2 = this.tablaEliminar.getTableHeader();
@@ -174,6 +175,26 @@ public class iVDireccion extends javax.swing.JFrame {
     public JTable enviarTabla_Eliminar(){
         return tablaEliminar;
     }
+    
+    private void registrarNuevaDire() {
+        
+        direccionVo nuevaDireccion = new direccionVo();
+        
+        nuevaDireccion.setDirDireccion(txtdireccion_agregar.getText());
+        nuevaDireccion.setDirCiudad(txtciudad_agregar.getText());
+        nuevaDireccion.setDirLocalidad(txtlocalidad_agregar.getText());
+        nuevaDireccion.setDirBarrio(txtbarrio_agregar.getText());
+        
+        String retorno = miCoordinador.agregarNuevaDireccion(nuevaDireccion);
+        
+        if(retorno.equals("OK")){
+            JOptionPane.showMessageDialog(null, "¡La dirección fue agregada con éxito!");
+        }else{
+            JOptionPane.showMessageDialog(null, "La dirección no se pudo agregar, verifique el error.");
+
+        }
+    }
+
     
     
     
@@ -1204,7 +1225,7 @@ public class iVDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_enviar_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviar_agregarActionPerformed
-    
+        registrarNuevaDire();
     }//GEN-LAST:event_btn_enviar_agregarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
@@ -1362,5 +1383,6 @@ public class iVDireccion extends javax.swing.JFrame {
     private javax.swing.JTextField txtlocalidad_agregar;
     // End of variables declaration//GEN-END:variables
 
+    
     
 }
