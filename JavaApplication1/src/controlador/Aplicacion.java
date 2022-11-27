@@ -5,14 +5,17 @@ import interfaz.iVPVendedor;
 import modelo.Conexion;
 
 import modelo.Logica;
-
+import interfaz.iVCorreo;
 public class Aplicacion {
     
     public void iniciarSistema(){
         
         // se instancias las clases unicas
         iLogin login = new iLogin();
+
         iVPVendedor ventanaPrincipal = new iVPVendedor();
+        iVPVendedor ventana = new iVPVendedor();
+        iVCorreo icorreo= new iVCorreo();
         
         Coordinador miCoordinador = new Coordinador();
         Logica miLogica = new Logica();
@@ -33,7 +36,12 @@ public class Aplicacion {
         miCoordinador.setVentanaPrincipal(ventanaPrincipal);
         miCoordinador.setConexion(miConexion);
         
+
         login.setVisible(true);
+        //ventana.setVisible(true);
+        //login.setVisible(true);
+        
+        //icorreo.setVisible(true);
     }
     
 }

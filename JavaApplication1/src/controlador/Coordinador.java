@@ -44,6 +44,17 @@ public class Coordinador {
     public void abrirVentanaPrincipal() {
         ventanaPrincipal.setVisible(true);
     }
+    
+    public String darIngreso(String user, String password){
+        String mensaje = "";
+        try{
+            miConexion.definirUsuarioContra(user, password);
+            mensaje = "Bienvenido";
+        } catch (Exception e){
+            mensaje = "Ha ocurrido un error, vuelva a intentar.";
+        }
+        return mensaje;
+    }
 
     
 }

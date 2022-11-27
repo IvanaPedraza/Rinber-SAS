@@ -13,7 +13,6 @@ public class Logica {
         this.miCoordinador = miCoordinador;
     }
     
-    Conexion miConexion = new Conexion();
     
     public String validarIngreso(String usuario, String contrasena){
         
@@ -23,9 +22,8 @@ public class Logica {
             retorno = "error";
         }else{
             
-            miConexion.definirUsuarioContra(usuario, contrasena);
+            retorno = miCoordinador.darIngreso(usuario, contrasena);
 
-            retorno = "hizo conexion";
         }
         return retorno;
         
