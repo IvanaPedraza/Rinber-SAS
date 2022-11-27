@@ -17,12 +17,12 @@ import javax.swing.table.JTableHeader;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class iVEmpresae extends javax.swing.JFrame {
+public class iVGerente extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
 
     Escalar escalar=new Escalar();
-    public iVEmpresae() {
+    public iVGerente() {
         initComponents();
         setTitle("Correo");
         Color azul = new Color(23, 60, 104);
@@ -66,6 +66,8 @@ public class iVEmpresae extends javax.swing.JFrame {
         this.btn_catalogo.setBackground(Color.white);
         this.btn_regresar.setOpaque(true);
         this.btn_regresar.setBackground(Color.white);
+        this.btn_buscar.setOpaque(true);
+        this.btn_buscar.setBackground(azul);
         this.btn_gerente.setOpaque(true);
         this.btn_gerente.setBackground(Color.white);
         
@@ -142,8 +144,8 @@ public class iVEmpresae extends javax.swing.JFrame {
         titulo17 = new javax.swing.JLabel();
         titulo18 = new javax.swing.JLabel();
         btn_catalogo = new javax.swing.JButton();
-        titulo19 = new javax.swing.JLabel();
         btn_gerente = new javax.swing.JButton();
+        titulo19 = new javax.swing.JLabel();
         imagen2 = new javax.swing.JLabel();
         scroll_tabla = new javax.swing.JScrollPane();
         p_info = new javax.swing.JPanel();
@@ -169,7 +171,7 @@ public class iVEmpresae extends javax.swing.JFrame {
         titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo2.setText("Ventana empresa envíos");
+        titulo2.setText("Ventana Gerente");
         titulo2.setToolTipText("");
         titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
         p_ventana.add(titulo2);
@@ -210,7 +212,7 @@ public class iVEmpresae extends javax.swing.JFrame {
         btn_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton proveedor.png"))); // NOI18N
         btn_proveedor.setBorder(null);
 
-        btn_empresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
+        btn_empresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton empresa.png"))); // NOI18N
         btn_empresa.setBorder(null);
 
         btn_cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton cliente.png"))); // NOI18N
@@ -364,17 +366,17 @@ public class iVEmpresae extends javax.swing.JFrame {
         btn_catalogo.setToolTipText("");
         btn_catalogo.setBorder(null);
 
+        btn_gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
+        btn_gerente.setToolTipText("");
+        btn_gerente.setBorder(null);
+
         titulo19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         titulo19.setForeground(new java.awt.Color(11, 43, 90));
         titulo19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo19.setText("Catalogo");
+        titulo19.setText("Gerente");
         titulo19.setToolTipText("");
         titulo19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titulo19.setPreferredSize(new java.awt.Dimension(679, 138));
-
-        btn_gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton gerente.png"))); // NOI18N
-        btn_gerente.setToolTipText("");
-        btn_gerente.setBorder(null);
 
         javax.swing.GroupLayout p_botonesLayout = new javax.swing.GroupLayout(p_botones);
         p_botones.setLayout(p_botonesLayout);
@@ -540,38 +542,38 @@ public class iVEmpresae extends javax.swing.JFrame {
         tabla.setForeground(new java.awt.Color(11, 43, 90));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "NIT", "Nombre", "Seguro", "RUT", "Correo", "Cédula representante", "Dirección", "Teléfono"
+                "Cédula", "Nombre", "Apellido", "Tarjeta profesional", "Correo", "Teléfono"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.Long.class
+                java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.Long.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -600,8 +602,6 @@ public class iVEmpresae extends javax.swing.JFrame {
             tabla.getColumnModel().getColumn(3).setPreferredWidth(200);
             tabla.getColumnModel().getColumn(4).setPreferredWidth(200);
             tabla.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(6).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(7).setPreferredWidth(200);
         }
 
         p_info.add(jScrollPane2);

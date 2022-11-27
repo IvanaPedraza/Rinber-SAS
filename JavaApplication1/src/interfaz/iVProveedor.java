@@ -62,14 +62,14 @@ public class iVProveedor extends javax.swing.JFrame {
         this.btn_solicitudes.setBackground(Color.white);
         this.btn_telefono.setOpaque(true);
         this.btn_telefono.setBackground(Color.white);
-        this.btn_vendedor.setOpaque(true);
-        this.btn_vendedor.setBackground(Color.white);
         this.btn_catalogo.setOpaque(true);
         this.btn_catalogo.setBackground(Color.white);
         this.btn_regresar.setOpaque(true);
         this.btn_regresar.setBackground(Color.white);
         this.btn_buscar.setOpaque(true);
         this.btn_buscar.setBackground(azul);
+        this.btn_gerente.setOpaque(true);
+        this.btn_gerente.setBackground(Color.white);
         
         String t= "<html>Representante<br>legal</html>";
         String t2= "<html>Empresa<br>envíos</html>";
@@ -126,7 +126,6 @@ public class iVProveedor extends javax.swing.JFrame {
         btn_envios = new javax.swing.JButton();
         btn_ordenes = new javax.swing.JButton();
         btn_solicitudes = new javax.swing.JButton();
-        btn_vendedor = new javax.swing.JButton();
         btn_repartidor = new javax.swing.JButton();
         btn_directorio = new javax.swing.JButton();
         titulo3 = new javax.swing.JLabel();
@@ -137,7 +136,6 @@ public class iVProveedor extends javax.swing.JFrame {
         titulo8 = new javax.swing.JLabel();
         titulo9 = new javax.swing.JLabel();
         titulo10 = new javax.swing.JLabel();
-        titulo11 = new javax.swing.JLabel();
         titulo12 = new javax.swing.JLabel();
         titulo13 = new javax.swing.JLabel();
         titulo14 = new javax.swing.JLabel();
@@ -146,6 +144,8 @@ public class iVProveedor extends javax.swing.JFrame {
         titulo17 = new javax.swing.JLabel();
         titulo18 = new javax.swing.JLabel();
         btn_catalogo = new javax.swing.JButton();
+        titulo19 = new javax.swing.JLabel();
+        btn_gerente = new javax.swing.JButton();
         imagen2 = new javax.swing.JLabel();
         scroll_tabla = new javax.swing.JScrollPane();
         p_info = new javax.swing.JPanel();
@@ -239,9 +239,6 @@ public class iVProveedor extends javax.swing.JFrame {
         btn_solicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton solicitudes.png"))); // NOI18N
         btn_solicitudes.setBorder(null);
 
-        btn_vendedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton vendedor.png"))); // NOI18N
-        btn_vendedor.setBorder(null);
-
         btn_repartidor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton repartidor.png"))); // NOI18N
         btn_repartidor.setBorder(null);
 
@@ -311,14 +308,6 @@ public class iVProveedor extends javax.swing.JFrame {
         titulo10.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titulo10.setPreferredSize(new java.awt.Dimension(679, 138));
 
-        titulo11.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        titulo11.setForeground(new java.awt.Color(11, 43, 90));
-        titulo11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo11.setText("Vendedor");
-        titulo11.setToolTipText("");
-        titulo11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        titulo11.setPreferredSize(new java.awt.Dimension(679, 138));
-
         titulo12.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         titulo12.setForeground(new java.awt.Color(11, 43, 90));
         titulo12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -377,13 +366,31 @@ public class iVProveedor extends javax.swing.JFrame {
         btn_catalogo.setToolTipText("");
         btn_catalogo.setBorder(null);
 
+        titulo19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        titulo19.setForeground(new java.awt.Color(11, 43, 90));
+        titulo19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titulo19.setText("Gerente");
+        titulo19.setToolTipText("");
+        titulo19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        titulo19.setPreferredSize(new java.awt.Dimension(679, 138));
+
+        btn_gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton gerente.png"))); // NOI18N
+        btn_gerente.setToolTipText("");
+        btn_gerente.setBorder(null);
+
         javax.swing.GroupLayout p_botonesLayout = new javax.swing.GroupLayout(p_botones);
         p_botones.setLayout(p_botonesLayout);
         p_botonesLayout.setHorizontalGroup(
             p_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_botonesLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(titulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(p_botonesLayout.createSequentialGroup()
                 .addContainerGap(45, Short.MAX_VALUE)
                 .addGroup(p_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_gerente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(titulo19, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo17, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_catalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo18, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -392,7 +399,6 @@ public class iVProveedor extends javax.swing.JFrame {
                     .addComponent(titulo15, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo13, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titulo11, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -406,7 +412,6 @@ public class iVProveedor extends javax.swing.JFrame {
                     .addComponent(btn_proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_repartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_ordenes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_envios, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -416,10 +421,6 @@ public class iVProveedor extends javax.swing.JFrame {
                     .addComponent(btn_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52))
-            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, p_botonesLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(titulo4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         p_botonesLayout.setVerticalGroup(
             p_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -457,10 +458,6 @@ public class iVProveedor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(btn_vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(titulo11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
                 .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -488,7 +485,11 @@ public class iVProveedor extends javax.swing.JFrame {
                 .addComponent(btn_catalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(btn_gerente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(titulo19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(p_botones);
@@ -698,6 +699,7 @@ public class iVProveedor extends javax.swing.JFrame {
     private javax.swing.JButton btn_directorio;
     private javax.swing.JButton btn_empresa;
     private javax.swing.JButton btn_envios;
+    private javax.swing.JButton btn_gerente;
     private javax.swing.JButton btn_ordenes;
     private javax.swing.JButton btn_producto;
     private javax.swing.JButton btn_proveedor;
@@ -706,7 +708,6 @@ public class iVProveedor extends javax.swing.JFrame {
     private javax.swing.JButton btn_repreLegal;
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JButton btn_telefono;
-    private javax.swing.JButton btn_vendedor;
     private javax.swing.JLabel imagen2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logoRinber;
@@ -719,7 +720,6 @@ public class iVProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo;
     private javax.swing.JTable tabla;
     private javax.swing.JLabel titulo10;
-    private javax.swing.JLabel titulo11;
     private javax.swing.JLabel titulo12;
     private javax.swing.JLabel titulo13;
     private javax.swing.JLabel titulo14;
@@ -727,6 +727,7 @@ public class iVProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel titulo16;
     private javax.swing.JLabel titulo17;
     private javax.swing.JLabel titulo18;
+    private javax.swing.JLabel titulo19;
     private javax.swing.JLabel titulo2;
     private javax.swing.JLabel titulo3;
     private javax.swing.JLabel titulo4;
