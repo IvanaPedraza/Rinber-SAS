@@ -85,14 +85,25 @@ public class Aplicacion {
         //login.setVisible(true);
         //ventanaPrincipal.setVisible(true);
         //idireccion.setVisible(true);
+
         //login.setVisible(true);
      
 
         //login.setVisible(true);
         //iempresae.setVisible(true);
 
+
+
+
+        //iempresae.setVisible(true);
+
+        //login.setVisible(true);
+        // iproveedor.setVisible(true);
+
+
         //login.setVisible(true);
         //iproveedor.setVisible(true);
+
         //icorreo.setVisible(true);
         //igerente.setVisible(true);
         

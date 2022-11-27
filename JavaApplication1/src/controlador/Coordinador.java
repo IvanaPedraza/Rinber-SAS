@@ -17,6 +17,7 @@ import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.representanteDao;
 import modelo.dao.telefonoDao;
+import modelo.vo.direccionVo;
 
 
 public class Coordinador {
@@ -274,13 +275,14 @@ public class Coordinador {
                 
             }
             table.setModel(modelo);
-            table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         }catch(Exception e){
             System.out.println(e);
         }
     }
     
-
+    public String agregarNuevaDireccion(direccionVo nuevaDireccion){
+        return miDireccionDao.agregarDireccion(nuevaDireccion);
+    }
     
     
 
