@@ -83,18 +83,16 @@ public class Aplicacion {
 
 
         //iempresae.setVisible(true);
-<<<<<<< HEAD
+
         login.setVisible(true);
         // iproveedor.setVisible(true);
-=======
->>>>>>> 4bcf2e08056bba879da0da79f44e0370c2bf16e2
         //login.setVisible(true);
         //iproveedor.setVisible(true);
->>>>>>> 7f79fc0092c8bb4f6e3b60316cc00246ec455496
+
         //icorreo.setVisible(true);
         //igerente.setVisible(true);
         //irepre_legal.setVisible(true);
-        icliente.setVisible(true);
+        //icliente.setVisible(true);
     }
     
 }

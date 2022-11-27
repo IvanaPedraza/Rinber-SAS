@@ -63,5 +63,32 @@ public class direccionDao {
         
         return resultado;
     }
+
+    public direccionVo consultarDireccion(String direccionDirec) {
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        direccionVo direccionConsul = null;
+        Connection connection = miCoordinador.obtenerConexion();
+        String consulta = "select * from direccion where dirDireccion = ?";
+        try{
+            statement = connection.prepareStatement(consulta);
+            statement.setString(1, direccionDirec);
+            rs = statement.executeQuery();
+            
+            while(rs.next()==true){
+                direccionConsul = new direccionVo();
+                direccionConsul.setDirDireccion(rs.getString("dirDireccion"));
+                direccionConsul.setDirCiudad(rs.getString("dirCiudad"));
+                direccionConsul.setDirLocalidad(rs.getString("dirCiudad"));
+                direccionConsul.setDirBarrio(rs.getString("dirBarrio"));
+                
+            }
+        
+        }catch(SQLException e){
+            System.out.println("No se pudo encontrar la direccion "+e.getMessage());
+            
+        }
+        return direccionConsul;
+    }
     
 }

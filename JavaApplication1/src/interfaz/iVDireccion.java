@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controlador.Escalar;
 import java.awt.Font;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
@@ -61,7 +62,7 @@ public class iVDireccion extends javax.swing.JFrame {
         escalar.escalarLabel(this.logoRinber, "/img/imgiVPV/loguito-redondito.png");
         escalar.escalarLabel(this.imagen2, "/img/imgiVPV/Franja.jpg");
         
-        
+        //this.cb_direcciones.setSelectedIndex(0);
         this.btn_cliente.setOpaque(true);
         this.btn_cliente.setBackground(Color.white);
         this.btn_correo.setOpaque(true);
@@ -134,7 +135,7 @@ public class iVDireccion extends javax.swing.JFrame {
         th2.setFont(fuente2);
         tablaEliminar.getTableHeader().setBackground(azul);
         tablaEliminar.getTableHeader().setForeground(Color.white);
-        tablaEliminar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //tablaEliminar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         //inicializar();
     }
@@ -176,24 +177,49 @@ public class iVDireccion extends javax.swing.JFrame {
         return tablaEliminar;
     }
     
+    public JComboBox enviarComboDireccionesAct(){
+        return cb_direcciones;
+    }
+    
     private void registrarNuevaDire() {
         
         direccionVo nuevaDireccion = new direccionVo();
         
-        nuevaDireccion.setDirDireccion(txtdireccion_agregar.getText());
-        nuevaDireccion.setDirCiudad(txtciudad_agregar.getText());
-        nuevaDireccion.setDirLocalidad(txtlocalidad_agregar.getText());
-        nuevaDireccion.setDirBarrio(txtbarrio_agregar.getText());
+        nuevaDireccion.setDirDireccion(txtdireccion_agregar.getText().trim());
+        nuevaDireccion.setDirCiudad(txtciudad_agregar.getText().trim());
+        nuevaDireccion.setDirLocalidad(txtlocalidad_agregar.getText().trim());
+        nuevaDireccion.setDirBarrio(txtbarrio_agregar.getText().trim());
         
         String retorno = miCoordinador.agregarNuevaDireccion(nuevaDireccion);
         
         if(retorno.equals("OK")){
             JOptionPane.showMessageDialog(null, "¡La dirección fue agregada con éxito!");
+            txtdireccion_agregar.setText("");
+            txtciudad_agregar.setText("");
+            txtlocalidad_agregar.setText("");
+            txtbarrio_agregar.setText("");
         }else{
             JOptionPane.showMessageDialog(null, "La dirección no se pudo agregar, verifique el error.");
-
         }
     }
+    
+    private void consultarDireccion() {
+        String valorSeleccionado = (String) cb_direcciones.getSelectedItem();
+        direccionVo direccionConsulta = miCoordinador.consultarDireccion(valorSeleccionado);
+        
+        if(direccionConsulta!=null){
+            txtciudadAct.setText(direccionConsulta.getDirCiudad());
+            txtlocalidadAct.setText(direccionConsulta.getDirLocalidad());
+            txtbarrioAct.setText(direccionConsulta.getDirBarrio());
+        }else{
+            //JOptionPane.showMessageDialog(null, "La dirección no se encuentra en el sistema.");
+        }
+    }
+    
+    private void actualizarDire() {
+        
+    }
+    
 
     
     
@@ -954,6 +980,16 @@ public class iVDireccion extends javax.swing.JFrame {
         cb_direcciones.setForeground(new java.awt.Color(11, 43, 90));
         cb_direcciones.setMaximumRowCount(200);
         cb_direcciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_direcciones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_direccionesItemStateChanged(evt);
+            }
+        });
+        cb_direcciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_direccionesActionPerformed(evt);
+            }
+        });
         p_actualizar.add(cb_direcciones);
         cb_direcciones.setBounds(30, 90, 640, 30);
 
@@ -984,6 +1020,11 @@ public class iVDireccion extends javax.swing.JFrame {
         subtitulo11.setBounds(30, 240, 130, 30);
 
         txtbarrioAct.setEditable(false);
+        txtbarrioAct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbarrioActActionPerformed(evt);
+            }
+        });
         p_actualizar.add(txtbarrioAct);
         txtbarrioAct.setBounds(170, 390, 500, 30);
 
@@ -1244,7 +1285,7 @@ public class iVDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_leerActionPerformed
 
     private void btn_actActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actActionPerformed
-        // TODO add your handling code here:
+        actualizarDire();
     }//GEN-LAST:event_btn_actActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -1277,6 +1318,18 @@ public class iVDireccion extends javax.swing.JFrame {
     private void txtbusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusquedaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtbusquedaActionPerformed
+
+    private void cb_direccionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_direccionesActionPerformed
+        consultarDireccion();
+    }//GEN-LAST:event_cb_direccionesActionPerformed
+
+    private void cb_direccionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_direccionesItemStateChanged
+        
+    }//GEN-LAST:event_cb_direccionesItemStateChanged
+
+    private void txtbarrioActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbarrioActActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbarrioActActionPerformed
 
 
 
@@ -1383,6 +1436,10 @@ public class iVDireccion extends javax.swing.JFrame {
     private javax.swing.JTextField txtlocalidadAct;
     private javax.swing.JTextField txtlocalidad_agregar;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    
 
     
     
