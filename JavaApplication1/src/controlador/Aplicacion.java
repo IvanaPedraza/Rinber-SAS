@@ -6,6 +6,7 @@ import modelo.Conexion;
 
 import modelo.Logica;
 import interfaz.iVCorreo;
+import interfaz.iVDireccion;
 import interfaz.iVRepre;
 import interfaz.iVTelefono;
 import modelo.dao.correoDao;
@@ -24,6 +25,7 @@ public class Aplicacion {
         iVCorreo icorreo= new iVCorreo();
         iVRepre irepre_legal = new iVRepre();
         iVTelefono itelefono = new iVTelefono();
+        iVDireccion idireccion = new iVDireccion();
         
         //Clases y demas
         Coordinador miCoordinador = new Coordinador();
@@ -62,9 +64,9 @@ public class Aplicacion {
         
 
         
-        login.setVisible(true);
-        //ventana.setVisible(true);
-
+        //login.setVisible(true);
+        //ventanaPrincipal.setVisible(true);
+        idireccion.setVisible(true);
         //login.setVisible(true);
      
         //login.setVisible(true);
