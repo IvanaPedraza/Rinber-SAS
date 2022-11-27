@@ -309,7 +309,6 @@ public class iVPVendedor extends javax.swing.JFrame {
         scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_correo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton correo.png"))); // NOI18N
-        btn_correo.setActionCommand("");
         btn_correo.setBorder(null);
         btn_correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,6 +335,11 @@ public class iVPVendedor extends javax.swing.JFrame {
 
         btn_direccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton direccion.png"))); // NOI18N
         btn_direccion.setBorder(null);
+        btn_direccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_direccionActionPerformed(evt);
+            }
+        });
 
         btn_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton proveedor.png"))); // NOI18N
         btn_proveedor.setBorder(null);
@@ -706,6 +710,11 @@ public class iVPVendedor extends javax.swing.JFrame {
         miCoordinador.abrirVentanaRepresentante();
         miCoordinador.cerrarVentanaPrincipal();
     }//GEN-LAST:event_btn_repreLegalActionPerformed
+
+    private void btn_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_direccionActionPerformed
+        miCoordinador.abrirVentanaDireccion();
+        miCoordinador.cerrarVentanaPrincipal();
+    }//GEN-LAST:event_btn_direccionActionPerformed
 
 
 

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controlador.Escalar;
 import java.awt.Font;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
@@ -21,19 +22,18 @@ public class iVDireccion extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
     private Color azul = new Color(23, 60, 104);
+    
+    /*
     private void inicializar(){
-        this.p_seccionEliminar.setVisible(false);
-        this.p_seccionActualizar.setVisible(false);
-        this.p_seccionAgregar.setVisible(false);
-        this.p_seccionLeer.setVisible(true);
         this.btn_leer.setBackground(new Color(87, 156, 194));
         this.btn_leer.setForeground(Color.white);
     }
+    */
     private void ocultaPanel(){
-        this.p_seccionEliminar.setVisible(false);
-        this.p_seccionActualizar.setVisible(false);
-        this.p_seccionLeer.setVisible(false);
-        this.p_seccionAgregar.setVisible(false);
+        miCoordinador.cerrarDireccionPanEliminar();
+        miCoordinador.cerrarDireccionPanActualizar();
+        miCoordinador.cerrarDireccionPanLeer();
+        miCoordinador.cerrarDireccionPanAgregar();
     }
     
     private void colorBotones(){
@@ -93,14 +93,14 @@ public class iVDireccion extends javax.swing.JFrame {
         this.btn_vendedor.setBackground(Color.white);
         this.btn_catalogo.setOpaque(true);
         this.btn_catalogo.setBackground(Color.white);
-        this.btn_enviar.setOpaque(true);
-        this.btn_enviar.setBackground(Color.white);
+        this.btn_enviar_agregar.setOpaque(true);
+        this.btn_enviar_agregar.setBackground(Color.white);
         this.btn_buscar.setOpaque(true);
         this.btn_buscar.setBackground(azul);
         this.btn_agregar.setOpaque(true);
         this.btn_agregar.setBackground(Color.white);
-        this.btn_enviar.setOpaque(true);
-        this.btn_enviar.setBackground(azul);
+        this.btn_enviar_agregar.setOpaque(true);
+        this.btn_enviar_agregar.setBackground(azul);
         this.btn_actualizar.setOpaque(true);
         this.btn_actualizar.setBackground(Color.white);
         this.btn_leer.setOpaque(true);
@@ -120,27 +120,62 @@ public class iVDireccion extends javax.swing.JFrame {
         this.titulo13.setText(t4);
         
         JTableHeader th;
-        th = this.tabla.getTableHeader();
+        th = this.tablaLeer.getTableHeader();
         Font fuente = new Font("Century Gothic", Font.BOLD, 18);
         th.setFont(fuente);
-        tabla.getTableHeader().setBackground(azul);
-        tabla.getTableHeader().setForeground(Color.white);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaLeer.getTableHeader().setBackground(azul);
+        tablaLeer.getTableHeader().setForeground(Color.white);
+        tablaLeer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         JTableHeader th2;
-        th2 = this.tabla2.getTableHeader();
+        th2 = this.tablaEliminar.getTableHeader();
         Font fuente2 = new Font("Century Gothic", Font.BOLD, 18);
         th2.setFont(fuente2);
-        tabla2.getTableHeader().setBackground(azul);
-        tabla2.getTableHeader().setForeground(Color.white);
-        tabla2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaEliminar.getTableHeader().setBackground(azul);
+        tablaEliminar.getTableHeader().setForeground(Color.white);
+        tablaEliminar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        inicializar();
+        //inicializar();
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
+    
+    public JPanel enviarPanelLeer(){
+        this.btn_leer.setBackground(new Color(87, 156, 194));
+        this.btn_leer.setForeground(Color.white);
+        return p_seccionLeer;
+    }
+    
+    public JPanel enviarPanelAgregar(){
+        this.btn_agregar.setBackground(new Color(87, 156, 194));
+        this.btn_agregar.setForeground(Color.white);
+        return p_seccionAgregar;
+    }
+    
+    public JPanel enviarPanelActualizar(){
+        this.btn_actualizar.setBackground(new Color(87, 156, 194));
+        this.btn_actualizar.setForeground(Color.white);
+        return p_seccionActualizar;
+    }
+    
+    public JPanel enviarPanelEliminar(){
+        this.btn_eliminar.setBackground(new Color(87, 156, 194));
+        this.btn_eliminar.setForeground(Color.white);
+        return p_seccionEliminar;
+    }
+    
+    public JTable enviarTabla_Leer(){
+        return tablaLeer;
+    }
+    
+    
+    public JTable enviarTabla_Eliminar(){
+        return tablaEliminar;
+    }
+    
+    
     
     /**
      * Componentes logicos
@@ -202,21 +237,21 @@ public class iVDireccion extends javax.swing.JFrame {
         subtitulo2 = new javax.swing.JLabel();
         subtitulo3 = new javax.swing.JLabel();
         subtitulo4 = new javax.swing.JLabel();
-        txtbarrio = new javax.swing.JTextField();
-        txtdireccion = new javax.swing.JTextField();
-        txtciudad = new javax.swing.JTextField();
-        txtlocalidad = new javax.swing.JTextField();
+        txtbarrio_agregar = new javax.swing.JTextField();
+        txtdireccion_agregar = new javax.swing.JTextField();
+        txtciudad_agregar = new javax.swing.JTextField();
+        txtlocalidad_agregar = new javax.swing.JTextField();
         decorador1 = new javax.swing.JLabel();
         decorador2 = new javax.swing.JLabel();
         decorador3 = new javax.swing.JLabel();
         decorador4 = new javax.swing.JLabel();
-        btn_enviar = new javax.swing.JButton();
+        btn_enviar_agregar = new javax.swing.JButton();
         p_seccionLeer = new javax.swing.JPanel();
         subtitulo = new javax.swing.JLabel();
         txtbusqueda = new javax.swing.JTextField();
         p_scroll2 = new javax.swing.JPanel();
         scroll_tabla = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        tablaLeer = new javax.swing.JTable();
         btn_buscar = new javax.swing.JButton();
         p_seccionActualizar = new javax.swing.JPanel();
         p_actualizar = new javax.swing.JPanel();
@@ -229,10 +264,10 @@ public class iVDireccion extends javax.swing.JFrame {
         subtitulo7 = new javax.swing.JLabel();
         decorador8 = new javax.swing.JLabel();
         subtitulo8 = new javax.swing.JLabel();
-        txtdnbarrio = new javax.swing.JTextField();
-        txtdnlocalidad = new javax.swing.JTextField();
-        txtdnCiudad = new javax.swing.JTextField();
-        txtdnDireccion = new javax.swing.JTextField();
+        txtdnbarrio_actu = new javax.swing.JTextField();
+        txtdnlocalidad_actu = new javax.swing.JTextField();
+        txtdnCiudad_actu = new javax.swing.JTextField();
+        txtdnDireccion_actu = new javax.swing.JTextField();
         cb_direcciones = new javax.swing.JComboBox<>();
         subtitulo9 = new javax.swing.JLabel();
         txtciudadAct = new javax.swing.JTextField();
@@ -245,7 +280,7 @@ public class iVDireccion extends javax.swing.JFrame {
         p_seccionEliminar = new javax.swing.JPanel();
         p_scroll3 = new javax.swing.JPanel();
         scroll_tabla1 = new javax.swing.JScrollPane();
-        tabla2 = new javax.swing.JTable();
+        tablaEliminar = new javax.swing.JTable();
         p_eliminar = new javax.swing.JPanel();
         subtitulo14 = new javax.swing.JLabel();
         subtitulo15 = new javax.swing.JLabel();
@@ -663,14 +698,14 @@ public class iVDireccion extends javax.swing.JFrame {
         subtitulo4.setText("Barrio:");
         p_agregar.add(subtitulo4);
         subtitulo4.setBounds(70, 380, 100, 40);
-        p_agregar.add(txtbarrio);
-        txtbarrio.setBounds(200, 380, 440, 40);
-        p_agregar.add(txtdireccion);
-        txtdireccion.setBounds(200, 140, 440, 40);
-        p_agregar.add(txtciudad);
-        txtciudad.setBounds(200, 220, 440, 40);
-        p_agregar.add(txtlocalidad);
-        txtlocalidad.setBounds(200, 300, 440, 40);
+        p_agregar.add(txtbarrio_agregar);
+        txtbarrio_agregar.setBounds(200, 380, 440, 40);
+        p_agregar.add(txtdireccion_agregar);
+        txtdireccion_agregar.setBounds(200, 140, 440, 40);
+        p_agregar.add(txtciudad_agregar);
+        txtciudad_agregar.setBounds(200, 220, 440, 40);
+        p_agregar.add(txtlocalidad_agregar);
+        txtlocalidad_agregar.setBounds(200, 300, 440, 40);
 
         decorador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador1);
@@ -688,17 +723,17 @@ public class iVDireccion extends javax.swing.JFrame {
         p_agregar.add(decorador4);
         decorador4.setBounds(30, 380, 30, 40);
 
-        btn_enviar.setBackground(new java.awt.Color(23, 60, 104));
-        btn_enviar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        btn_enviar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_enviar.setText("Agregar");
-        btn_enviar.addActionListener(new java.awt.event.ActionListener() {
+        btn_enviar_agregar.setBackground(new java.awt.Color(23, 60, 104));
+        btn_enviar_agregar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btn_enviar_agregar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_enviar_agregar.setText("Agregar");
+        btn_enviar_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_enviarActionPerformed(evt);
+                btn_enviar_agregarActionPerformed(evt);
             }
         });
-        p_agregar.add(btn_enviar);
-        btn_enviar.setBounds(460, 450, 180, 40);
+        p_agregar.add(btn_enviar_agregar);
+        btn_enviar_agregar.setBounds(460, 450, 180, 40);
 
         p_seccionAgregar.add(p_agregar);
         p_agregar.setBounds(9, 11, 700, 510);
@@ -720,15 +755,20 @@ public class iVDireccion extends javax.swing.JFrame {
         txtbusqueda.setForeground(new java.awt.Color(23, 60, 104));
         txtbusqueda.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtbusqueda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.lightGray, java.awt.Color.darkGray));
+        txtbusqueda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtbusquedaActionPerformed(evt);
+            }
+        });
         p_seccionLeer.add(txtbusqueda);
         txtbusqueda.setBounds(210, 10, 440, 40);
 
         p_scroll2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla.setAutoCreateRowSorter(true);
-        tabla.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tabla.setForeground(new java.awt.Color(11, 43, 90));
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tablaLeer.setAutoCreateRowSorter(true);
+        tablaLeer.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tablaLeer.setForeground(new java.awt.Color(11, 43, 90));
+        tablaLeer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -772,22 +812,22 @@ public class iVDireccion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setEnabled(false);
-        tabla.setGridColor(new java.awt.Color(0, 0, 0));
-        tabla.setOpaque(false);
-        tabla.setRequestFocusEnabled(false);
-        tabla.setRowHeight(30);
-        tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla.setShowGrid(true);
-        tabla.getTableHeader().setResizingAllowed(false);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        scroll_tabla.setViewportView(tabla);
-        if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(200);
+        tablaLeer.setEnabled(false);
+        tablaLeer.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaLeer.setOpaque(false);
+        tablaLeer.setRequestFocusEnabled(false);
+        tablaLeer.setRowHeight(30);
+        tablaLeer.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaLeer.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tablaLeer.setShowGrid(true);
+        tablaLeer.getTableHeader().setResizingAllowed(false);
+        tablaLeer.getTableHeader().setReorderingAllowed(false);
+        scroll_tabla.setViewportView(tablaLeer);
+        if (tablaLeer.getColumnModel().getColumnCount() > 0) {
+            tablaLeer.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout p_scroll2Layout = new javax.swing.GroupLayout(p_scroll2);
@@ -879,14 +919,14 @@ public class iVDireccion extends javax.swing.JFrame {
         subtitulo8.setText("Barrio:");
         p_actualizar.add(subtitulo8);
         subtitulo8.setBounds(70, 380, 100, 40);
-        p_actualizar.add(txtdnbarrio);
-        txtdnbarrio.setBounds(170, 440, 500, 30);
-        p_actualizar.add(txtdnlocalidad);
-        txtdnlocalidad.setBounds(170, 340, 500, 30);
-        p_actualizar.add(txtdnCiudad);
-        txtdnCiudad.setBounds(170, 240, 500, 30);
-        p_actualizar.add(txtdnDireccion);
-        txtdnDireccion.setBounds(170, 140, 500, 30);
+        p_actualizar.add(txtdnbarrio_actu);
+        txtdnbarrio_actu.setBounds(170, 440, 500, 30);
+        p_actualizar.add(txtdnlocalidad_actu);
+        txtdnlocalidad_actu.setBounds(170, 340, 500, 30);
+        p_actualizar.add(txtdnCiudad_actu);
+        txtdnCiudad_actu.setBounds(170, 240, 500, 30);
+        p_actualizar.add(txtdnDireccion_actu);
+        txtdnDireccion_actu.setBounds(170, 140, 500, 30);
 
         cb_direcciones.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         cb_direcciones.setForeground(new java.awt.Color(11, 43, 90));
@@ -954,10 +994,10 @@ public class iVDireccion extends javax.swing.JFrame {
 
         p_scroll3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla2.setAutoCreateRowSorter(true);
-        tabla2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tabla2.setForeground(new java.awt.Color(11, 43, 90));
-        tabla2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEliminar.setAutoCreateRowSorter(true);
+        tablaEliminar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tablaEliminar.setForeground(new java.awt.Color(11, 43, 90));
+        tablaEliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1001,22 +1041,22 @@ public class iVDireccion extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla2.setEnabled(false);
-        tabla2.setGridColor(new java.awt.Color(0, 0, 0));
-        tabla2.setOpaque(false);
-        tabla2.setRequestFocusEnabled(false);
-        tabla2.setRowHeight(30);
-        tabla2.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        tabla2.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla2.setShowGrid(true);
-        tabla2.getTableHeader().setResizingAllowed(false);
-        tabla2.getTableHeader().setReorderingAllowed(false);
-        scroll_tabla1.setViewportView(tabla2);
-        if (tabla2.getColumnModel().getColumnCount() > 0) {
-            tabla2.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(3).setPreferredWidth(200);
+        tablaEliminar.setEnabled(false);
+        tablaEliminar.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaEliminar.setOpaque(false);
+        tablaEliminar.setRequestFocusEnabled(false);
+        tablaEliminar.setRowHeight(30);
+        tablaEliminar.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaEliminar.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tablaEliminar.setShowGrid(true);
+        tablaEliminar.getTableHeader().setResizingAllowed(false);
+        tablaEliminar.getTableHeader().setReorderingAllowed(false);
+        scroll_tabla1.setViewportView(tablaEliminar);
+        if (tablaEliminar.getColumnModel().getColumnCount() > 0) {
+            tablaEliminar.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(3).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout p_scroll3Layout = new javax.swing.GroupLayout(p_scroll3);
@@ -1154,35 +1194,31 @@ public class iVDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        iVCorreo icorreo = new iVCorreo();
-        this.setVisible(false);
-        icorreo.setVisible(true);
+        miCoordinador.abrirVentanaCorreo();
+        miCoordinador.cerrarVentanaDireccion();
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        iVTelefono itelefono = new iVTelefono();
-        this.setVisible(false);
-        itelefono.setVisible(true);
+        miCoordinador.abrirVentanaTelefono();
+        miCoordinador.cerrarVentanaDireccion();
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
-    private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
+    private void btn_enviar_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviar_agregarActionPerformed
     
-    }//GEN-LAST:event_btn_enviarActionPerformed
+    }//GEN-LAST:event_btn_enviar_agregarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         ocultaPanel();
-        this.p_seccionAgregar.setVisible(true);
+        miCoordinador.abrirDireccionPanAgregar();
         colorBotones();
-        this.btn_agregar.setBackground(new Color(87, 156, 194));
-        this.btn_agregar.setForeground(Color.white);
+        
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_leerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_leerActionPerformed
         ocultaPanel();
-        this.p_seccionLeer.setVisible(true);
+        miCoordinador.abrirDireccionPanLeer();
         colorBotones();
-        this.btn_leer.setBackground(new Color(87, 156, 194));
-        this.btn_leer.setForeground(Color.white);
+        
     }//GEN-LAST:event_btn_leerActionPerformed
 
     private void btn_actActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actActionPerformed
@@ -1195,10 +1231,9 @@ public class iVDireccion extends javax.swing.JFrame {
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
         ocultaPanel();
-        this.p_seccionActualizar.setVisible(true);
+        miCoordinador.abrirDireccionPanActualizar();
         colorBotones();
-        this.btn_actualizar.setBackground(new Color(87, 156, 194));
-        this.btn_actualizar.setForeground(Color.white);
+        
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void btn_elimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimActionPerformed
@@ -1206,18 +1241,20 @@ public class iVDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_elimActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-       iVPVendedor iprincipal = new iVPVendedor();
-        this.setVisible(false);
-        iprincipal.setVisible(true);
+        miCoordinador.cerrarVentanaDireccion();
+        miCoordinador.abrirVentanaPrincipal();
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
        ocultaPanel();
-       this.p_seccionEliminar.setVisible(true);
+       miCoordinador.abrirDireccionPanEliminar();
        colorBotones();
-       this.btn_eliminar.setBackground(new Color(87, 156, 194));
-       this.btn_eliminar.setForeground(Color.white);
+       
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void txtbusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusquedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtbusquedaActionPerformed
 
 
 
@@ -1235,7 +1272,7 @@ public class iVDireccion extends javax.swing.JFrame {
     private javax.swing.JButton btn_elim;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_empresa;
-    private javax.swing.JButton btn_enviar;
+    private javax.swing.JButton btn_enviar_agregar;
     private javax.swing.JButton btn_envios;
     private javax.swing.JButton btn_leer;
     private javax.swing.JButton btn_ordenes;
@@ -1290,8 +1327,8 @@ public class iVDireccion extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo7;
     private javax.swing.JLabel subtitulo8;
     private javax.swing.JLabel subtitulo9;
-    private javax.swing.JTable tabla;
-    private javax.swing.JTable tabla2;
+    private javax.swing.JTable tablaEliminar;
+    private javax.swing.JTable tablaLeer;
     private javax.swing.JLabel titulo1;
     private javax.swing.JLabel titulo10;
     private javax.swing.JLabel titulo11;
@@ -1311,17 +1348,19 @@ public class iVDireccion extends javax.swing.JFrame {
     private javax.swing.JLabel titulo7;
     private javax.swing.JLabel titulo8;
     private javax.swing.JLabel titulo9;
-    private javax.swing.JTextField txtbarrio;
     private javax.swing.JTextField txtbarrioAct;
+    private javax.swing.JTextField txtbarrio_agregar;
     private javax.swing.JTextField txtbusqueda;
-    private javax.swing.JTextField txtciudad;
     private javax.swing.JTextField txtciudadAct;
-    private javax.swing.JTextField txtdireccion;
-    private javax.swing.JTextField txtdnCiudad;
-    private javax.swing.JTextField txtdnDireccion;
-    private javax.swing.JTextField txtdnbarrio;
-    private javax.swing.JTextField txtdnlocalidad;
-    private javax.swing.JTextField txtlocalidad;
+    private javax.swing.JTextField txtciudad_agregar;
+    private javax.swing.JTextField txtdireccion_agregar;
+    private javax.swing.JTextField txtdnCiudad_actu;
+    private javax.swing.JTextField txtdnDireccion_actu;
+    private javax.swing.JTextField txtdnbarrio_actu;
+    private javax.swing.JTextField txtdnlocalidad_actu;
     private javax.swing.JTextField txtlocalidadAct;
+    private javax.swing.JTextField txtlocalidad_agregar;
     // End of variables declaration//GEN-END:variables
+
+    
 }

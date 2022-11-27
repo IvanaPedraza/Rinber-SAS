@@ -10,6 +10,7 @@ import interfaz.iVDireccion;
 import interfaz.iVRepre;
 import interfaz.iVTelefono;
 import modelo.dao.correoDao;
+import modelo.dao.direccionDao;
 import modelo.dao.representanteDao;
 import modelo.dao.telefonoDao;
 public class Aplicacion {
@@ -33,6 +34,7 @@ public class Aplicacion {
         correoDao miCorreoDao = new correoDao();
         representanteDao miRepresentanteDao = new representanteDao();
         telefonoDao miTelefonoDao = new telefonoDao();
+        direccionDao miDireccionDao = new direccionDao();
         
         // Relacionamos las clases coordinador
         miConexion.setCoordinador(miCoordinador);
@@ -41,12 +43,14 @@ public class Aplicacion {
         icorreo.setCoordinador(miCoordinador);
         irepre_legal.setCoordinador(miCoordinador);
         itelefono.setCoordinador(miCoordinador);
+        idireccion.setCoordinador(miCoordinador);
         
         //se repite para todos las demas ventanas
         miLogica.setCoordinador(miCoordinador);
         miCorreoDao.setCoordinador(miCoordinador);
         miRepresentanteDao.setCoordinador(miCoordinador);
-        miTelefonoDao.setMiCoordinador(miCoordinador);
+        miTelefonoDao.setCoordinador(miCoordinador);
+        miDireccionDao.setCoordinador(miCoordinador);
         
         //Relacionamos coordinador con las clases
         miCoordinador.setLogin(login);
@@ -58,6 +62,8 @@ public class Aplicacion {
         miCoordinador.setRepresentanteDao(miRepresentanteDao);
         miCoordinador.setVentanaTelefono(itelefono);
         miCoordinador.setTelefonoDao(miTelefonoDao);
+        miCoordinador.setVentanaDireccion(idireccion);
+        miCoordinador.setDireccionDao(miDireccionDao);
         
         //Conexion
         miCoordinador.setConexion(miConexion);
@@ -66,8 +72,8 @@ public class Aplicacion {
         
         //login.setVisible(true);
         //ventanaPrincipal.setVisible(true);
-        idireccion.setVisible(true);
-        //login.setVisible(true);
+        //idireccion.setVisible(true);
+        login.setVisible(true);
      
         //login.setVisible(true);
         

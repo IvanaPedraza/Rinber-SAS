@@ -3,15 +3,18 @@ package controlador;
 import java.sql.Connection;
 import interfaz.iLogin;
 import interfaz.iVCorreo;
+import interfaz.iVDireccion;
 import interfaz.iVPVendedor;
 import interfaz.iVRepre;
 import interfaz.iVTelefono;
+import java.awt.Color;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import modelo.Conexion;
 import modelo.Logica;
 import modelo.dao.correoDao;
+import modelo.dao.direccionDao;
 import modelo.dao.representanteDao;
 import modelo.dao.telefonoDao;
 
@@ -23,10 +26,12 @@ public class Coordinador {
     private iVCorreo ventanaCorreo;
     private iVRepre ventanaRepresentante;
     private iVTelefono ventanaTelefono;
+    private iVDireccion ventanaDireccion;
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
+    private direccionDao miDireccionDao;
     
     private Logica miLogica;
     private Connection miConexionActual;
@@ -73,6 +78,14 @@ public class Coordinador {
     
     void setTelefonoDao(telefonoDao miTelefonoDao){
         this.miTelefonoDao = miTelefonoDao;
+    }
+    
+    void setVentanaDireccion(iVDireccion idireccion) {
+        this.ventanaDireccion = idireccion;
+    }
+
+    void setDireccionDao(direccionDao miDireccionDao) {
+        this.miDireccionDao = miDireccionDao;
     }
     
     
@@ -125,6 +138,53 @@ public class Coordinador {
     
     public void cerrarVentanaTelefono(){
         ventanaTelefono.setVisible(false);
+    }
+    
+    public void abrirVentanaDireccion(){
+        
+        ventanaDireccion.setVisible(true);
+        abrirDireccionPanLeer();
+        cerrarDireccionPanActualizar();
+        cerrarDireccionPanAgregar();
+        cerrarDireccionPanEliminar();
+        JTable tablaDireccionLeer = ventanaDireccion.enviarTabla_Leer();
+        mostrarDireccionesAgr(tablaDireccionLeer);
+    }
+    
+    public void cerrarVentanaDireccion(){
+        ventanaDireccion.setVisible(false);
+    }
+    
+    public void abrirDireccionPanLeer(){
+        ventanaDireccion.enviarPanelLeer().setVisible(true);
+    }
+    
+    public void cerrarDireccionPanLeer(){
+        ventanaDireccion.enviarPanelLeer().setVisible(false);
+    }
+    
+    public void abrirDireccionPanActualizar(){
+        ventanaDireccion.enviarPanelActualizar().setVisible(true);
+    }
+    
+    public void cerrarDireccionPanActualizar(){
+        ventanaDireccion.enviarPanelActualizar().setVisible(false);
+    }
+    
+    public void abrirDireccionPanAgregar(){
+        ventanaDireccion.enviarPanelAgregar().setVisible(true);
+    }
+    
+    public void cerrarDireccionPanAgregar(){
+        ventanaDireccion.enviarPanelAgregar().setVisible(false);
+    }
+    
+    public void abrirDireccionPanEliminar(){
+        ventanaDireccion.enviarPanelEliminar().setVisible(true);
+    }
+    
+    public void cerrarDireccionPanEliminar(){
+        ventanaDireccion.enviarPanelEliminar().setVisible(false);
     }
     
     
@@ -197,6 +257,24 @@ public class Coordinador {
                 
             }
             table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public void mostrarDireccionesAgr(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion, dirCiudad, dirLocalidad, dirBarrio from direccion");
+        modelo.setColumnIdentifiers(new Object[] {"Dirección","Ciudad", "Localidad", "Barrio"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("dirDireccion"),rs.getString("dirCiudad"),rs.getString("dirLocalidad"), rs.getString("dirBarrio")});
+                
+            }
+            table.setModel(modelo);
+            table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         }catch(Exception e){
             System.out.println(e);
         }
