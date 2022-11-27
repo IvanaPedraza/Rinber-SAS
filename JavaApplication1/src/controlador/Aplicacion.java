@@ -1,13 +1,10 @@
 package controlador;
 
 import interfaz.iLogin;
-<<<<<<< HEAD
 import interfaz.iVPVendedor;
-=======
 import modelo.Conexion;
->>>>>>> f49b65f5385d47bcff0e75e77bf61447633d67e9
 import modelo.Logica;
-
+import interfaz.iVCorreo;
 public class Aplicacion {
     
     public void iniciarSistema(){
@@ -15,6 +12,7 @@ public class Aplicacion {
         // se instancias las clases unicas
         iLogin login = new iLogin();
         iVPVendedor ventana = new iVPVendedor();
+        iVCorreo icorreo= new iVCorreo();
         
         Coordinador miCoordinador = new Coordinador();
         Logica miLogica = new Logica();
@@ -32,8 +30,10 @@ public class Aplicacion {
         miCoordinador.setLogin(login);
         miCoordinador.setLogica(miLogica);
         
-        ventana.setVisible(true);
+        //ventana.setVisible(true);
         //login.setVisible(true);
+        
+        icorreo.setVisible(true);
     }
     
 }
