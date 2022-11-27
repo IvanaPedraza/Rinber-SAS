@@ -28,7 +28,6 @@ public class Conexion {
     }
 	//constructor de la clase
 	public void Conexion(){
-            String mensaje = "";
 		try {
 			//obtener el driver
 			Class.forName("com.mysql.jdbc.Driver");

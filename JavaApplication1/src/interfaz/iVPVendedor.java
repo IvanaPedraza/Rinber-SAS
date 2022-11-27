@@ -684,7 +684,7 @@ public class iVPVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        // TODO add your handling code here:
+        miCoordinador.abrirVentanaCorreo();
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed

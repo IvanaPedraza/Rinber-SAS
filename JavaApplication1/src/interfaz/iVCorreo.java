@@ -8,13 +8,17 @@ package interfaz;
 import controlador.Coordinador;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-
+import java.sql.ResultSet;
 import controlador.Escalar;
 import java.awt.Font;
+import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.table.DefaultTableModel;
+import modelo.dao.correoDao;
+import modelo.vo.correoVo;
 
 public class iVCorreo extends javax.swing.JFrame {
     
@@ -84,12 +88,21 @@ public class iVCorreo extends javax.swing.JFrame {
         tabla.getTableHeader().setBackground(azul);
         tabla.getTableHeader().setForeground(Color.white);
         
-        
+
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
+    
+    //Coordinador coordinador2 = new Coordinador();
+    
+    public JTable enviarTabla(){
+        return tabla;
+    }
+    
+ 
+    
     
     /**
      * Componentes logicos
@@ -691,4 +704,6 @@ public class iVCorreo extends javax.swing.JFrame {
     private javax.swing.JLabel titulo9;
     private javax.swing.JTextField txtbusqueda;
     // End of variables declaration//GEN-END:variables
+
+    
 }
