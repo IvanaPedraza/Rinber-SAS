@@ -39,10 +39,15 @@ public class Aplicacion {
         miCoordinador.setConexion(miConexion);
         miCoordinador.setCorreoDao(miCorreoDao);
 
+<<<<<<< HEAD
         
         icorreo.setVisible(false);
         login.setVisible(true);
         //ventana.setVisible(true);
+=======
+        //login.setVisible(true);
+        ventana.setVisible(true);
+>>>>>>> 2985e80c1eeb924dd20af2315e9f572c7ffdaa60
         //login.setVisible(true);
         
         //icorreo.setVisible(true);

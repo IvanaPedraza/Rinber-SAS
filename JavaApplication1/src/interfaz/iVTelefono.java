@@ -8,24 +8,20 @@ package interfaz;
 import controlador.Coordinador;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import java.sql.ResultSet;
+
 import controlador.Escalar;
 import java.awt.Font;
-import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import modelo.dao.correoDao;
-import modelo.vo.correoVo;
 
-public class iVCorreo extends javax.swing.JFrame {
+public class iVTelefono extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
 
     Escalar escalar=new Escalar();
-    public iVCorreo() {
+    public iVTelefono() {
         initComponents();
         setTitle("Correo");
         Color azul = new Color(23, 60, 104);
@@ -90,21 +86,12 @@ public class iVCorreo extends javax.swing.JFrame {
         tabla.getTableHeader().setBackground(azul);
         tabla.getTableHeader().setForeground(Color.white);
         
-
+        
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
-    
-    //Coordinador coordinador2 = new Coordinador();
-    
-    public JTable enviarTabla(){
-        return tabla;
-    }
-    
- 
-    
     
     /**
      * Componentes logicos
@@ -183,7 +170,7 @@ public class iVCorreo extends javax.swing.JFrame {
         titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo2.setText("Ventana correo");
+        titulo2.setText("Ventana teléfono");
         titulo2.setToolTipText("");
         titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
         p_ventana.add(titulo2);
@@ -193,7 +180,7 @@ public class iVCorreo extends javax.swing.JFrame {
         scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btn_correo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
+        btn_correo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton correo.png"))); // NOI18N
         btn_correo.setBorder(null);
         btn_correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,7 +188,7 @@ public class iVCorreo extends javax.swing.JFrame {
             }
         });
 
-        btn_telefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton telefono.png"))); // NOI18N
+        btn_telefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
         btn_telefono.setBorder(null);
         btn_telefono.setMargin(new java.awt.Insets(2, 14, 30, 14));
         btn_telefono.addActionListener(new java.awt.event.ActionListener() {
@@ -575,11 +562,11 @@ public class iVCorreo extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Correo", "Tipo"
+                "Número", "Tipo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Long.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false
@@ -600,8 +587,12 @@ public class iVCorreo extends javax.swing.JFrame {
         tabla.setRowHeight(30);
         tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
         tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla.setShowGrid(true);
+        tabla.setShowGrid(false);
         jScrollPane2.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setResizable(false);
+            tabla.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         p_info.add(jScrollPane2);
         jScrollPane2.setBounds(10, 10, 660, 500);
@@ -656,13 +647,13 @@ public class iVCorreo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        // TODO add your handling code here:
+        iVCorreo icorreo = new iVCorreo();
+        this.setVisible(false);
+        icorreo.setVisible(true);
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        iVTelefono itelefono = new iVTelefono();
-        this.setVisible(false);
-        itelefono.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -732,6 +723,4 @@ public class iVCorreo extends javax.swing.JFrame {
     private javax.swing.JLabel titulo9;
     private javax.swing.JTextField txtbusqueda;
     // End of variables declaration//GEN-END:variables
-
-    
 }

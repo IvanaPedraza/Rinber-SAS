@@ -8,7 +8,7 @@ package interfaz;
 import controlador.Coordinador;
 import java.awt.Color;
 import javax.swing.JOptionPane;
-import java.sql.ResultSet;
+
 import controlador.Escalar;
 import java.awt.Font;
 import javax.swing.JTable;
@@ -16,16 +16,13 @@ import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
-import javax.swing.table.DefaultTableModel;
-import modelo.dao.correoDao;
-import modelo.vo.correoVo;
 
-public class iVCorreo extends javax.swing.JFrame {
+public class iVRepre extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
 
     Escalar escalar=new Escalar();
-    public iVCorreo() {
+    public iVRepre() {
         initComponents();
         setTitle("Correo");
         Color azul = new Color(23, 60, 104);
@@ -69,10 +66,10 @@ public class iVCorreo extends javax.swing.JFrame {
         this.btn_vendedor.setBackground(Color.white);
         this.btn_catalogo.setOpaque(true);
         this.btn_catalogo.setBackground(Color.white);
-        this.btn_buscar.setOpaque(true);
-        this.btn_buscar.setBackground(azul);
         this.btn_regresar.setOpaque(true);
         this.btn_regresar.setBackground(Color.white);
+        this.btn_buscar.setOpaque(true);
+        this.btn_buscar.setBackground(azul);
         
         String t= "<html>Representante<br>legal</html>";
         String t2= "<html>Empresa<br>envíos</html>";
@@ -90,21 +87,12 @@ public class iVCorreo extends javax.swing.JFrame {
         tabla.getTableHeader().setBackground(azul);
         tabla.getTableHeader().setForeground(Color.white);
         
-
+        
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
-    
-    //Coordinador coordinador2 = new Coordinador();
-    
-    public JTable enviarTabla(){
-        return tabla;
-    }
-    
- 
-    
     
     /**
      * Componentes logicos
@@ -183,7 +171,7 @@ public class iVCorreo extends javax.swing.JFrame {
         titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo2.setText("Ventana correo");
+        titulo2.setText("Ventana representante legal");
         titulo2.setToolTipText("");
         titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
         p_ventana.add(titulo2);
@@ -193,7 +181,7 @@ public class iVCorreo extends javax.swing.JFrame {
         scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btn_correo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
+        btn_correo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton correo.png"))); // NOI18N
         btn_correo.setBorder(null);
         btn_correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,13 +198,8 @@ public class iVCorreo extends javax.swing.JFrame {
             }
         });
 
-        btn_repreLegal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton representante.png"))); // NOI18N
+        btn_repreLegal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
         btn_repreLegal.setBorder(null);
-        btn_repreLegal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_repreLegalActionPerformed(evt);
-            }
-        });
 
         btn_direccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton direccion.png"))); // NOI18N
         btn_direccion.setBorder(null);
@@ -546,43 +529,45 @@ public class iVCorreo extends javax.swing.JFrame {
         p_info.setForeground(new java.awt.Color(255, 255, 255));
         p_info.setLayout(null);
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
         tabla.setAutoCreateRowSorter(true);
         tabla.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         tabla.setForeground(new java.awt.Color(11, 43, 90));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Correo", "Tipo"
+                "Cédula", "Tarjeta profesional", "Nombre", "Apellido", "Correo", "Teléfono"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -601,7 +586,17 @@ public class iVCorreo extends javax.swing.JFrame {
         tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
         tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
         tabla.setShowGrid(true);
+        tabla.getTableHeader().setResizingAllowed(false);
+        tabla.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tabla.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tabla.getColumnModel().getColumn(4).setPreferredWidth(100);
+            tabla.getColumnModel().getColumn(5).setPreferredWidth(100);
+        }
 
         p_info.add(jScrollPane2);
         jScrollPane2.setBounds(10, 10, 660, 500);
@@ -656,7 +651,9 @@ public class iVCorreo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        // TODO add your handling code here:
+        iVCorreo icorreo = new iVCorreo();
+        this.setVisible(false);
+        icorreo.setVisible(true);
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
@@ -674,12 +671,6 @@ public class iVCorreo extends javax.swing.JFrame {
         this.setVisible(false);
         iprincipal.setVisible(true);
     }//GEN-LAST:event_btn_regresarActionPerformed
-
-    private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
-        iVRepre irepre = new iVRepre();
-        this.setVisible(false);
-        irepre.setVisible(true);
-    }//GEN-LAST:event_btn_repreLegalActionPerformed
 
 
 
@@ -732,6 +723,4 @@ public class iVCorreo extends javax.swing.JFrame {
     private javax.swing.JLabel titulo9;
     private javax.swing.JTextField txtbusqueda;
     // End of variables declaration//GEN-END:variables
-
-    
 }
