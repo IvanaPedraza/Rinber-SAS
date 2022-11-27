@@ -1,6 +1,7 @@
 package controlador;
 
 import interfaz.iLogin;
+import interfaz.iVPVendedor;
 import modelo.Conexion;
 import modelo.Logica;
 
@@ -8,6 +9,7 @@ import modelo.Logica;
 public class Coordinador {
 
     private iLogin login;
+    private iVPVendedor ventanaPrincipal;
     private Logica miLogica;
     private Conexion miConexion;
 
@@ -23,6 +25,10 @@ public class Coordinador {
         this.miConexion = miConexion;
     }
     
+    void setVentanaPrincipal(iVPVendedor ventanaPrincipal){
+        this.ventanaPrincipal = ventanaPrincipal;
+    }
+    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
     }
@@ -33,6 +39,10 @@ public class Coordinador {
 
     public void asignarPrivilegios(String usuario) {
         //ventaja de inicio.asignarPrivilegios(usuario);
+    }
+
+    public void abrirVentanaPrincipal() {
+        ventanaPrincipal.setVisible(true);
     }
 
     

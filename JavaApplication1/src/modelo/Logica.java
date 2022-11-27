@@ -7,6 +7,7 @@ public class Logica {
     
 
     private Coordinador miCoordinador;
+    //private Conexion miConexion;
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
@@ -23,7 +24,7 @@ public class Logica {
         }else{
             
             miConexion.definirUsuarioContra(usuario, contrasena);
-            
+
             retorno = "hizo conexion";
         }
         return retorno;

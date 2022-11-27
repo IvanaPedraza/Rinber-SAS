@@ -7,6 +7,8 @@ package interfaz;
 
 import controlador.Coordinador;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 
@@ -27,6 +29,22 @@ public class iLogin extends javax.swing.JFrame {
         setTitle("Login");
         getContentPane().setBackground(Color.white);
         this.setLocation(200, 0);  
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        
+        addWindowListener(new WindowAdapter (){
+        
+        @Override
+        public void windowClosing(WindowEvent e){
+            Object[] options = {"Continuar","Cerrar"};
+            int n = JOptionPane.showOptionDialog(null, "Ingrese los datos requeridos.\nSi sale el sistema de cerrará.",
+                    "Confirmación", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,null,options,options[0]);
+            if(n == JOptionPane.YES_OPTION){}
+            else if(n == JOptionPane.NO_OPTION)
+            {
+                System.exit(0);
+            }
+        }
+        });
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -175,6 +193,7 @@ public class iLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, respuesta);
             // miCoordinador.asignarPrivilegios(respuesta);
             miCoordinador.cerrarVentanaLogin();
+            miCoordinador.abrirVentanaPrincipal();
         }
     }//GEN-LAST:event_btn_ingresarActionPerformed
 
