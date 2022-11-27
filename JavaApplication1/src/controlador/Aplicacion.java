@@ -37,8 +37,8 @@ public class Aplicacion {
         miCoordinador.setConexion(miConexion);
         
 
-        login.setVisible(true);
-        //ventana.setVisible(true);
+        //login.setVisible(true);
+        ventana.setVisible(true);
         //login.setVisible(true);
         
         //icorreo.setVisible(true);

@@ -67,6 +67,8 @@ public class iVCorreo extends javax.swing.JFrame {
         this.btn_catalogo.setBackground(Color.white);
         this.btn_buscar.setOpaque(true);
         this.btn_buscar.setBackground(azul);
+        this.btn_regresar.setOpaque(true);
+        this.btn_regresar.setBackground(Color.white);
         
         String t= "<html>Representante<br>legal</html>";
         String t2= "<html>Empresa<br>envíos</html>";
@@ -151,6 +153,7 @@ public class iVCorreo extends javax.swing.JFrame {
         subtitulo = new javax.swing.JLabel();
         txtbusqueda = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -196,6 +199,11 @@ public class iVCorreo extends javax.swing.JFrame {
 
         btn_repreLegal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton representante.png"))); // NOI18N
         btn_repreLegal.setBorder(null);
+        btn_repreLegal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_repreLegalActionPerformed(evt);
+            }
+        });
 
         btn_direccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton direccion.png"))); // NOI18N
         btn_direccion.setBorder(null);
@@ -522,7 +530,6 @@ public class iVCorreo extends javax.swing.JFrame {
         imagen2.setBounds(230, 110, 950, 80);
 
         p_info.setBackground(new java.awt.Color(255, 255, 255));
-        p_info.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         p_info.setForeground(new java.awt.Color(255, 255, 255));
         p_info.setLayout(null);
 
@@ -580,12 +587,8 @@ public class iVCorreo extends javax.swing.JFrame {
         tabla.setRowHeight(30);
         tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
         tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla.setShowGrid(false);
+        tabla.setShowGrid(true);
         jScrollPane2.setViewportView(tabla);
-        if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(0).setResizable(false);
-            tabla.getColumnModel().getColumn(1).setResizable(false);
-        }
 
         p_info.add(jScrollPane2);
         jScrollPane2.setBounds(10, 10, 660, 500);
@@ -619,6 +622,16 @@ public class iVCorreo extends javax.swing.JFrame {
         p_ventana.add(btn_buscar);
         btn_buscar.setBounds(1100, 280, 50, 40);
 
+        btn_regresar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btn_regresar.setText("Regresar a inicio");
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
+        p_ventana.add(btn_regresar);
+        btn_regresar.setBounds(1000, 700, 180, 40);
+
         getContentPane().add(p_ventana);
         p_ventana.setBounds(0, 0, 1210, 800);
 
@@ -634,12 +647,26 @@ public class iVCorreo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        // TODO add your handling code here:
+        iVTelefono itelefono = new iVTelefono();
+        this.setVisible(false);
+        itelefono.setVisible(true);
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        iVPVendedor iprincipal = new iVPVendedor();
+        this.setVisible(false);
+        iprincipal.setVisible(true);
+    }//GEN-LAST:event_btn_regresarActionPerformed
+
+    private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
+        iVRepre irepre = new iVRepre();
+        this.setVisible(false);
+        irepre.setVisible(true);
+    }//GEN-LAST:event_btn_repreLegalActionPerformed
 
 
 
@@ -656,6 +683,7 @@ public class iVCorreo extends javax.swing.JFrame {
     private javax.swing.JButton btn_ordenes;
     private javax.swing.JButton btn_producto;
     private javax.swing.JButton btn_proveedor;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JButton btn_repartidor;
     private javax.swing.JButton btn_repreLegal;
     private javax.swing.JButton btn_solicitudes;

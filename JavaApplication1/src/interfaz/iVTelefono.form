@@ -68,7 +68,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Ventana correo"/>
+            <Property name="text" type="java.lang.String" value="Ventana tel&#xe9;fono"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[679, 138]"/>
@@ -262,7 +262,7 @@
                     <Component class="javax.swing.JButton" name="btn_correo">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/boton_seleccionado.png"/>
+                          <Image iconType="3" name="/img/imgiVPV/boton correo.png"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -275,7 +275,7 @@
                     <Component class="javax.swing.JButton" name="btn_telefono">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/imgiVPV/boton telefono.png"/>
+                          <Image iconType="3" name="/img/boton_seleccionado.png"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -778,18 +778,18 @@
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="2" rowCount="22">
-                            <Column editable="false" title="Correo" type="java.lang.String"/>
+                            <Column editable="false" title="N&#xfa;mero" type="java.lang.Long"/>
                             <Column editable="false" title="Tipo" type="java.lang.String"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                               <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                               <Title/>
                               <Editor/>
                               <Renderer/>
@@ -809,7 +809,7 @@
                         <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="5a" green="2b" red="b" type="rgb"/>
                         </Property>
-                        <Property name="showGrid" type="boolean" value="true"/>
+                        <Property name="showGrid" type="boolean" value="false"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>

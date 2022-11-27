@@ -10,22 +10,28 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 
 import controlador.Escalar;
-public class iVPVendedor extends javax.swing.JFrame {
+import java.awt.Font;
+import javax.swing.table.JTableHeader;
+
+import javax.swing.JTextField;
+import javax.swing.border.Border;
+
+public class iVTelefono extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
 
     Escalar escalar=new Escalar();
-    public iVPVendedor() {
+    public iVTelefono() {
         initComponents();
-        setTitle("Ventana principal");
+        setTitle("Correo");
         Color azul = new Color(23, 60, 104);
         p_scroll.setBackground(Color.WHITE);
         p_botones.setBackground(Color.white);
         p_ventana.setBackground(azul);
         this.setLocation(200, 0);  
         
-        escalar.escalarLabel(imagen2, "/img/imgiVPV/Franja.jpg");
         escalar.escalarLabel(this.logoRinber, "/img/imgiVPV/loguito-redondito.png");
+        escalar.escalarLabel(this.imagen2, "/img/imgiVPV/Franja.jpg");
         
         this.btn_cliente.setOpaque(true);
         this.btn_cliente.setBackground(Color.white);
@@ -59,6 +65,10 @@ public class iVPVendedor extends javax.swing.JFrame {
         this.btn_vendedor.setBackground(Color.white);
         this.btn_catalogo.setOpaque(true);
         this.btn_catalogo.setBackground(Color.white);
+        this.btn_buscar.setOpaque(true);
+        this.btn_buscar.setBackground(azul);
+        this.btn_regresar.setOpaque(true);
+        this.btn_regresar.setBackground(Color.white);
         
         String t= "<html>Representante<br>legal</html>";
         String t2= "<html>Empresa<br>envíos</html>";
@@ -68,6 +78,15 @@ public class iVPVendedor extends javax.swing.JFrame {
         this.titulo9.setText(t2);
         this.titulo12.setText(t3);
         this.titulo13.setText(t4);
+        
+        JTableHeader th;
+        th = this.tabla.getTableHeader();
+        Font fuente = new Font("Century Gothic", Font.BOLD, 18);
+        th.setFont(fuente);
+        tabla.getTableHeader().setBackground(azul);
+        tabla.getTableHeader().setForeground(Color.white);
+        
+        
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
@@ -89,25 +108,6 @@ public class iVPVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         p_ventana = new javax.swing.JPanel();
-        p_info = new javax.swing.JPanel();
-        lineasTitulo = new javax.swing.JLabel();
-        txtapellido = new javax.swing.JTextField();
-        subtitulo3 = new javax.swing.JLabel();
-        subtitulo1 = new javax.swing.JLabel();
-        foto = new javax.swing.JLabel();
-        txtnombre = new javax.swing.JTextField();
-        subtitulo4 = new javax.swing.JLabel();
-        txtcedula = new javax.swing.JTextField();
-        subtitulo5 = new javax.swing.JLabel();
-        txtcorreo = new javax.swing.JTextField();
-        subtitulo6 = new javax.swing.JLabel();
-        subtitulo7 = new javax.swing.JLabel();
-        txtnumero = new javax.swing.JTextField();
-        p_turno = new javax.swing.JPanel();
-        txtturno = new javax.swing.JTextField();
-        lineasTitulo1 = new javax.swing.JLabel();
-        subtitulo2 = new javax.swing.JLabel();
-        imagen1 = new javax.swing.JLabel();
         titulo2 = new javax.swing.JLabel();
         p_scroll = new javax.swing.JPanel();
         logoRinber = new javax.swing.JLabel();
@@ -146,6 +146,14 @@ public class iVPVendedor extends javax.swing.JFrame {
         titulo18 = new javax.swing.JLabel();
         btn_catalogo = new javax.swing.JButton();
         imagen2 = new javax.swing.JLabel();
+        scroll_tabla = new javax.swing.JScrollPane();
+        p_info = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla = new javax.swing.JTable();
+        subtitulo = new javax.swing.JLabel();
+        txtbusqueda = new javax.swing.JTextField();
+        btn_buscar = new javax.swing.JButton();
+        btn_regresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -154,162 +162,25 @@ public class iVPVendedor extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1215, 800));
         getContentPane().setLayout(null);
 
-        p_ventana.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        p_ventana.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        p_ventana.setForeground(new java.awt.Color(23, 60, 104));
         p_ventana.setMinimumSize(new java.awt.Dimension(1215, 800));
         p_ventana.setLayout(null);
-
-        p_info.setBackground(new java.awt.Color(255, 255, 255));
-        p_info.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        p_info.setForeground(new java.awt.Color(255, 255, 255));
-        p_info.setLayout(null);
-
-        lineasTitulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lineasTitulo.setText("________________ ");
-        p_info.add(lineasTitulo);
-        lineasTitulo.setBounds(290, 30, 170, 50);
-
-        txtapellido.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtapellido.setEnabled(false);
-        txtapellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtapellidoActionPerformed(evt);
-            }
-        });
-        p_info.add(txtapellido);
-        txtapellido.setBounds(310, 200, 230, 30);
-
-        subtitulo3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo3.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo3.setText("Apellido");
-        p_info.add(subtitulo3);
-        subtitulo3.setBounds(290, 160, 230, 30);
-
-        subtitulo1.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo1.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo1.setText("Tus datos:");
-        p_info.add(subtitulo1);
-        subtitulo1.setBounds(300, 40, 100, 16);
-
-        foto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/avatar.png"))); // NOI18N
-        p_info.add(foto);
-        foto.setBounds(-20, 10, 300, 230);
-
-        txtnombre.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtnombre.setEnabled(false);
-        txtnombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombreActionPerformed(evt);
-            }
-        });
-        p_info.add(txtnombre);
-        txtnombre.setBounds(310, 120, 230, 30);
-
-        subtitulo4.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo4.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo4.setText("Nombre");
-        p_info.add(subtitulo4);
-        subtitulo4.setBounds(290, 90, 230, 30);
-
-        txtcedula.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtcedula.setEnabled(false);
-        txtcedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcedulaActionPerformed(evt);
-            }
-        });
-        p_info.add(txtcedula);
-        txtcedula.setBounds(70, 360, 470, 30);
-
-        subtitulo5.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo5.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo5.setText("Cédula");
-        p_info.add(subtitulo5);
-        subtitulo5.setBounds(50, 330, 230, 30);
-
-        txtcorreo.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtcorreo.setEnabled(false);
-        txtcorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcorreoActionPerformed(evt);
-            }
-        });
-        p_info.add(txtcorreo);
-        txtcorreo.setBounds(70, 280, 470, 30);
-
-        subtitulo6.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo6.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo6.setText("Correo");
-        p_info.add(subtitulo6);
-        subtitulo6.setBounds(50, 250, 230, 30);
-
-        subtitulo7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo7.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo7.setText("Número telefónico");
-        p_info.add(subtitulo7);
-        subtitulo7.setBounds(50, 420, 190, 30);
-
-        txtnumero.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        txtnumero.setEnabled(false);
-        txtnumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnumeroActionPerformed(evt);
-            }
-        });
-        p_info.add(txtnumero);
-        txtnumero.setBounds(70, 460, 470, 30);
-
-        p_ventana.add(p_info);
-        p_info.setBounds(230, 210, 580, 520);
-
-        p_turno.setBackground(new java.awt.Color(255, 255, 255));
-        p_turno.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        p_turno.setForeground(new java.awt.Color(255, 255, 255));
-        p_turno.setLayout(null);
-
-        txtturno.setEnabled(false);
-        txtturno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtturnoActionPerformed(evt);
-            }
-        });
-        p_turno.add(txtturno);
-        txtturno.setBounds(30, 90, 260, 150);
-
-        lineasTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lineasTitulo1.setForeground(new java.awt.Color(11, 43, 90));
-        lineasTitulo1.setText("________________ ");
-        p_turno.add(lineasTitulo1);
-        lineasTitulo1.setBounds(30, 30, 170, 50);
-
-        subtitulo2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo2.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo2.setText("Tu turno");
-        p_turno.add(subtitulo2);
-        subtitulo2.setBounds(40, 40, 100, 20);
-
-        p_ventana.add(p_turno);
-        p_turno.setBounds(830, 210, 320, 270);
-
-        imagen1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/recuadro.jpg"))); // NOI18N
-        imagen1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        p_ventana.add(imagen1);
-        imagen1.setBounds(830, 510, 320, 220);
 
         titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo2.setText("Ventana Principal");
+        titulo2.setText("Ventana teléfono");
         titulo2.setToolTipText("");
         titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
         p_ventana.add(titulo2);
-        titulo2.setBounds(230, 20, 920, 90);
+        titulo2.setBounds(230, 20, 950, 90);
 
         scroll.setBorder(null);
         scroll.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btn_correo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton correo.png"))); // NOI18N
-        btn_correo.setActionCommand("");
         btn_correo.setBorder(null);
         btn_correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -317,7 +188,7 @@ public class iVPVendedor extends javax.swing.JFrame {
             }
         });
 
-        btn_telefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton telefono.png"))); // NOI18N
+        btn_telefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
         btn_telefono.setBorder(null);
         btn_telefono.setMargin(new java.awt.Insets(2, 14, 30, 14));
         btn_telefono.addActionListener(new java.awt.event.ActionListener() {
@@ -656,37 +527,120 @@ public class iVPVendedor extends javax.swing.JFrame {
         imagen2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         imagen2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         p_ventana.add(imagen2);
-        imagen2.setBounds(230, 110, 920, 80);
+        imagen2.setBounds(230, 110, 950, 80);
+
+        p_info.setBackground(new java.awt.Color(255, 255, 255));
+        p_info.setForeground(new java.awt.Color(255, 255, 255));
+        p_info.setLayout(null);
+
+        tabla.setAutoCreateRowSorter(true);
+        tabla.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tabla.setForeground(new java.awt.Color(11, 43, 90));
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Número", "Tipo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Long.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla.setEnabled(false);
+        tabla.setGridColor(new java.awt.Color(0, 0, 0));
+        tabla.setOpaque(false);
+        tabla.setRequestFocusEnabled(false);
+        tabla.setRowHeight(30);
+        tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tabla.setShowGrid(false);
+        jScrollPane2.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setResizable(false);
+            tabla.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        p_info.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 10, 660, 500);
+
+        scroll_tabla.setViewportView(p_info);
+
+        p_ventana.add(scroll_tabla);
+        scroll_tabla.setBounds(230, 220, 680, 520);
+
+        subtitulo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo.setForeground(new java.awt.Color(255, 255, 255));
+        subtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        subtitulo.setText("Busqueda rapida");
+        p_ventana.add(subtitulo);
+        subtitulo.setBounds(927, 226, 220, 40);
+
+        txtbusqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        txtbusqueda.setForeground(new java.awt.Color(23, 60, 104));
+        txtbusqueda.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtbusqueda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.lightGray, java.awt.Color.darkGray));
+        p_ventana.add(txtbusqueda);
+        txtbusqueda.setBounds(930, 280, 170, 40);
+
+        btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiCorreo/boton lupa.png"))); // NOI18N
+        btn_buscar.setBorder(null);
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+        p_ventana.add(btn_buscar);
+        btn_buscar.setBounds(1100, 280, 50, 40);
+
+        btn_regresar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        btn_regresar.setText("Regresar a inicio");
+        btn_regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_regresarActionPerformed(evt);
+            }
+        });
+        p_ventana.add(btn_regresar);
+        btn_regresar.setBounds(1000, 700, 180, 40);
 
         getContentPane().add(p_ventana);
         p_ventana.setBounds(0, 0, 1210, 800);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
-        
-    }//GEN-LAST:event_txtapellidoActionPerformed
-
-    private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombreActionPerformed
-
-    private void txtcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcedulaActionPerformed
-
-    private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcorreoActionPerformed
-
-    private void txtnumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnumeroActionPerformed
-
-    private void txtturnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtturnoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtturnoActionPerformed
 
     private void btn_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clienteActionPerformed
         // TODO add your handling code here:
@@ -699,10 +653,18 @@ public class iVPVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        iVTelefono itelefono = new iVTelefono();
-        this.setVisible(false);
-        itelefono.setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btn_telefonoActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
+        iVPVendedor iprincipal = new iVPVendedor();
+        this.setVisible(false);
+        iprincipal.setVisible(true);
+    }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
         iVRepre irepre = new iVRepre();
@@ -713,6 +675,7 @@ public class iVPVendedor extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_catalogo;
     private javax.swing.JButton btn_cliente;
     private javax.swing.JButton btn_correo;
@@ -724,30 +687,23 @@ public class iVPVendedor extends javax.swing.JFrame {
     private javax.swing.JButton btn_ordenes;
     private javax.swing.JButton btn_producto;
     private javax.swing.JButton btn_proveedor;
+    private javax.swing.JButton btn_regresar;
     private javax.swing.JButton btn_repartidor;
     private javax.swing.JButton btn_repreLegal;
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JButton btn_telefono;
     private javax.swing.JButton btn_vendedor;
-    private javax.swing.JLabel foto;
-    private javax.swing.JLabel imagen1;
     private javax.swing.JLabel imagen2;
-    private javax.swing.JLabel lineasTitulo;
-    private javax.swing.JLabel lineasTitulo1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logoRinber;
     private javax.swing.JPanel p_botones;
     private javax.swing.JPanel p_info;
     private javax.swing.JPanel p_scroll;
-    private javax.swing.JPanel p_turno;
     private javax.swing.JPanel p_ventana;
     private javax.swing.JScrollPane scroll;
-    private javax.swing.JLabel subtitulo1;
-    private javax.swing.JLabel subtitulo2;
-    private javax.swing.JLabel subtitulo3;
-    private javax.swing.JLabel subtitulo4;
-    private javax.swing.JLabel subtitulo5;
-    private javax.swing.JLabel subtitulo6;
-    private javax.swing.JLabel subtitulo7;
+    private javax.swing.JScrollPane scroll_tabla;
+    private javax.swing.JLabel subtitulo;
+    private javax.swing.JTable tabla;
     private javax.swing.JLabel titulo10;
     private javax.swing.JLabel titulo11;
     private javax.swing.JLabel titulo12;
@@ -765,11 +721,6 @@ public class iVPVendedor extends javax.swing.JFrame {
     private javax.swing.JLabel titulo7;
     private javax.swing.JLabel titulo8;
     private javax.swing.JLabel titulo9;
-    private javax.swing.JTextField txtapellido;
-    private javax.swing.JTextField txtcedula;
-    private javax.swing.JTextField txtcorreo;
-    private javax.swing.JTextField txtnombre;
-    private javax.swing.JTextField txtnumero;
-    private javax.swing.JTextField txtturno;
+    private javax.swing.JTextField txtbusqueda;
     // End of variables declaration//GEN-END:variables
 }

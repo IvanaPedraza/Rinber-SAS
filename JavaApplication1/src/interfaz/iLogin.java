@@ -85,6 +85,7 @@ public class iLogin extends javax.swing.JFrame {
         setBackground(new java.awt.Color(102, 102, 255));
         setMinimumSize(new java.awt.Dimension(1215, 800));
         setPreferredSize(new java.awt.Dimension(1215, 800));
+        setResizable(false);
         setSize(new java.awt.Dimension(1215, 800));
         getContentPane().setLayout(null);
 
