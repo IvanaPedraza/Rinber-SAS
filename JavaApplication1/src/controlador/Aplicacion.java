@@ -11,7 +11,9 @@ import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
 import interfaz.iVGerente;
 import interfaz.iVProveedor;
+import interfaz.iVRepartidor;
 import interfaz.iVRepre;
+import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
@@ -35,6 +37,9 @@ public class Aplicacion {
         iVProveedor iproveedor = new iVProveedor();
         iVGerente igerente = new iVGerente();
         iVCliente icliente = new iVCliente();
+        iVRepartidor irepartidor = new iVRepartidor();
+        iVSolicitudes isolicitudes = new iVSolicitudes();
+        
         //Clases y demas
         Coordinador miCoordinador = new Coordinador();
         Logica miLogica = new Logica();
@@ -81,18 +86,40 @@ public class Aplicacion {
         //ventanaPrincipal.setVisible(true);
         //idireccion.setVisible(true);
 
+        //login.setVisible(true);
+     
+
+        //login.setVisible(true);
+        //iempresae.setVisible(true);
+
+
+
 
         //iempresae.setVisible(true);
 
+<<<<<<< HEAD
         login.setVisible(true);
         // iproveedor.setVisible(true);
+=======
+        //login.setVisible(true);
+        // iproveedor.setVisible(true);
+
+
+>>>>>>> 5962a9a8973b1787861c6ca48734c645d6e90455
         //login.setVisible(true);
         //iproveedor.setVisible(true);
 
         //icorreo.setVisible(true);
         //igerente.setVisible(true);
+<<<<<<< HEAD
         //irepre_legal.setVisible(true);
         //icliente.setVisible(true);
+=======
+        
+        irepre_legal.setVisible(true);
+        //icliente.setVisible(true);
+        //irepartidor.setVisible(true);
+>>>>>>> 5962a9a8973b1787861c6ca48734c645d6e90455
     }
     
 }
