@@ -1,6 +1,7 @@
 package controlador;
 
 import interfaz.iLogin;
+import interfaz.iVPVendedor;
 import modelo.Logica;
 
 public class Aplicacion {
@@ -9,6 +10,8 @@ public class Aplicacion {
         
         // se instancias las clases unicas
         iLogin login = new iLogin();
+        iVPVendedor ventana = new iVPVendedor();
+        
         Coordinador miCoordinador = new Coordinador();
         Logica miLogica = new Logica();
         
@@ -23,8 +26,8 @@ public class Aplicacion {
         miCoordinador.setLogin(login);
         miCoordinador.setLogica(miLogica);
         
-        
-        login.setVisible(true);
+        ventana.setVisible(true);
+        //login.setVisible(true);
     }
     
 }
