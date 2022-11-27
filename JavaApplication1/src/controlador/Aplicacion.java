@@ -1,6 +1,7 @@
 package controlador;
 
 import interfaz.iLogin;
+import interfaz.iVCliente;
 import interfaz.iVPVendedor;
 import modelo.Conexion;
 
@@ -8,6 +9,7 @@ import modelo.Logica;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
+import interfaz.iVGerente;
 import interfaz.iVProveedor;
 import interfaz.iVRepre;
 import interfaz.iVTelefono;
@@ -30,7 +32,8 @@ public class Aplicacion {
         iVDireccion idireccion = new iVDireccion();
         iVEmpresae iempresae = new iVEmpresae();
         iVProveedor iproveedor = new iVProveedor();
-        
+        iVGerente igerente = new iVGerente();
+        iVCliente icliente = new iVCliente();
         //Clases y demas
         Coordinador miCoordinador = new Coordinador();
         Logica miLogica = new Logica();
@@ -74,9 +77,11 @@ public class Aplicacion {
         //login.setVisible(true);
         //iempresae.setVisible(true);
         //login.setVisible(true);
-        iproveedor.setVisible(true);
+        //iproveedor.setVisible(true);
         //icorreo.setVisible(true);
-        
+        //igerente.setVisible(true);
+        //irepre_legal.setVisible(true);
+        icliente.setVisible(true);
     }
     
 }
