@@ -7,6 +7,8 @@ import modelo.Conexion;
 import modelo.Logica;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
+import interfaz.iVEmpresae;
+import interfaz.iVProveedor;
 import interfaz.iVRepre;
 import interfaz.iVTelefono;
 import modelo.dao.correoDao;
@@ -27,6 +29,8 @@ public class Aplicacion {
         iVRepre irepre_legal = new iVRepre();
         iVTelefono itelefono = new iVTelefono();
         iVDireccion idireccion = new iVDireccion();
+        iVEmpresae iempresae = new iVEmpresae();
+        iVProveedor iproveedor = new iVProveedor();
         
         //Clases y demas
         Coordinador miCoordinador = new Coordinador();
@@ -73,10 +77,15 @@ public class Aplicacion {
         //login.setVisible(true);
         //ventanaPrincipal.setVisible(true);
         //idireccion.setVisible(true);
+<<<<<<< HEAD
         login.setVisible(true);
      
+=======
         //login.setVisible(true);
-        
+        //iempresae.setVisible(true);
+>>>>>>> 4bcf2e08056bba879da0da79f44e0370c2bf16e2
+        //login.setVisible(true);
+        iproveedor.setVisible(true);
         //icorreo.setVisible(true);
         
     }
