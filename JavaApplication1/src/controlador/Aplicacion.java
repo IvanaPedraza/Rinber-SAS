@@ -7,8 +7,10 @@ import modelo.Conexion;
 import modelo.Logica;
 import interfaz.iVCorreo;
 import interfaz.iVRepre;
+import interfaz.iVTelefono;
 import modelo.dao.correoDao;
 import modelo.dao.representanteDao;
+import modelo.dao.telefonoDao;
 public class Aplicacion {
     
     public void iniciarSistema(){
@@ -21,12 +23,14 @@ public class Aplicacion {
         iVPVendedor ventanaPrincipal = new iVPVendedor();
         iVCorreo icorreo= new iVCorreo();
         iVRepre irepre_legal = new iVRepre();
+        iVTelefono itelefono = new iVTelefono();
         
         //Clases y demas
         Coordinador miCoordinador = new Coordinador();
         Logica miLogica = new Logica();
         correoDao miCorreoDao = new correoDao();
         representanteDao miRepresentanteDao = new representanteDao();
+        telefonoDao miTelefonoDao = new telefonoDao();
         
         // Relacionamos las clases coordinador
         miConexion.setCoordinador(miCoordinador);
@@ -34,10 +38,13 @@ public class Aplicacion {
         ventanaPrincipal.setCoordinador(miCoordinador);
         icorreo.setCoordinador(miCoordinador);
         irepre_legal.setCoordinador(miCoordinador);
+        itelefono.setCoordinador(miCoordinador);
+        
         //se repite para todos las demas ventanas
         miLogica.setCoordinador(miCoordinador);
         miCorreoDao.setCoordinador(miCoordinador);
         miRepresentanteDao.setCoordinador(miCoordinador);
+        miTelefonoDao.setMiCoordinador(miCoordinador);
         
         //Relacionamos coordinador con las clases
         miCoordinador.setLogin(login);
@@ -47,6 +54,8 @@ public class Aplicacion {
         miCoordinador.setCorreoDao(miCorreoDao);
         miCoordinador.setVentanaRepresentante(irepre_legal);
         miCoordinador.setRepresentanteDao(miRepresentanteDao);
+        miCoordinador.setVentanaTelefono(itelefono);
+        miCoordinador.setTelefonoDao(miTelefonoDao);
         
         //Conexion
         miCoordinador.setConexion(miConexion);

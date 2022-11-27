@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controlador.Escalar;
 import java.awt.Font;
+import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
@@ -91,6 +92,10 @@ public class iVTelefono extends javax.swing.JFrame {
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
+    }
+    
+    public JTable enviarTabla(){
+        return tabla;
     }
     
     /**
@@ -647,9 +652,8 @@ public class iVTelefono extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        iVCorreo icorreo = new iVCorreo();
-        this.setVisible(false);
-        icorreo.setVisible(true);
+        miCoordinador.cerrarVentanaTelefono();
+        miCoordinador.abrirVentanaCorreo();
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
@@ -661,15 +665,13 @@ public class iVTelefono extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        iVPVendedor iprincipal = new iVPVendedor();
-        this.setVisible(false);
-        iprincipal.setVisible(true);
+        miCoordinador.cerrarVentanaTelefono();
+        miCoordinador.abrirVentanaPrincipal();
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
-        iVRepre irepre = new iVRepre();
-        this.setVisible(false);
-        irepre.setVisible(true);
+        miCoordinador.cerrarVentanaTelefono();
+        miCoordinador.abrirVentanaRepresentante();
     }//GEN-LAST:event_btn_repreLegalActionPerformed
 
 

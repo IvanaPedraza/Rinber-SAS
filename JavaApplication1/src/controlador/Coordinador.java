@@ -5,6 +5,7 @@ import interfaz.iLogin;
 import interfaz.iVCorreo;
 import interfaz.iVPVendedor;
 import interfaz.iVRepre;
+import interfaz.iVTelefono;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
@@ -12,6 +13,7 @@ import modelo.Conexion;
 import modelo.Logica;
 import modelo.dao.correoDao;
 import modelo.dao.representanteDao;
+import modelo.dao.telefonoDao;
 
 
 public class Coordinador {
@@ -20,11 +22,18 @@ public class Coordinador {
     private iVPVendedor ventanaPrincipal;
     private iVCorreo ventanaCorreo;
     private iVRepre ventanaRepresentante;
-    private Logica miLogica;
-    private Conexion miConexion;
+    private iVTelefono ventanaTelefono;
+    
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
+    private telefonoDao miTelefonoDao;
+    
+    private Logica miLogica;
     private Connection miConexionActual;
+    private Conexion miConexion;
+    
+    
+    
 
     void setLogin(iLogin login) {
         this.login = login;
@@ -57,6 +66,16 @@ public class Coordinador {
     void setRepresentanteDao(representanteDao miRepresentanteDao) {
         this.miRepresentanteDao = miRepresentanteDao;
     }
+    
+    void setVentanaTelefono(iVTelefono itelefono) {
+        this.ventanaTelefono = itelefono;
+    }
+    
+    void setTelefonoDao(telefonoDao miTelefonoDao){
+        this.miTelefonoDao = miTelefonoDao;
+    }
+    
+    
     
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
@@ -95,6 +114,17 @@ public class Coordinador {
     
     public void cerrarVentanaRepresentante(){
         ventanaRepresentante.setVisible(false);
+    }
+    
+    public void abrirVentanaTelefono(){
+        ventanaTelefono.setVisible(true);
+        JTable tablaTelefono = ventanaTelefono.enviarTabla();
+        mostrarTelefono(tablaTelefono);
+        
+    }
+    
+    public void cerrarVentanaTelefono(){
+        ventanaTelefono.setVisible(false);
     }
     
     
@@ -154,6 +184,23 @@ public class Coordinador {
         }
     }
 
+    
+    public void mostrarTelefono(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miTelefonoDao.obtenerTelefonos("select telNumero, telTipo from telefono");
+        modelo.setColumnIdentifiers(new Object[] {"Teléfono","Tipo"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getLong("telNumero"),rs.getString("telTipo")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     
 
     

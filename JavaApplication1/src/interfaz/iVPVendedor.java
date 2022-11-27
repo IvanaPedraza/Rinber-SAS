@@ -698,7 +698,8 @@ public class iVPVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-      
+      miCoordinador.abrirVentanaTelefono();
+      miCoordinador.cerrarVentanaPrincipal();
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed

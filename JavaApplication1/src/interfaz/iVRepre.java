@@ -655,15 +655,13 @@ public class iVRepre extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        iVCorreo icorreo = new iVCorreo();
-        this.setVisible(false);
-        icorreo.setVisible(true);
+        miCoordinador.cerrarVentanaRepresentante();
+        miCoordinador.abrirVentanaCorreo();
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        iVTelefono itelefono = new iVTelefono();
-        this.setVisible(false);
-        itelefono.setVisible(true);
+        miCoordinador.cerrarVentanaRepresentante();
+        miCoordinador.abrirVentanaTelefono();
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
