@@ -670,15 +670,13 @@ public class iVCorreo extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        iVPVendedor iprincipal = new iVPVendedor();
-        this.setVisible(false);
-        iprincipal.setVisible(true);
+        miCoordinador.cerrarVentanaCorreo();
+        miCoordinador.abrirVentanaPrincipal();
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
-        iVRepre irepre = new iVRepre();
-        this.setVisible(false);
-        irepre.setVisible(true);
+        miCoordinador.cerrarVentanaCorreo();
+        miCoordinador.abrirVentanaRepresentante();
     }//GEN-LAST:event_btn_repreLegalActionPerformed
 
 

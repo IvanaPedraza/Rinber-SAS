@@ -94,6 +94,10 @@ public class iVRepre extends javax.swing.JFrame {
         this.miCoordinador = miCoordinador;
     }
     
+    public JTable enviarTabla(){
+        return tabla;
+    }
+    
     /**
      * Componentes logicos
      */
@@ -171,7 +175,7 @@ public class iVRepre extends javax.swing.JFrame {
         titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo2.setText("Ventana representante legal");
+        titulo2.setText("Ventana Representante Legal");
         titulo2.setToolTipText("");
         titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
         p_ventana.add(titulo2);
@@ -667,9 +671,8 @@ public class iVRepre extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-        iVPVendedor iprincipal = new iVPVendedor();
-        this.setVisible(false);
-        iprincipal.setVisible(true);
+        miCoordinador.cerrarVentanaRepresentante();
+        miCoordinador.abrirVentanaPrincipal();
     }//GEN-LAST:event_btn_regresarActionPerformed
 
 

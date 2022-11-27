@@ -693,25 +693,17 @@ public class iVPVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-<<<<<<< HEAD
         miCoordinador.abrirVentanaCorreo();
-=======
-        iVCorreo icorreo = new iVCorreo();
-        this.setVisible(false);
-        icorreo.setVisible(true);
->>>>>>> 2985e80c1eeb924dd20af2315e9f572c7ffdaa60
+        miCoordinador.cerrarVentanaPrincipal();
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        iVTelefono itelefono = new iVTelefono();
-        this.setVisible(false);
-        itelefono.setVisible(true);
+      
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
-        iVRepre irepre = new iVRepre();
-        this.setVisible(false);
-        irepre.setVisible(true);
+        miCoordinador.abrirVentanaRepresentante();
+        miCoordinador.cerrarVentanaPrincipal();
     }//GEN-LAST:event_btn_repreLegalActionPerformed
 
 

@@ -8,6 +8,6 @@ package modelo.vo;
  *
  * @author kelly
  */
-public class representanteLegal {
+public class representanteLegalVo {
     
 }

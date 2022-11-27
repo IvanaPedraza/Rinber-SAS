@@ -4,12 +4,14 @@ import java.sql.Connection;
 import interfaz.iLogin;
 import interfaz.iVCorreo;
 import interfaz.iVPVendedor;
+import interfaz.iVRepre;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import modelo.Conexion;
 import modelo.Logica;
 import modelo.dao.correoDao;
+import modelo.dao.representanteDao;
 
 
 public class Coordinador {
@@ -17,9 +19,11 @@ public class Coordinador {
     private iLogin login;
     private iVPVendedor ventanaPrincipal;
     private iVCorreo ventanaCorreo;
+    private iVRepre ventanaRepresentante;
     private Logica miLogica;
     private Conexion miConexion;
     private correoDao miCorreoDao;
+    private representanteDao miRepresentanteDao;
     private Connection miConexionActual;
 
     void setLogin(iLogin login) {
@@ -46,6 +50,14 @@ public class Coordinador {
         this.miCorreoDao = miCorreoDao;
     }
     
+    void setVentanaRepresentante(iVRepre irepre_legal) {
+        this.ventanaRepresentante = irepre_legal;
+    }
+    
+    void setRepresentanteDao(representanteDao miRepresentanteDao) {
+        this.miRepresentanteDao = miRepresentanteDao;
+    }
+    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
     }
@@ -54,10 +66,7 @@ public class Coordinador {
         login.dispose();
     }
 
-    public void asignarPrivilegios(String usuario) {
-        //ventaja de inicio.asignarPrivilegios(usuario);
-    }
-
+    //Apertura y cerrado de ventanas
     public void abrirVentanaPrincipal() {
         ventanaPrincipal.setVisible(true);
     }
@@ -66,6 +75,30 @@ public class Coordinador {
         ventanaPrincipal.setVisible(false);
     }
     
+    public void abrirVentanaCorreo() {
+        ventanaCorreo.setVisible(true);
+        JTable tablaCorreo = ventanaCorreo.enviarTabla();
+        mostrarCorreos(tablaCorreo);
+        
+    }
+
+    public void cerrarVentanaCorreo() {
+        ventanaCorreo.setVisible(false);
+    }
+    
+    public void abrirVentanaRepresentante(){
+        ventanaRepresentante.setVisible(true);
+        JTable tablaRepresentante = ventanaRepresentante.enviarTabla();
+        mostrarRepresentantes(tablaRepresentante);
+        
+    }
+    
+    public void cerrarVentanaRepresentante(){
+        ventanaRepresentante.setVisible(false);
+    }
+    
+    
+    //Demas permisos
     
     public String darIngreso(String user, String password){
         String mensaje = "";
@@ -79,17 +112,6 @@ public class Coordinador {
         }
         return mensaje;
     }
-
-    public void abrirVentanaCorreo() {
-        ventanaCorreo.setVisible(true);
-        JTable tablaCorreo = ventanaCorreo.enviarTabla();
-        mostrarCorreos(tablaCorreo);
-        this.cerrarVentanaPrincipal();
-    }
-
-    public void cerrarVentanaCorreo() {
-        ventanaCorreo.setVisible(false);
-    }
     
     public Connection obtenerConexion(){
         
@@ -98,11 +120,10 @@ public class Coordinador {
     
     public void mostrarCorreos(JTable table) {
         //System.out.println(miConexionActual);
-       
-        
+    
         DefaultTableModel modelo = new DefaultTableModel();
         
-        ResultSet rs = miCorreoDao.obtenerCorreos("select corCorreo, tipoCorreo from vw_correo");
+        ResultSet rs = miCorreoDao.obtenerCorreos("select corCorreo, tipoCorreo from correo");
         modelo.setColumnIdentifiers(new Object[] {"corCorreo","tipoCorreo"});
         
         try{
@@ -114,8 +135,28 @@ public class Coordinador {
         }catch(Exception e){
             System.out.println(e);
         }
-        
     }
+    
+    public void mostrarRepresentantes(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miRepresentanteDao.obtenerRepresentantes("select repCedula, perNombre,perApellido, corCorreo, telNumero from vw_representante_legal");
+        modelo.setColumnIdentifiers(new Object[] {"Cédula","Nombre","Apellido","Correo","Teléfono"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("repCedula"),rs.getString("perNombre"),rs.getString("perApellido"),rs.getString("corCorreo"),rs.getLong("telNumero")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    
+
+    
     
 
     
