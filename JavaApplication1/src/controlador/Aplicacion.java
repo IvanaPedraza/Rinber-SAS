@@ -1,6 +1,7 @@
 package controlador;
 
 import interfaz.iLogin;
+import interfaz.iVCatalogo;
 import interfaz.iVCliente;
 import interfaz.iVPVendedor;
 import modelo.Conexion;
@@ -8,8 +9,11 @@ import modelo.Conexion;
 import modelo.Logica;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
+import interfaz.iVDirectorio;
 import interfaz.iVEmpresae;
+import interfaz.iVEnvio;
 import interfaz.iVGerente;
+import interfaz.iVProducto;
 import interfaz.iVProveedor;
 import interfaz.iVRepartidor;
 import interfaz.iVRepre;
@@ -39,6 +43,10 @@ public class Aplicacion {
         iVCliente icliente = new iVCliente();
         iVRepartidor irepartidor = new iVRepartidor();
         iVSolicitudes isolicitudes = new iVSolicitudes();
+        iVEnvio ienvio = new iVEnvio();
+        iVProducto iproducto = new iVProducto();
+        iVDirectorio idirectorio =new iVDirectorio();
+        iVCatalogo icatalogo = new iVCatalogo();
         
         //Clases y demas
         Coordinador miCoordinador = new Coordinador();
@@ -107,7 +115,7 @@ public class Aplicacion {
         //icorreo.setVisible(true);
         //igerente.setVisible(true);
         
-        irepre_legal.setVisible(true);
+        //irepre_legal.setVisible(true);
         //icliente.setVisible(true);
         //irepartidor.setVisible(true);
     }

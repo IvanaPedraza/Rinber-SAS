@@ -17,12 +17,12 @@ import javax.swing.table.JTableHeader;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class iVProveedor extends javax.swing.JFrame {
+public class iVProducto extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
 
     Escalar escalar=new Escalar();
-    public iVProveedor() {
+    public iVProducto() {
         initComponents();
         setTitle("Correo");
         Color azul = new Color(23, 60, 104);
@@ -69,14 +69,13 @@ public class iVProveedor extends javax.swing.JFrame {
         this.btn_gerente.setOpaque(true);
         this.btn_gerente.setBackground(Color.white);
         
+        
         String t= "<html>Representante<br>legal</html>";
         String t2= "<html>Empresa<br>envíos</html>";
         String t3= "<html>Solicitudes<br>producto</html>";
-        String t4= "<html>Ordenes<br>compra</html>";
         this.titulo4.setText(t);
         this.titulo9.setText(t2);
         this.titulo12.setText(t3);
-        
         
         JTableHeader th;
         th = this.tabla.getTableHeader();
@@ -84,7 +83,6 @@ public class iVProveedor extends javax.swing.JFrame {
         th.setFont(fuente);
         tabla.getTableHeader().setBackground(azul);
         tabla.getTableHeader().setForeground(Color.white);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
     }
     
@@ -140,8 +138,8 @@ public class iVProveedor extends javax.swing.JFrame {
         titulo17 = new javax.swing.JLabel();
         titulo18 = new javax.swing.JLabel();
         btn_catalogo = new javax.swing.JButton();
-        titulo19 = new javax.swing.JLabel();
         btn_gerente = new javax.swing.JButton();
+        titulo19 = new javax.swing.JLabel();
         imagen2 = new javax.swing.JLabel();
         scroll_tabla = new javax.swing.JScrollPane();
         p_info = new javax.swing.JPanel();
@@ -167,7 +165,7 @@ public class iVProveedor extends javax.swing.JFrame {
         titulo2.setFont(new java.awt.Font("Century Gothic", 1, 48)); // NOI18N
         titulo2.setForeground(new java.awt.Color(255, 255, 255));
         titulo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo2.setText("Ventana proveedor");
+        titulo2.setText("Ventana producto");
         titulo2.setToolTipText("");
         titulo2.setPreferredSize(new java.awt.Dimension(679, 138));
         p_ventana.add(titulo2);
@@ -205,7 +203,7 @@ public class iVProveedor extends javax.swing.JFrame {
             }
         });
 
-        btn_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
+        btn_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton proveedor.png"))); // NOI18N
         btn_proveedor.setBorder(null);
 
         btn_empresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton empresa.png"))); // NOI18N
@@ -223,7 +221,7 @@ public class iVProveedor extends javax.swing.JFrame {
         btn_descripcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton descripcion.png"))); // NOI18N
         btn_descripcion.setBorder(null);
 
-        btn_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton producto.png"))); // NOI18N
+        btn_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
         btn_producto.setBorder(null);
 
         btn_envios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton envios.png"))); // NOI18N
@@ -352,6 +350,10 @@ public class iVProveedor extends javax.swing.JFrame {
         btn_catalogo.setToolTipText("");
         btn_catalogo.setBorder(null);
 
+        btn_gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton gerente.png"))); // NOI18N
+        btn_gerente.setToolTipText("");
+        btn_gerente.setBorder(null);
+
         titulo19.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         titulo19.setForeground(new java.awt.Color(11, 43, 90));
         titulo19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -359,10 +361,6 @@ public class iVProveedor extends javax.swing.JFrame {
         titulo19.setToolTipText("");
         titulo19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         titulo19.setPreferredSize(new java.awt.Dimension(679, 138));
-
-        btn_gerente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton gerente.png"))); // NOI18N
-        btn_gerente.setToolTipText("");
-        btn_gerente.setBorder(null);
 
         javax.swing.GroupLayout p_botonesLayout = new javax.swing.GroupLayout(p_botones);
         p_botones.setLayout(p_botonesLayout);
@@ -441,7 +439,7 @@ public class iVProveedor extends javax.swing.JFrame {
                 .addComponent(btn_repartidor, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(btn_solicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,11 +463,11 @@ public class iVProveedor extends javax.swing.JFrame {
                 .addComponent(btn_catalogo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(30, 30, 30)
                 .addComponent(btn_gerente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(titulo19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         scroll.setViewportView(p_botones);
@@ -522,38 +520,38 @@ public class iVProveedor extends javax.swing.JFrame {
         tabla.setForeground(new java.awt.Color(11, 43, 90));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "NIT", "Nombre", "RUT", "Correo", "NIT Empresa envíos", "Dirección", "Teléfono", "Cédula representante", "tipoProducto"
+                "Codigo", "Id inventario", "Nombre producto", "Cantidad", "Descripción", "Precio compra", "Precio venta", "Fecha ingreso", "Fecha salida", "Id solicitud", "Id orden compra", "Tipo producto", "Disponibilidad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class
+                java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.Short.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -585,6 +583,10 @@ public class iVProveedor extends javax.swing.JFrame {
             tabla.getColumnModel().getColumn(6).setPreferredWidth(200);
             tabla.getColumnModel().getColumn(7).setPreferredWidth(200);
             tabla.getColumnModel().getColumn(8).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(9).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(10).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(11).setPreferredWidth(200);
+            tabla.getColumnModel().getColumn(12).setPreferredWidth(200);
         }
 
         p_info.add(jScrollPane2);
@@ -600,14 +602,14 @@ public class iVProveedor extends javax.swing.JFrame {
         subtitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         subtitulo.setText("Busqueda rapida");
         p_ventana.add(subtitulo);
-        subtitulo.setBounds(927, 226, 220, 40);
+        subtitulo.setBounds(930, 220, 250, 40);
 
         txtbusqueda.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
         txtbusqueda.setForeground(new java.awt.Color(23, 60, 104));
         txtbusqueda.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtbusqueda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.blue, java.awt.Color.blue, java.awt.Color.lightGray, java.awt.Color.darkGray));
         p_ventana.add(txtbusqueda);
-        txtbusqueda.setBounds(930, 280, 170, 40);
+        txtbusqueda.setBounds(930, 270, 190, 30);
 
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiCorreo/boton lupa.png"))); // NOI18N
         btn_buscar.setBorder(null);
@@ -617,7 +619,7 @@ public class iVProveedor extends javax.swing.JFrame {
             }
         });
         p_ventana.add(btn_buscar);
-        btn_buscar.setBounds(1100, 280, 50, 40);
+        btn_buscar.setBounds(1130, 270, 32, 30);
 
         btn_regresar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         btn_regresar.setText("Regresar a inicio");
@@ -627,7 +629,7 @@ public class iVProveedor extends javax.swing.JFrame {
             }
         });
         p_ventana.add(btn_regresar);
-        btn_regresar.setBounds(1000, 700, 180, 40);
+        btn_regresar.setBounds(950, 700, 180, 40);
 
         getContentPane().add(p_ventana);
         p_ventana.setBounds(0, 0, 1210, 800);

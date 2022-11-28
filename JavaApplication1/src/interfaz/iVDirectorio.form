@@ -68,7 +68,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Ventana empresa env&#xed;os"/>
+            <Property name="text" type="java.lang.String" value="Ventana directorio"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[679, 138]"/>
@@ -219,7 +219,7 @@
                               <Component id="btn_repartidor" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="titulo8" min="-2" pref="30" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="btn_solicitudes" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="titulo12" min="-2" pref="30" max="-2" attributes="0"/>
@@ -247,7 +247,7 @@
                               <Component id="btn_gerente" min="-2" pref="70" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="titulo19" min="-2" pref="30" max="-2" attributes="0"/>
-                              <EmptySpace pref="247" max="32767" attributes="0"/>
+                              <EmptySpace pref="248" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -318,7 +318,7 @@
                     <Component class="javax.swing.JButton" name="btn_empresa">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/boton_seleccionado.png"/>
+                          <Image iconType="3" name="/img/imgiVPV/boton empresa.png"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="null"/>
@@ -392,7 +392,7 @@
                     <Component class="javax.swing.JButton" name="btn_directorio">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/imgiVPV/boton directorio.png"/>
+                          <Image iconType="3" name="/img/boton_seleccionado.png"/>
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -646,6 +646,17 @@
                         </Property>
                       </Properties>
                     </Component>
+                    <Component class="javax.swing.JButton" name="btn_gerente">
+                      <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/img/imgiVPV/boton gerente.png"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value=""/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
+                    </Component>
                     <Component class="javax.swing.JLabel" name="titulo19">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -655,22 +666,11 @@
                           <Color blue="5a" green="2b" red="b" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="Catalogo"/>
+                        <Property name="text" type="java.lang.String" value="Gerente"/>
                         <Property name="toolTipText" type="java.lang.String" value=""/>
                         <Property name="horizontalTextPosition" type="int" value="0"/>
                         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[679, 138]"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="btn_gerente">
-                      <Properties>
-                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/img/imgiVPV/boton gerente.png"/>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value=""/>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="null"/>
                         </Property>
                       </Properties>
                     </Component>
@@ -749,39 +749,15 @@
                           <Color blue="5a" green="2b" red="b" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="8" rowCount="22">
-                            <Column editable="false" title="NIT" type="java.lang.Long"/>
-                            <Column editable="false" title="Nombre" type="java.lang.String"/>
-                            <Column editable="false" title="Seguro" type="java.lang.Long"/>
-                            <Column editable="false" title="RUT" type="java.lang.Long"/>
-                            <Column editable="false" title="Correo" type="java.lang.String"/>
-                            <Column editable="false" title="C&#xe9;dula representante" type="java.lang.Long"/>
+                          <Table columnCount="4" rowCount="22">
+                            <Column editable="false" title="Nombre empresa" type="java.lang.String"/>
                             <Column editable="false" title="Direcci&#xf3;n" type="java.lang.String"/>
+                            <Column editable="false" title="Correo" type="java.lang.String"/>
                             <Column editable="false" title="Tel&#xe9;fono" type="java.lang.Long"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="true">
                               <Title/>
                               <Editor/>
@@ -842,7 +818,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="927" y="226" width="220" height="40"/>
+              <AbsoluteConstraints x="930" y="220" width="250" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -868,7 +844,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="930" y="280" width="170" height="40"/>
+              <AbsoluteConstraints x="930" y="270" width="190" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -886,7 +862,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="1100" y="280" width="50" height="40"/>
+              <AbsoluteConstraints x="1130" y="270" width="-1" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -902,7 +878,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="1000" y="700" width="180" height="40"/>
+              <AbsoluteConstraints x="950" y="700" width="180" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
