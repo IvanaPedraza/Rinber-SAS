@@ -4,6 +4,7 @@ import java.sql.Connection;
 import interfaz.iLogin;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
+import interfaz.iVEmpresae;
 import interfaz.iVPVendedor;
 import interfaz.iVRepre;
 import interfaz.iVTelefono;
@@ -17,6 +18,7 @@ import modelo.Conexion;
 import modelo.Logica;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
+import modelo.dao.empresaeDao;
 import modelo.dao.representanteDao;
 import modelo.dao.telefonoDao;
 import modelo.vo.direccionVo;
@@ -30,11 +32,13 @@ public class Coordinador {
     private iVRepre ventanaRepresentante;
     private iVTelefono ventanaTelefono;
     private iVDireccion ventanaDireccion;
+    private iVEmpresae  ventanaEmpresae;
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
+    private empresaeDao miEmpresaeDao;
     
     private Logica miLogica;
     private Connection miConexionActual;
@@ -90,6 +94,11 @@ public class Coordinador {
     void setDireccionDao(direccionDao miDireccionDao) {
         this.miDireccionDao = miDireccionDao;
     }
+    
+    void setEmpresaeDao(empresaeDao miEmpresaeDao) {
+        this.miEmpresaeDao = miEmpresaeDao;
+    }
+    
     
     
     
@@ -194,6 +203,17 @@ public class Coordinador {
         ventanaDireccion.enviarPanelEliminar().setVisible(false);
     }
     
+    
+    public void abrirVentanaEmpresae(){
+        ventanaEmpresae.setVisible(true);
+        JTable tablaEmpresae = ventanaEmpresae.enviarTabla();
+        mostrarEmpresae(tablaEmpresae);
+        
+    }
+    
+    public void cerrarVentanaEmpresae(){
+        ventanaEmpresae.setVisible(false);
+    }
     
     //Demas permisos
     
@@ -320,6 +340,26 @@ public class Coordinador {
     public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
         return miDireccionDao.actualizarDireccion(direccionActu, direccionSeleccionada);
     }
+
+    
+
+    public void mostrarEmpresae(JTable tablaEmpresae) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miEmpresaeDao.obtenerEmpresae("select empNit, epnNumeroSeguro, empNombre, empRUT, repCedula, dirDireccion, corCorreo, telNumero from vw_empresa_envios");
+        modelo.setColumnIdentifiers(new Object[] {"NIT","Seguro","Nombre","RUT","Cédula Representante", "Dirección", "Correo", "Teléfono"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getLong("NIT"),rs.getLong("Seguro"),rs.getString("Nombre"),rs.getLong("RUT"),rs.getLong("Cédula Representante"), rs.getString("Dirección"), rs.getString("Correo"), rs.getLong("Teléfono")});
+                
+            }
+            tablaEmpresae.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     
     
 
