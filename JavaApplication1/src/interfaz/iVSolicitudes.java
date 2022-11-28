@@ -1110,7 +1110,7 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_opciones.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         p_opciones.setLayout(null);
 
-        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton regresar.png"))); // NOI18N
+        btn_regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_regresar.png"))); // NOI18N
         btn_regresar.setText("Regresar a inicio");
         btn_regresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {

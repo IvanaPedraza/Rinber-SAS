@@ -90,5 +90,29 @@ public class direccionDao {
         }
         return direccionConsul;
     }
+
+    public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
+        String resultado = "";
+        Connection connection = miCoordinador.obtenerConexion();
+        try{
+            String consulta = "update direccion set dirCiudad = ?,"
+                    + "dirLocalidad = ?, dirBarrio = ? where dirDireccion = ?";
+            PreparedStatement preStatement = connection.prepareStatement(consulta);
+            //preStatement.setString(1, direccionActu.getDirDireccion());
+            preStatement.setString(1, direccionActu.getDirCiudad());
+            preStatement.setString(2, direccionActu.getDirLocalidad());
+            preStatement.setString(3, direccionActu.getDirBarrio());
+            preStatement.setString(4, direccionSeleccionada);
+            
+            preStatement.executeUpdate();
+            
+            resultado = "OK";
+        }catch(SQLException e){
+            System.out.println(e);
+            resultado = "ERROR";
+        }
+                
+        return resultado;
+    }
     
 }

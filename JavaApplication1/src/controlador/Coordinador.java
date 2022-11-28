@@ -312,6 +312,14 @@ public class Coordinador {
         
         return miDireccionDao.consultarDireccion(direccionDirec);
     }
+
+    public boolean validarCampos(direccionVo direccionActu) {
+        return miLogica.validarCampos(direccionActu);
+    }
+
+    public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
+        return miDireccionDao.actualizarDireccion(direccionActu, direccionSeleccionada);
+    }
     
     
 

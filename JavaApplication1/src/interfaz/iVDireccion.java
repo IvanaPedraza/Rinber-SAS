@@ -217,11 +217,63 @@ public class iVDireccion extends javax.swing.JFrame {
     }
     
     private void actualizarDire() {
+        String direccionSeleccionada = (String) cb_direcciones.getSelectedItem();
+        direccionVo direccionActu = new direccionVo();
+        
+        if(txtdnDireccion_actu.getText().length()!=0){
+            direccionActu.setDirDireccion(txtdnDireccion_actu.getText().trim());
+        }else{
+            direccionActu.setDirDireccion(direccionSeleccionada);
+        }
+        if(txtdnCiudad_actu.getText().length()!=0){
+            direccionActu.setDirCiudad(txtdnCiudad_actu.getText().trim());
+        }else{
+            direccionActu.setDirCiudad(txtciudadAct.getText());
+        }
+        if(txtdnlocalidad_actu.getText().length()!=0){
+            direccionActu.setDirLocalidad(txtdnlocalidad_actu.getText().trim());
+        }else{
+            direccionActu.setDirLocalidad(txtlocalidadAct.getText());
+        }
+        if(txtdnbarrio_actu.getText().length()!=0){
+            direccionActu.setDirBarrio(txtdnbarrio_actu.getText().trim());
+        }else{
+            direccionActu.setDirBarrio(txtbarrioAct.getText());
+        }
+        
+        System.out.println(direccionActu.getDirDireccion());
+        
+        String actualiza ="";
+        actualiza = miCoordinador.actualizarDireccion(direccionActu, direccionSeleccionada);
+        
+        if(miCoordinador.validarCampos(direccionActu)){
+            actualiza = miCoordinador.actualizarDireccion(direccionActu, direccionSeleccionada);
+        }else{
+            actualiza = "mas_datos";
+        }
+        
+        
+        if(actualiza.equals("OK")){
+            JOptionPane.showMessageDialog(null, "Se ha modificado correctamente.","Confirmación",JOptionPane.INFORMATION_MESSAGE);
+            limpiarCamposActu();
+        }else{
+            if(actualiza.equals("mas_datos")){
+                JOptionPane.showMessageDialog(null, "Debe ingresar los campos obligatorios","Faltan datos",JOptionPane.WARNING_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(null, "Error al modificar","Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
         
     }
     
 
-    
+    private void limpiarCamposActu(){
+        txtdnDireccion_actu.setText("");
+        txtdnCiudad_actu.setText("");
+        txtdnlocalidad_actu.setText("");
+        txtdnbarrio_actu.setText("");
+    }
     
     
     /**

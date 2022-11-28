@@ -87,39 +87,15 @@ public class Aplicacion {
         //idireccion.setVisible(true);
 
         //login.setVisible(true);
-     
-
         //login.setVisible(true);
         //iempresae.setVisible(true);
-
-
-
-
         //iempresae.setVisible(true);
 
-<<<<<<< HEAD
         login.setVisible(true);
         // iproveedor.setVisible(true);
-=======
         //login.setVisible(true);
         // iproveedor.setVisible(true);
-
-
->>>>>>> 5962a9a8973b1787861c6ca48734c645d6e90455
-        //login.setVisible(true);
-        //iproveedor.setVisible(true);
-
-        //icorreo.setVisible(true);
-        //igerente.setVisible(true);
-<<<<<<< HEAD
-        //irepre_legal.setVisible(true);
-        //icliente.setVisible(true);
-=======
-        
-        irepre_legal.setVisible(true);
-        //icliente.setVisible(true);
         //irepartidor.setVisible(true);
->>>>>>> 5962a9a8973b1787861c6ca48734c645d6e90455
+
     }
-    
 }
