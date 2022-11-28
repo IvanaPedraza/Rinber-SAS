@@ -6,6 +6,7 @@ import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVPVendedor;
 import interfaz.iVRepre;
+import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
 import java.awt.Color;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import modelo.Logica;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.representanteDao;
+import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
 import modelo.vo.direccionVo;
 
@@ -30,11 +32,13 @@ public class Coordinador {
     private iVRepre ventanaRepresentante;
     private iVTelefono ventanaTelefono;
     private iVDireccion ventanaDireccion;
+    private iVSolicitudes ventanaSolicitudProd;
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
+    private solicitudProdDao miSolicitudProdDao;
     
     private Logica miLogica;
     private Connection miConexionActual;
@@ -89,6 +93,14 @@ public class Coordinador {
 
     void setDireccionDao(direccionDao miDireccionDao) {
         this.miDireccionDao = miDireccionDao;
+    }
+    
+    void setVentanaSolicitud(iVSolicitudes solicitudes) {
+        this.ventanaSolicitudProd = solicitudes;
+    }
+
+    void setSolicitudProdDao(solicitudProdDao miSolicitudProdDao) {
+        this.miSolicitudProdDao = miSolicitudProdDao;
     }
     
     
@@ -151,7 +163,7 @@ public class Coordinador {
         cerrarDireccionPanAgregar();
         cerrarDireccionPanEliminar();
         JTable tablaDireccionLeer = ventanaDireccion.enviarTabla_Leer();
-        mostrarDireccionesAgr(tablaDireccionLeer);
+        mostrarDireccionesLeer(tablaDireccionLeer);
     }
     
     public void cerrarVentanaDireccion(){
@@ -161,7 +173,7 @@ public class Coordinador {
     public void abrirDireccionPanLeer(){
         ventanaDireccion.enviarPanelLeer().setVisible(true);
         JTable tablaDireccionLeer = ventanaDireccion.enviarTabla_Leer();
-        mostrarDireccionesAgr(tablaDireccionLeer);
+        mostrarDireccionesLeer(tablaDireccionLeer);
     }
     
     public void cerrarDireccionPanLeer(){
@@ -196,6 +208,62 @@ public class Coordinador {
     
     public void cerrarDireccionPanEliminar(){
         ventanaDireccion.enviarPanelEliminar().setVisible(false);
+    }
+    
+    
+    public void abrirVentanaSolicitudes(){
+        
+        ventanaSolicitudProd.setVisible(true);
+        abrirSolicitudProdPanLeer();
+        cerrarSolicitudProdPanActualizar();
+        cerrarSolicitudProdPanAgregar();
+        cerrarSolicitudProdPanEliminar();
+        JTable tablaSolicitudesLeer = ventanaSolicitudProd.enviarTabla_Leer();
+        mostrarSolicitudesProdLeer(tablaSolicitudesLeer);
+    }
+    
+    public void cerrarVentanaSolicitudes(){
+        ventanaDireccion.setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanLeer(){
+        ventanaSolicitudProd.enviarPanelLeer().setVisible(true);
+        JTable tablaSolicitudesLeer = ventanaSolicitudProd.enviarTabla_Leer();
+        mostrarSolicitudesProdLeer(tablaSolicitudesLeer);
+    }
+    
+    public void cerrarSolicitudProdPanLeer(){
+        ventanaSolicitudProd.enviarPanelLeer().setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanActualizar(){
+        ventanaSolicitudProd.enviarPanelActualizar().setVisible(true);
+        JComboBox comboSolicitudesActu = ventanaSolicitudProd.enviarComboSolicitudesAct();
+        llenarComboSoliciAct(comboSolicitudesActu);
+    }
+    
+    public void cerrarSolicitudProdPanActualizar(){
+        ventanaSolicitudProd.enviarPanelActualizar().setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanAgregar(){
+        ventanaSolicitudProd.enviarPanelAgregar().setVisible(true);
+    }
+    
+    public void cerrarSolicitudProdPanAgregar(){
+        ventanaSolicitudProd.enviarPanelAgregar().setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanEliminar(){
+        ventanaSolicitudProd.enviarPanelEliminar().setVisible(true);
+        JTable tablaSoliProdEli = ventanaSolicitudProd.enviarTabla_Eliminar();
+        JComboBox comboSoliProdEli = ventanaSolicitudProd.enviarComboSolicitudesEli();
+        mostrarSolicitudesProdDel(tablaSoliProdEli);
+        llenarComboSoliciEli(comboSoliProdEli);
+    }
+    
+    public void cerrarSolicitudProdPanEliminar(){
+        ventanaSolicitudProd.enviarPanelEliminar().setVisible(false);
     }
     
     
@@ -273,7 +341,7 @@ public class Coordinador {
         }
     }
 
-    public void mostrarDireccionesAgr(JTable table){
+    public void mostrarDireccionesLeer(JTable table){
         DefaultTableModel modelo = new DefaultTableModel();
         
         ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion, dirCiudad, dirLocalidad, dirBarrio from direccion");
@@ -362,6 +430,40 @@ public class Coordinador {
     public String eliminarDireccion(String direccionSeleccionada) {
         return miDireccionDao.eliminarDireccion(direccionSeleccionada);
     }
+
+    private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miSolicitudProdDao.obtenerSolicitudes("select numSolicitud, fechaFacturacion, totalIva, totalCompra, "
+                + "nitCliente, nombreCliente, venCedula, venNombre from vw_solprod");
+        modelo.setColumnIdentifiers(new Object[] {"Número Solicitud","Fecha Facturación", "Total IVA", "Total Compra", "NIT Cliente",
+                "Nombre Cliente", "Cédula Vendedor", "Nombre Vendedor"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("numSolicitud"),rs.getDate("fechaFacturacion"),rs.getDouble("totalIva"), rs.getDouble("totalCompra"),
+                                            rs.getString("nitCliente"),rs.getString("nombreCliente"),rs.getInt("venCedula"),rs.getString("venNombre")});
+                
+            }
+            tablaSolicitudesLeer.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    private void llenarComboSoliciAct(JComboBox comboDireccionesActu) {
+        
+    }
+
+    private void mostrarSolicitudesProdDel(JTable tablaSoliProdEli) {
+        
+    }
+
+    private void llenarComboSoliciEli(JComboBox comboSoliProdEli) {
+        
+    }
+
+    
     
     
 

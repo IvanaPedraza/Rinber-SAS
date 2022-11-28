@@ -427,7 +427,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="216" max="32767" attributes="0"/>
                           <Component id="scroll" min="-2" pref="609" max="-2" attributes="0"/>
-                          <EmptySpace pref="25" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -492,7 +492,7 @@
                                   <Component id="btn_empresa" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
                                   <Component id="titulo9" min="-2" pref="90" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -693,6 +693,9 @@
                           <Border info="null"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_solicitudesActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="btn_repartidor">
                       <Properties>

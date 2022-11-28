@@ -22,6 +22,7 @@ import interfaz.iVTelefono;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.representanteDao;
+import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
 public class Aplicacion {
     
@@ -55,6 +56,7 @@ public class Aplicacion {
         representanteDao miRepresentanteDao = new representanteDao();
         telefonoDao miTelefonoDao = new telefonoDao();
         direccionDao miDireccionDao = new direccionDao();
+        solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         
         // Relacionamos las clases coordinador
         miConexion.setCoordinador(miCoordinador);
@@ -64,6 +66,7 @@ public class Aplicacion {
         irepre_legal.setCoordinador(miCoordinador);
         itelefono.setCoordinador(miCoordinador);
         idireccion.setCoordinador(miCoordinador);
+        isolicitudes.setCoordinador(miCoordinador);
         
         //se repite para todos las demas ventanas
         miLogica.setCoordinador(miCoordinador);
@@ -71,6 +74,7 @@ public class Aplicacion {
         miRepresentanteDao.setCoordinador(miCoordinador);
         miTelefonoDao.setCoordinador(miCoordinador);
         miDireccionDao.setCoordinador(miCoordinador);
+        miSolicitudProdDao.setCoordinador(miCoordinador);
         
         //Relacionamos coordinador con las clases
         miCoordinador.setLogin(login);
@@ -84,6 +88,8 @@ public class Aplicacion {
         miCoordinador.setTelefonoDao(miTelefonoDao);
         miCoordinador.setVentanaDireccion(idireccion);
         miCoordinador.setDireccionDao(miDireccionDao);
+        miCoordinador.setVentanaSolicitud(isolicitudes);
+        miCoordinador.setSolicitudProdDao(miSolicitudProdDao);
         
         //Conexion
         miCoordinador.setConexion(miConexion);

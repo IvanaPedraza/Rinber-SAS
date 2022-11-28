@@ -363,6 +363,11 @@ public class iVPVendedor extends javax.swing.JFrame {
 
         btn_solicitudes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton solicitudes.png"))); // NOI18N
         btn_solicitudes.setBorder(null);
+        btn_solicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_solicitudesActionPerformed(evt);
+            }
+        });
 
         btn_repartidor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton repartidor.png"))); // NOI18N
         btn_repartidor.setBorder(null);
@@ -536,7 +541,7 @@ public class iVPVendedor extends javax.swing.JFrame {
                     .addComponent(btn_directorio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                .addGap(74, 74, 74))
         );
         p_botonesLayout.setVerticalGroup(
             p_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -630,7 +635,7 @@ public class iVPVendedor extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, p_scrollLayout.createSequentialGroup()
                     .addContainerGap(216, Short.MAX_VALUE)
                     .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 609, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(25, Short.MAX_VALUE)))
+                    .addGap(25, 25, 25)))
         );
 
         p_ventana.add(p_scroll);
@@ -696,6 +701,11 @@ public class iVPVendedor extends javax.swing.JFrame {
         miCoordinador.abrirVentanaDireccion();
         miCoordinador.cerrarVentanaPrincipal();
     }//GEN-LAST:event_btn_direccionActionPerformed
+
+    private void btn_solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_solicitudesActionPerformed
+        miCoordinador.abrirVentanaSolicitudes();
+        miCoordinador.cerrarVentanaPrincipal();
+    }//GEN-LAST:event_btn_solicitudesActionPerformed
 
 
 
