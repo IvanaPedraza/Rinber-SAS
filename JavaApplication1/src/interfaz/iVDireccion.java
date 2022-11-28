@@ -4,7 +4,6 @@
  */
 package interfaz;
 
-
 import controlador.Coordinador;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -21,24 +20,24 @@ import javax.swing.border.Border;
 import modelo.vo.direccionVo;
 
 public class iVDireccion extends javax.swing.JFrame {
-    
+
     private Coordinador miCoordinador;
     private Color azul = new Color(23, 60, 104);
-    
+
     /*
     private void inicializar(){
         this.btn_leer.setBackground(new Color(87, 156, 194));
         this.btn_leer.setForeground(Color.white);
     }
-    */
-    private void ocultaPanel(){
+     */
+    private void ocultaPanel() {
         miCoordinador.cerrarDireccionPanEliminar();
         miCoordinador.cerrarDireccionPanActualizar();
         miCoordinador.cerrarDireccionPanLeer();
         miCoordinador.cerrarDireccionPanAgregar();
     }
-    
-    private void colorBotones(){
+
+    private void colorBotones() {
         this.btn_leer.setBackground(Color.white);
         this.btn_leer.setForeground(Color.black);
         this.btn_actualizar.setBackground(Color.white);
@@ -48,20 +47,20 @@ public class iVDireccion extends javax.swing.JFrame {
         this.btn_agregar.setBackground(Color.white);
         this.btn_agregar.setForeground(Color.black);
     }
-   
-    Escalar escalar=new Escalar();
-    
+
+    Escalar escalar = new Escalar();
+
     public iVDireccion() {
         initComponents();
         setTitle("Correo");
         p_scroll.setBackground(Color.WHITE);
         p_botones.setBackground(Color.white);
         p_ventana.setBackground(azul);
-        this.setLocation(200, 0);  
-        
+        this.setLocation(200, 0);
+
         escalar.escalarLabel(this.logoRinber, "/img/imgiVPV/loguito-redondito.png");
         escalar.escalarLabel(this.imagen2, "/img/imgiVPV/Franja.jpg");
-        
+
         //this.cb_direcciones.setSelectedIndex(0);
         this.btn_cliente.setOpaque(true);
         this.btn_cliente.setBackground(Color.white);
@@ -109,16 +108,15 @@ public class iVDireccion extends javax.swing.JFrame {
         this.btn_regresar.setBackground(Color.white);
         this.btn_gerente.setOpaque(true);
         this.btn_gerente.setBackground(Color.white);
-        
-        String t= "<html>Representante<br>legal</html>";
-        String t2= "<html>Empresa<br>envíos</html>";
-        String t3= "<html>Solicitudes<br>producto</html>";
-        String t4= "<html>Ordenes<br>compra</html>";
+
+        String t = "<html>Representante<br>legal</html>";
+        String t2 = "<html>Empresa<br>envíos</html>";
+        String t3 = "<html>Solicitudes<br>producto</html>";
+        String t4 = "<html>Ordenes<br>compra</html>";
         this.titulo4.setText(t);
         this.titulo9.setText(t2);
         this.titulo12.setText(t3);
-       
-        
+
         JTableHeader th;
         th = this.tablaLeer.getTableHeader();
         Font fuente = new Font("Century Gothic", Font.BOLD, 18);
@@ -126,7 +124,7 @@ public class iVDireccion extends javax.swing.JFrame {
         tablaLeer.getTableHeader().setBackground(azul);
         tablaLeer.getTableHeader().setForeground(Color.white);
         //tablaLeer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        
+
         JTableHeader th2;
         th2 = this.tablaEliminar.getTableHeader();
         Font fuente2 = new Font("Century Gothic", Font.BOLD, 18);
@@ -134,151 +132,168 @@ public class iVDireccion extends javax.swing.JFrame {
         tablaEliminar.getTableHeader().setBackground(azul);
         tablaEliminar.getTableHeader().setForeground(Color.white);
         //tablaEliminar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        
+
         //inicializar();
     }
-    
+
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
-    
-    public JPanel enviarPanelLeer(){
-        this.btn_leer.setBackground(new Color(87, 156, 194));
-        this.btn_leer.setForeground(Color.white);
+
+    public JPanel enviarPanelLeer() {
+
         return p_seccionLeer;
     }
-    
-    public JPanel enviarPanelAgregar(){
-        this.btn_agregar.setBackground(new Color(87, 156, 194));
-        this.btn_agregar.setForeground(Color.white);
+
+    public JPanel enviarPanelAgregar() {
+
         return p_seccionAgregar;
     }
-    
-    public JPanel enviarPanelActualizar(){
-        this.btn_actualizar.setBackground(new Color(87, 156, 194));
-        this.btn_actualizar.setForeground(Color.white);
+
+    public JPanel enviarPanelActualizar() {
+
         return p_seccionActualizar;
     }
-    
-    public JPanel enviarPanelEliminar(){
-        this.btn_eliminar.setBackground(new Color(87, 156, 194));
-        this.btn_eliminar.setForeground(Color.white);
+
+    public JPanel enviarPanelEliminar() {
+
         return p_seccionEliminar;
     }
-    
-    public JTable enviarTabla_Leer(){
+
+    public JTable enviarTabla_Leer() {
         return tablaLeer;
     }
-    
-    
-    public JTable enviarTabla_Eliminar(){
+
+    public JTable enviarTabla_Eliminar() {
         return tablaEliminar;
     }
-    
-    public JComboBox enviarComboDireccionesAct(){
+
+    public JComboBox enviarComboDireccionesAct() {
         return cb_direcciones;
     }
-    
+
+    public JComboBox enviarComboDireccionesEli() {
+        return cb_direcciones2;
+    }
+
     private void registrarNuevaDire() {
-        
+
         direccionVo nuevaDireccion = new direccionVo();
-        
+
         nuevaDireccion.setDirDireccion(txtdireccion_agregar.getText().trim());
         nuevaDireccion.setDirCiudad(txtciudad_agregar.getText().trim());
         nuevaDireccion.setDirLocalidad(txtlocalidad_agregar.getText().trim());
         nuevaDireccion.setDirBarrio(txtbarrio_agregar.getText().trim());
-        
+
         String retorno = miCoordinador.agregarNuevaDireccion(nuevaDireccion);
-        
-        if(retorno.equals("OK")){
+
+        if (retorno.equals("OK")) {
             JOptionPane.showMessageDialog(null, "¡La dirección fue agregada con éxito!");
             txtdireccion_agregar.setText("");
             txtciudad_agregar.setText("");
             txtlocalidad_agregar.setText("");
             txtbarrio_agregar.setText("");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "La dirección no se pudo agregar, verifique el error.");
         }
     }
-    
+
     private void consultarDireccion() {
         String valorSeleccionado = (String) cb_direcciones.getSelectedItem();
         direccionVo direccionConsulta = miCoordinador.consultarDireccion(valorSeleccionado);
-        
-        if(direccionConsulta!=null){
+
+        if (direccionConsulta != null) {
             txtciudadAct.setText(direccionConsulta.getDirCiudad());
             txtlocalidadAct.setText(direccionConsulta.getDirLocalidad());
             txtbarrioAct.setText(direccionConsulta.getDirBarrio());
-        }else{
+        } else {
             //JOptionPane.showMessageDialog(null, "La dirección no se encuentra en el sistema.");
         }
     }
-    
+
     private void actualizarDire() {
         String direccionSeleccionada = (String) cb_direcciones.getSelectedItem();
         direccionVo direccionActu = new direccionVo();
-        
-        if(txtdnDireccion_actu.getText().length()!=0){
+
+        if (txtdnDireccion_actu.getText().length() != 0) {
             direccionActu.setDirDireccion(txtdnDireccion_actu.getText().trim());
-        }else{
+        } else {
             direccionActu.setDirDireccion(direccionSeleccionada);
         }
-        if(txtdnCiudad_actu.getText().length()!=0){
+        if (txtdnCiudad_actu.getText().length() != 0) {
             direccionActu.setDirCiudad(txtdnCiudad_actu.getText().trim());
-        }else{
+        } else {
             direccionActu.setDirCiudad(txtciudadAct.getText());
         }
-        if(txtdnlocalidad_actu.getText().length()!=0){
+        if (txtdnlocalidad_actu.getText().length() != 0) {
             direccionActu.setDirLocalidad(txtdnlocalidad_actu.getText().trim());
-        }else{
+        } else {
             direccionActu.setDirLocalidad(txtlocalidadAct.getText());
         }
-        if(txtdnbarrio_actu.getText().length()!=0){
+        if (txtdnbarrio_actu.getText().length() != 0) {
             direccionActu.setDirBarrio(txtdnbarrio_actu.getText().trim());
-        }else{
+        } else {
             direccionActu.setDirBarrio(txtbarrioAct.getText());
         }
-        
+
         System.out.println(direccionActu.getDirDireccion());
-        
-        String actualiza ="";
+
+        String actualiza = "";
         actualiza = miCoordinador.actualizarDireccion(direccionActu, direccionSeleccionada);
-        
-        if(miCoordinador.validarCampos(direccionActu)){
+
+        if (miCoordinador.validarCampos(direccionActu)) {
             actualiza = miCoordinador.actualizarDireccion(direccionActu, direccionSeleccionada);
-        }else{
+        } else {
             actualiza = "mas_datos";
         }
-        
-        
-        if(actualiza.equals("OK")){
-            JOptionPane.showMessageDialog(null, "Se ha modificado correctamente.","Confirmación",JOptionPane.INFORMATION_MESSAGE);
+
+        if (actualiza.equals("OK")) {
+            JOptionPane.showMessageDialog(null, "Se ha modificado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             limpiarCamposActu();
-        }else{
-            if(actualiza.equals("mas_datos")){
-                JOptionPane.showMessageDialog(null, "Debe ingresar los campos obligatorios","Faltan datos",JOptionPane.WARNING_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(null, "Error al modificar","Error",JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (actualiza.equals("mas_datos")) {
+                JOptionPane.showMessageDialog(null, "Debe ingresar los campos obligatorios", "Faltan datos", JOptionPane.WARNING_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al modificar", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        
-        
-    }
-    
 
-    private void limpiarCamposActu(){
+    }
+
+    private void eliminarDireccion() {
+        String direccionSeleccionada = (String) cb_direcciones2.getSelectedItem();
+        String eliminar = "";
+        if (!direccionSeleccionada.equals("")) {
+
+            int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar " + direccionSeleccionada + "?");
+            if (JOptionPane.OK_OPTION == resp) {
+                eliminar = miCoordinador.eliminarDireccion(direccionSeleccionada);
+                if (eliminar.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente.", "Información",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    miCoordinador.abrirDireccionPanEliminar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar, seleccione otra dirección.", "Información",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una dirección a eliminar.", "Información",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private void limpiarCamposActu() {
         txtdnDireccion_actu.setText("");
         txtdnCiudad_actu.setText("");
         txtdnlocalidad_actu.setText("");
         txtdnbarrio_actu.setText("");
     }
-    
-    
+
     /**
      * Componentes logicos
      */
-    
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1306,14 +1321,18 @@ public class iVDireccion extends javax.swing.JFrame {
         ocultaPanel();
         miCoordinador.abrirDireccionPanAgregar();
         colorBotones();
-        
+        this.btn_agregar.setBackground(new Color(87, 156, 194));
+        this.btn_agregar.setForeground(Color.white);
+
     }//GEN-LAST:event_btn_agregarActionPerformed
 
     private void btn_leerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_leerActionPerformed
         ocultaPanel();
         miCoordinador.abrirDireccionPanLeer();
         colorBotones();
-        
+        this.btn_leer.setBackground(new Color(87, 156, 194));
+        this.btn_leer.setForeground(Color.white);
+
     }//GEN-LAST:event_btn_leerActionPerformed
 
     private void btn_actActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actActionPerformed
@@ -1328,11 +1347,13 @@ public class iVDireccion extends javax.swing.JFrame {
         ocultaPanel();
         miCoordinador.abrirDireccionPanActualizar();
         colorBotones();
-        
+        this.btn_actualizar.setBackground(new Color(87, 156, 194));
+        this.btn_actualizar.setForeground(Color.white);
+
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void btn_elimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimActionPerformed
-        // TODO add your handling code here:
+        eliminarDireccion();
     }//GEN-LAST:event_btn_elimActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
@@ -1341,10 +1362,12 @@ public class iVDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_regresarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
-       ocultaPanel();
-       miCoordinador.abrirDireccionPanEliminar();
-       colorBotones();
-       
+        ocultaPanel();
+        miCoordinador.abrirDireccionPanEliminar();
+        colorBotones();
+        this.btn_eliminar.setBackground(new Color(87, 156, 194));
+        this.btn_eliminar.setForeground(Color.white);
+
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void txtbusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbusquedaActionPerformed
@@ -1356,13 +1379,12 @@ public class iVDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_direccionesActionPerformed
 
     private void cb_direccionesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_direccionesItemStateChanged
-        
+
     }//GEN-LAST:event_cb_direccionesItemStateChanged
 
     private void txtbarrioActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtbarrioActActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtbarrioActActionPerformed
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1467,10 +1489,4 @@ public class iVDireccion extends javax.swing.JFrame {
     private javax.swing.JTextField txtlocalidad_agregar;
     // End of variables declaration//GEN-END:variables
 
-    
-
-    
-
-    
-    
 }

@@ -188,6 +188,10 @@ public class Coordinador {
     
     public void abrirDireccionPanEliminar(){
         ventanaDireccion.enviarPanelEliminar().setVisible(true);
+        JTable tablaDireccionEli = ventanaDireccion.enviarTabla_Eliminar();
+        JComboBox comboDireccionesEli = ventanaDireccion.enviarComboDireccionesEli();
+        mostrarDireccionesDel(tablaDireccionEli);
+        llenarComboDirecEli(comboDireccionesEli);
     }
     
     public void cerrarDireccionPanEliminar(){
@@ -221,7 +225,7 @@ public class Coordinador {
         DefaultTableModel modelo = new DefaultTableModel();
         
         ResultSet rs = miCorreoDao.obtenerCorreos("select corCorreo, tipoCorreo from correo");
-        modelo.setColumnIdentifiers(new Object[] {"corCorreo","tipoCorreo"});
+        modelo.setColumnIdentifiers(new Object[] {"Correo","Tipo"});
         
         try{
             while(rs.next()){
@@ -285,6 +289,23 @@ public class Coordinador {
             System.out.println(e);
         }
     }
+    
+    public void mostrarDireccionesDel(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion, dirCiudad, dirLocalidad, dirBarrio from direccion");
+        modelo.setColumnIdentifiers(new Object[] {"Dirección","Ciudad", "Localidad", "Barrio"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("dirDireccion"),rs.getString("dirCiudad"),rs.getString("dirLocalidad"), rs.getString("dirBarrio")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
     
     public String agregarNuevaDireccion(direccionVo nuevaDireccion){
@@ -292,6 +313,23 @@ public class Coordinador {
     }
     
     public void llenarComboDirecAct(JComboBox combo){
+        
+        ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion from direccion");
+        try{
+            combo.removeAllItems();
+            while(rs.next()){
+                
+                combo.addItem(rs.getObject("dirDireccion"));
+            }
+            
+            combo.setSelectedIndex(0);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void llenarComboDirecEli(JComboBox combo){
         
         ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion from direccion");
         try{
@@ -319,6 +357,10 @@ public class Coordinador {
 
     public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
         return miDireccionDao.actualizarDireccion(direccionActu, direccionSeleccionada);
+    }
+
+    public String eliminarDireccion(String direccionSeleccionada) {
+        return miDireccionDao.eliminarDireccion(direccionSeleccionada);
     }
     
     
