@@ -130,7 +130,7 @@ public class iVCliente extends javax.swing.JFrame {
         th2.setFont(fuente2);
         tabla2.getTableHeader().setBackground(azul);
         tabla2.getTableHeader().setForeground(Color.white);
-        tabla2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //tabla2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         inicializar();
     }

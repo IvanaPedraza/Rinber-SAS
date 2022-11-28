@@ -9,6 +9,8 @@ import interfaz.iVRepre;
 import interfaz.iVTelefono;
 import java.awt.Color;
 import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import modelo.Conexion;
@@ -158,6 +160,8 @@ public class Coordinador {
     
     public void abrirDireccionPanLeer(){
         ventanaDireccion.enviarPanelLeer().setVisible(true);
+        JTable tablaDireccionLeer = ventanaDireccion.enviarTabla_Leer();
+        mostrarDireccionesAgr(tablaDireccionLeer);
     }
     
     public void cerrarDireccionPanLeer(){
@@ -166,6 +170,8 @@ public class Coordinador {
     
     public void abrirDireccionPanActualizar(){
         ventanaDireccion.enviarPanelActualizar().setVisible(true);
+        JComboBox comboDireccionesActu = ventanaDireccion.enviarComboDireccionesAct();
+        llenarComboDirecAct(comboDireccionesActu);
     }
     
     public void cerrarDireccionPanActualizar(){
@@ -279,9 +285,40 @@ public class Coordinador {
             System.out.println(e);
         }
     }
+
     
     public String agregarNuevaDireccion(direccionVo nuevaDireccion){
         return miDireccionDao.agregarDireccion(nuevaDireccion);
+    }
+    
+    public void llenarComboDirecAct(JComboBox combo){
+        
+        ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion from direccion");
+        try{
+            combo.removeAllItems();
+            while(rs.next()){
+                
+                combo.addItem(rs.getObject("dirDireccion"));
+            }
+            
+            combo.setSelectedIndex(0);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public direccionVo consultarDireccion(String direccionDirec) {
+        
+        return miDireccionDao.consultarDireccion(direccionDirec);
+    }
+
+    public boolean validarCampos(direccionVo direccionActu) {
+        return miLogica.validarCampos(direccionActu);
+    }
+
+    public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
+        return miDireccionDao.actualizarDireccion(direccionActu, direccionSeleccionada);
     }
     
     

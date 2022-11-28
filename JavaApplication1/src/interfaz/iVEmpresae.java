@@ -82,7 +82,7 @@ public class iVEmpresae extends javax.swing.JFrame {
         th.setFont(fuente);
         tabla.getTableHeader().setBackground(azul);
         tabla.getTableHeader().setForeground(Color.white);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        //tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
     }
     

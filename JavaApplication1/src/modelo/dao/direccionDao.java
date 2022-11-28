@@ -63,5 +63,56 @@ public class direccionDao {
         
         return resultado;
     }
+
+    public direccionVo consultarDireccion(String direccionDirec) {
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        direccionVo direccionConsul = null;
+        Connection connection = miCoordinador.obtenerConexion();
+        String consulta = "select * from direccion where dirDireccion = ?";
+        try{
+            statement = connection.prepareStatement(consulta);
+            statement.setString(1, direccionDirec);
+            rs = statement.executeQuery();
+            
+            while(rs.next()==true){
+                direccionConsul = new direccionVo();
+                direccionConsul.setDirDireccion(rs.getString("dirDireccion"));
+                direccionConsul.setDirCiudad(rs.getString("dirCiudad"));
+                direccionConsul.setDirLocalidad(rs.getString("dirCiudad"));
+                direccionConsul.setDirBarrio(rs.getString("dirBarrio"));
+                
+            }
+        
+        }catch(SQLException e){
+            System.out.println("No se pudo encontrar la direccion "+e.getMessage());
+            
+        }
+        return direccionConsul;
+    }
+
+    public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
+        String resultado = "";
+        Connection connection = miCoordinador.obtenerConexion();
+        try{
+            String consulta = "update direccion set dirCiudad = ?,"
+                    + "dirLocalidad = ?, dirBarrio = ? where dirDireccion = ?";
+            PreparedStatement preStatement = connection.prepareStatement(consulta);
+            //preStatement.setString(1, direccionActu.getDirDireccion());
+            preStatement.setString(1, direccionActu.getDirCiudad());
+            preStatement.setString(2, direccionActu.getDirLocalidad());
+            preStatement.setString(3, direccionActu.getDirBarrio());
+            preStatement.setString(4, direccionSeleccionada);
+            
+            preStatement.executeUpdate();
+            
+            resultado = "OK";
+        }catch(SQLException e){
+            System.out.println(e);
+            resultado = "ERROR";
+        }
+                
+        return resultado;
+    }
     
 }

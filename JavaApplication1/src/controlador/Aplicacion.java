@@ -95,18 +95,15 @@ public class Aplicacion {
         //idireccion.setVisible(true);
 
         //login.setVisible(true);
-     
-
         //login.setVisible(true);
         //iempresae.setVisible(true);
-
-
-
-
         //iempresae.setVisible(true);
 
+        login.setVisible(true);
+        // iproveedor.setVisible(true);
         //login.setVisible(true);
         // iproveedor.setVisible(true);
+
 
 
         //login.setVisible(true);
@@ -117,7 +114,8 @@ public class Aplicacion {
         
         //irepre_legal.setVisible(true);
         //icliente.setVisible(true);
+
         //irepartidor.setVisible(true);
+
     }
-    
 }
