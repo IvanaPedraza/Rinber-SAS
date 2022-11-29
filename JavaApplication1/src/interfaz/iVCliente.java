@@ -227,6 +227,21 @@ public class iVCliente extends javax.swing.JFrame {
         txttcliente = new javax.swing.JTextField();
         subtitulo21 = new javax.swing.JLabel();
         decorador15 = new javax.swing.JLabel();
+        decorador17 = new javax.swing.JLabel();
+        subtitulo25 = new javax.swing.JLabel();
+        txttipo3 = new javax.swing.JTextField();
+        subtitulo26 = new javax.swing.JLabel();
+        decorador18 = new javax.swing.JLabel();
+        txtcrrepresentante1 = new javax.swing.JTextField();
+        subtitulo27 = new javax.swing.JLabel();
+        decorador19 = new javax.swing.JLabel();
+        txtdcliente1 = new javax.swing.JTextField();
+        subtitulo28 = new javax.swing.JLabel();
+        decorador20 = new javax.swing.JLabel();
+        txttipo5 = new javax.swing.JTextField();
+        txtcrrepresentante2 = new javax.swing.JTextField();
+        subtitulo29 = new javax.swing.JLabel();
+        decorador21 = new javax.swing.JLabel();
         p_seccionActualizar = new javax.swing.JPanel();
         p_actualizar = new javax.swing.JPanel();
         titulo19 = new javax.swing.JLabel();
@@ -677,13 +692,13 @@ public class iVCliente extends javax.swing.JFrame {
         p_agregar.add(subtitulo4);
         subtitulo4.setBounds(50, 220, 230, 30);
         p_agregar.add(txtncb);
-        txtncb.setBounds(280, 220, 340, 30);
+        txtncb.setBounds(280, 220, 400, 30);
         p_agregar.add(txtnit);
-        txtnit.setBounds(130, 60, 490, 30);
+        txtnit.setBounds(130, 60, 550, 30);
         p_agregar.add(txtnombre);
-        txtnombre.setBounds(130, 100, 490, 30);
+        txtnombre.setBounds(130, 100, 550, 30);
         p_agregar.add(txtncc);
-        txtncc.setBounds(280, 180, 340, 30);
+        txtncc.setBounds(280, 180, 400, 30);
 
         decorador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador1);
@@ -711,7 +726,7 @@ public class iVCliente extends javax.swing.JFrame {
             }
         });
         p_agregar.add(btn_enviar);
-        btn_enviar.setBounds(460, 450, 180, 40);
+        btn_enviar.setBounds(470, 500, 180, 40);
 
         decorador9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador9);
@@ -723,7 +738,7 @@ public class iVCliente extends javax.swing.JFrame {
         p_agregar.add(subtitulo13);
         subtitulo13.setBounds(50, 140, 70, 30);
         p_agregar.add(txtrut);
-        txtrut.setBounds(130, 140, 490, 30);
+        txtrut.setBounds(130, 140, 550, 30);
 
         decorador10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador10);
@@ -735,19 +750,19 @@ public class iVCliente extends javax.swing.JFrame {
         p_agregar.add(subtitulo16);
         subtitulo16.setBounds(50, 260, 70, 30);
         p_agregar.add(txtcorreo);
-        txtcorreo.setBounds(130, 260, 240, 30);
+        txtcorreo.setBounds(130, 260, 290, 30);
 
         subtitulo17.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo17.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo17.setText("Tipo");
         p_agregar.add(subtitulo17);
-        subtitulo17.setBounds(410, 260, 50, 30);
+        subtitulo17.setBounds(460, 260, 50, 30);
 
         decorador11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador11);
-        decorador11.setBounds(380, 260, 30, 30);
+        decorador11.setBounds(430, 260, 30, 30);
         p_agregar.add(txttipo1);
-        txttipo1.setBounds(460, 260, 160, 30);
+        txttipo1.setBounds(510, 260, 170, 30);
 
         subtitulo18.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo18.setForeground(new java.awt.Color(11, 43, 90));
@@ -761,47 +776,107 @@ public class iVCliente extends javax.swing.JFrame {
 
         decorador13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador13);
-        decorador13.setBounds(10, 340, 30, 30);
+        decorador13.setBounds(10, 420, 30, 30);
 
         subtitulo19.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo19.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo19.setText("Dirección cliente");
         p_agregar.add(subtitulo19);
-        subtitulo19.setBounds(50, 340, 160, 30);
+        subtitulo19.setBounds(50, 420, 160, 30);
         p_agregar.add(txtdcliente);
-        txtdcliente.setBounds(210, 340, 410, 30);
+        txtdcliente.setBounds(260, 380, 140, 30);
         p_agregar.add(txtcrrepresentante);
-        txtcrrepresentante.setBounds(260, 300, 360, 30);
+        txtcrrepresentante.setBounds(190, 340, 170, 30);
         p_agregar.add(txttipo2);
-        txttipo2.setBounds(460, 380, 160, 30);
+        txttipo2.setBounds(510, 380, 170, 30);
 
         subtitulo20.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo20.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo20.setText("Tipo");
         p_agregar.add(subtitulo20);
-        subtitulo20.setBounds(410, 380, 50, 30);
+        subtitulo20.setBounds(410, 460, 50, 30);
 
         decorador14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador14);
-        decorador14.setBounds(380, 380, 30, 30);
+        decorador14.setBounds(380, 460, 30, 30);
         p_agregar.add(txttcliente);
-        txttcliente.setBounds(200, 380, 170, 30);
+        txttcliente.setBounds(200, 460, 170, 30);
 
         subtitulo21.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo21.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo21.setText("Teléfono cliente");
         p_agregar.add(subtitulo21);
-        subtitulo21.setBounds(50, 380, 150, 30);
+        subtitulo21.setBounds(50, 460, 150, 30);
 
         decorador15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador15);
-        decorador15.setBounds(10, 380, 30, 30);
+        decorador15.setBounds(10, 460, 30, 30);
+
+        decorador17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        p_agregar.add(decorador17);
+        decorador17.setBounds(450, 420, 30, 30);
+
+        subtitulo25.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo25.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo25.setText("Ciudad");
+        p_agregar.add(subtitulo25);
+        subtitulo25.setBounds(480, 420, 80, 30);
+        p_agregar.add(txttipo3);
+        txttipo3.setBounds(460, 460, 220, 30);
+
+        subtitulo26.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo26.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo26.setText("Teléfono representante");
+        p_agregar.add(subtitulo26);
+        subtitulo26.setBounds(50, 380, 210, 30);
+
+        decorador18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        p_agregar.add(decorador18);
+        decorador18.setBounds(10, 380, 30, 30);
+        p_agregar.add(txtcrrepresentante1);
+        txtcrrepresentante1.setBounds(260, 300, 420, 30);
+
+        subtitulo27.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo27.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo27.setText("Nombre repre.");
+        p_agregar.add(subtitulo27);
+        subtitulo27.setBounds(50, 340, 210, 30);
+
+        decorador19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        p_agregar.add(decorador19);
+        decorador19.setBounds(10, 340, 30, 30);
+        p_agregar.add(txtdcliente1);
+        txtdcliente1.setBounds(210, 420, 230, 30);
+
+        subtitulo28.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo28.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo28.setText("Correo ");
+        p_agregar.add(subtitulo28);
+        subtitulo28.setBounds(440, 380, 80, 30);
+
+        decorador20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        p_agregar.add(decorador20);
+        decorador20.setBounds(410, 380, 30, 30);
+        p_agregar.add(txttipo5);
+        txttipo5.setBounds(550, 420, 130, 30);
+        p_agregar.add(txtcrrepresentante2);
+        txtcrrepresentante2.setBounds(540, 340, 140, 30);
+
+        subtitulo29.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        subtitulo29.setForeground(new java.awt.Color(11, 43, 90));
+        subtitulo29.setText("Apellido repre.");
+        p_agregar.add(subtitulo29);
+        subtitulo29.setBounds(400, 340, 150, 30);
+
+        decorador21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
+        p_agregar.add(decorador21);
+        decorador21.setBounds(360, 340, 24, 30);
 
         p_seccionAgregar.add(p_agregar);
-        p_agregar.setBounds(9, 11, 700, 510);
+        p_agregar.setBounds(9, 11, 700, 550);
 
         p_ventana.add(p_seccionAgregar);
-        p_seccionAgregar.setBounds(460, 190, 720, 560);
+        p_seccionAgregar.setBounds(460, 190, 720, 570);
 
         p_seccionActualizar.setBackground(new java.awt.Color(23, 60, 104));
         p_seccionActualizar.setLayout(null);
@@ -1403,7 +1478,12 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JLabel decorador14;
     private javax.swing.JLabel decorador15;
     private javax.swing.JLabel decorador16;
+    private javax.swing.JLabel decorador17;
+    private javax.swing.JLabel decorador18;
+    private javax.swing.JLabel decorador19;
     private javax.swing.JLabel decorador2;
+    private javax.swing.JLabel decorador20;
+    private javax.swing.JLabel decorador21;
     private javax.swing.JLabel decorador3;
     private javax.swing.JLabel decorador4;
     private javax.swing.JLabel decorador5;
@@ -1447,6 +1527,11 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo22;
     private javax.swing.JLabel subtitulo23;
     private javax.swing.JLabel subtitulo24;
+    private javax.swing.JLabel subtitulo25;
+    private javax.swing.JLabel subtitulo26;
+    private javax.swing.JLabel subtitulo27;
+    private javax.swing.JLabel subtitulo28;
+    private javax.swing.JLabel subtitulo29;
     private javax.swing.JLabel subtitulo3;
     private javax.swing.JLabel subtitulo4;
     private javax.swing.JLabel subtitulo5;
@@ -1478,7 +1563,10 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtcorreoAct;
     private javax.swing.JTextField txtcrrepresentante;
+    private javax.swing.JTextField txtcrrepresentante1;
+    private javax.swing.JTextField txtcrrepresentante2;
     private javax.swing.JTextField txtdcliente;
+    private javax.swing.JTextField txtdcliente1;
     private javax.swing.JTextField txtdireccionAct;
     private javax.swing.JTextField txtdndireccion;
     private javax.swing.JTextField txtdnlocorreo;
@@ -1494,5 +1582,7 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txttcliente;
     private javax.swing.JTextField txttipo1;
     private javax.swing.JTextField txttipo2;
+    private javax.swing.JTextField txttipo3;
+    private javax.swing.JTextField txttipo5;
     // End of variables declaration//GEN-END:variables
 }
