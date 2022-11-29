@@ -5,6 +5,7 @@ import interfaz.iLogin;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
+import interfaz.iVGerente;
 import interfaz.iVPVendedor;
 import interfaz.iVProveedor;
 import interfaz.iVRepartidor;
@@ -22,6 +23,7 @@ import modelo.Logica;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.gerenteDao;
 import modelo.dao.proveedorDao;
 import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
@@ -42,15 +44,16 @@ public class Coordinador {
     private iVSolicitudes ventanaSolicitudProd;
     private iVProveedor ventanaProveedor;
     private iVRepartidor ventanaRepartidor;
+    private iVGerente ventanaGerente;
+    
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
     private repartidorDao miRepartidorDao;
-
+    private gerenteDao miGerenteDao;
     private empresaeDao miEmpresaeDao;
-
     private solicitudProdDao miSolicitudProdDao;
     private proveedorDao miProveedorDao;
 
@@ -150,7 +153,13 @@ public class Coordinador {
         this.miRepartidorDao = miRepartidorDao;
     }
 
-   
+   void setVentanaGerente(iVGerente igerente) {
+        this.ventanaGerente = igerente;
+    }
+    
+    void setGerenteDao(gerenteDao miGerenteDao) {
+        this.miGerenteDao = miGerenteDao;
+    }
    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
@@ -294,6 +303,20 @@ public class Coordinador {
     public void cerrarVentanaRepartidor(){
         ventanaRepartidor.setVisible(false);
     }
+    
+    
+    public void abrirVentanaGerente(){
+        ventanaGerente.setVisible(true);
+        JTable tablaGerente = ventanaGerente.enviarTabla();
+        mostrarGerente(tablaGerente);
+        
+    }
+   
+    
+    public void cerrarVentanaGerente(){
+        ventanaGerente.setVisible(false);
+    }
+    
 
     public void abrirVentanaSolicitudes(){
         
@@ -569,6 +592,23 @@ public class Coordinador {
             System.out.println(e);
         }
     }
+     
+     public void mostrarGerente(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miGerenteDao.obtenerGerente("select gerCodigoTarjetaProfesional, gerCedula, perNombre, perApellido, corCorreo, telNumero from vw_gerente");
+        modelo.setColumnIdentifiers(new Object[] {"Tarjeta Profesional","Cédula","Nombre","Apellido","Correo", "Número"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getLong("gerCodigoTarjetaProfesional"),rs.getLong("gerCedula"),rs.getString("perNombre"),rs.getString("perApellido"),rs.getString("corCorreo"), rs.getLong("telNumero")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     
 
     private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
@@ -605,6 +645,7 @@ public class Coordinador {
         
     }
 
+    
 }
 
     

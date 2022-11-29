@@ -22,6 +22,7 @@ import interfaz.iVTelefono;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.gerenteDao;
 import modelo.dao.proveedorDao;
 import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
@@ -65,6 +66,7 @@ public class Aplicacion {
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         proveedorDao miProveedorDao = new proveedorDao();
         repartidorDao miRepartidorDao = new repartidorDao();
+        gerenteDao miGerenteDao = new gerenteDao();
  
         
         // Relacionamos las clases coordinador
@@ -79,6 +81,7 @@ public class Aplicacion {
         isolicitudes.setCoordinador(miCoordinador);
         iproveedor.setCoordinador(miCoordinador);
         irepartidor.setCoordinador(miCoordinador);
+        igerente.setCoordinador(miCoordinador);
  
         
         //se repite para todos las demas ventanas
@@ -91,6 +94,7 @@ public class Aplicacion {
         miSolicitudProdDao.setCoordinador(miCoordinador);
         miProveedorDao.setCoordinador(miCoordinador);
         miRepartidorDao.setCoordinador(miCoordinador);
+        miGerenteDao.setCoordinador(miCoordinador);
  
         
         //Relacionamos coordinador con las clases

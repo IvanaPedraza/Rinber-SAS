@@ -91,6 +91,10 @@ public class iVGerente extends javax.swing.JFrame {
         this.miCoordinador = miCoordinador;
     }
     
+    public JTable enviarTabla(){
+        return tabla;
+    }
+    
     /**
      * Componentes logicos
      */
