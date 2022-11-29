@@ -6,8 +6,10 @@ import interfaz.iVCliente;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
+import interfaz.iVGerente;
 import interfaz.iVPVendedor;
 import interfaz.iVProveedor;
+import interfaz.iVRepartidor;
 import interfaz.iVRepre;
 import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
@@ -23,7 +25,9 @@ import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.gerenteDao;
 import modelo.dao.proveedorDao;
+import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
@@ -42,14 +46,23 @@ public class Coordinador {
     private iVSolicitudes ventanaSolicitudProd;
     private iVProveedor ventanaProveedor;
     private iVCliente ventanaCliente;
- 
+    private iVRepartidor ventanaRepartidor;
+    private iVGerente ventanaGerente;
+    
+
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
+
     private empresaeDao miEmpresaeDao;
     private clienteDao miClienteDao;
+
+
+    private repartidorDao miRepartidorDao;
+    private gerenteDao miGerenteDao;
+    
 
     private solicitudProdDao miSolicitudProdDao;
     private proveedorDao miProveedorDao;
@@ -107,6 +120,11 @@ public class Coordinador {
 
     void setDireccionDao(direccionDao miDireccionDao) {
         this.miDireccionDao = miDireccionDao;
+        
+    }
+    
+    void setVentanaEmpresae(iVEmpresae iempresae) {
+        this.ventanaEmpresae = iempresae;
     }
     
 
@@ -122,13 +140,21 @@ public class Coordinador {
 
     void setSolicitudProdDao(solicitudProdDao miSolicitudProdDao) {
         this.miSolicitudProdDao = miSolicitudProdDao;
+        
+        
     }
     
+    
+    
+     void setVentanaProveedor(iVProveedor iproveedor) {
+        this.ventanaProveedor = iproveedor;
+    }
     
     void setProveedorDao(proveedorDao miProveedorDao) {
         this.miProveedorDao = miProveedorDao;
     }
     
+
     void setVentanaCliente(iVCliente icliente) {
         this.ventanaCliente = icliente;
     }
@@ -136,8 +162,23 @@ public class Coordinador {
     void setClienteDao(clienteDao miClienteDao) {
         this.miClienteDao = miClienteDao;
     }
-
     
+    void setVentanaRepartidor(iVRepartidor irepartidor) {
+        this.ventanaRepartidor = irepartidor;
+    }
+    
+    void setRepartidorDao(repartidorDao miRepartidorDao) {
+        this.miRepartidorDao = miRepartidorDao;
+
+    }
+
+   void setVentanaGerente(iVGerente igerente) {
+        this.ventanaGerente = igerente;
+    }
+    
+    void setGerenteDao(gerenteDao miGerenteDao) {
+        this.miGerenteDao = miGerenteDao;
+    }
     
    
     public String validarIngreso(String usuario, String contrasena){
@@ -259,7 +300,7 @@ public class Coordinador {
     }
     
     
-     public void abrirVentanaProveedor(){
+    public void abrirVentanaProveedor(){
         ventanaProveedor.setVisible(true);
         JTable tablaProveedor = ventanaProveedor.enviarTabla();
         mostrarProveedor(tablaProveedor);
@@ -268,6 +309,32 @@ public class Coordinador {
     
     public void cerrarVentanaProveedor(){
         ventanaProveedor.setVisible(false);
+    }
+    
+    
+    public void abrirVentanaRepartidor(){
+        ventanaRepartidor.setVisible(true);
+        JTable tablaRepartidor = ventanaRepartidor.enviarTabla();
+        mostrarRepartidor(tablaRepartidor);
+        
+    }
+   
+    
+    public void cerrarVentanaRepartidor(){
+        ventanaRepartidor.setVisible(false);
+    }
+    
+    
+    public void abrirVentanaGerente(){
+        ventanaGerente.setVisible(true);
+        JTable tablaGerente = ventanaGerente.enviarTabla();
+        mostrarGerente(tablaGerente);
+        
+    }
+   
+    
+    public void cerrarVentanaGerente(){
+        ventanaGerente.setVisible(false);
     }
     
 
@@ -586,7 +653,39 @@ public class Coordinador {
             System.out.println(e);
         }
     }
-
+     public void mostrarRepartidor(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miRepartidorDao.obtenerRepartidor("select repaPlacas, repaCedula, perNombre, perApellido, corCorreo, telNumero from vw_repartidor");
+        modelo.setColumnIdentifiers(new Object[] {"Placa vehículo","Cédula","Nombre","Apellido","Correo", "Número"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("repaPlacas"),rs.getLong("repaCedula"),rs.getString("perNombre"),rs.getString("perApellido"),rs.getString("corCorreo"), rs.getLong("telNumero")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+     
+     public void mostrarGerente(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miGerenteDao.obtenerGerente("select gerCodigoTarjetaProfesional, gerCedula, perNombre, perApellido, corCorreo, telNumero from vw_gerente");
+        modelo.setColumnIdentifiers(new Object[] {"Tarjeta Profesional","Cédula","Nombre","Apellido","Correo", "Número"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getLong("gerCodigoTarjetaProfesional"),rs.getLong("gerCedula"),rs.getString("perNombre"),rs.getString("perApellido"),rs.getString("corCorreo"), rs.getLong("telNumero")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     
 
     private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
@@ -655,7 +754,12 @@ public class Coordinador {
     }
 
     
+
+
     
 }
+
+    
+
 
     

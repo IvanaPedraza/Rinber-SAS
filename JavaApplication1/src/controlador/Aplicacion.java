@@ -23,7 +23,9 @@ import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.gerenteDao;
 import modelo.dao.proveedorDao;
+import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
@@ -64,7 +66,12 @@ public class Aplicacion {
         empresaeDao miEmpresaeDao = new empresaeDao();
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         proveedorDao miProveedorDao = new proveedorDao();
+
         clienteDao miClienteDao = new clienteDao();
+
+        repartidorDao miRepartidorDao = new repartidorDao();
+        gerenteDao miGerenteDao = new gerenteDao();
+
  
         
         // Relacionamos las clases coordinador
@@ -78,7 +85,12 @@ public class Aplicacion {
         iempresae.setCoordinador(miCoordinador);
         isolicitudes.setCoordinador(miCoordinador);
         iproveedor.setCoordinador(miCoordinador);
+
         icliente.setCoordinador(miCoordinador);
+
+        irepartidor.setCoordinador(miCoordinador);
+        igerente.setCoordinador(miCoordinador);
+ 
         
         //se repite para todos las demas ventanas
         miLogica.setCoordinador(miCoordinador);
@@ -89,7 +101,12 @@ public class Aplicacion {
         miEmpresaeDao.setCoordinador(miCoordinador);
         miSolicitudProdDao.setCoordinador(miCoordinador);
         miProveedorDao.setCoordinador(miCoordinador);
+
         miClienteDao.setCoordinador(miCoordinador);
+
+        miRepartidorDao.setCoordinador(miCoordinador);
+        miGerenteDao.setCoordinador(miCoordinador);
+
  
         
         //Relacionamos coordinador con las clases
@@ -104,13 +121,19 @@ public class Aplicacion {
         miCoordinador.setTelefonoDao(miTelefonoDao);
         miCoordinador.setVentanaDireccion(idireccion);
         miCoordinador.setDireccionDao(miDireccionDao);
+        miCoordinador.setVentanaEmpresae(iempresae);
         miCoordinador.setEmpresaeDao(miEmpresaeDao);
         miCoordinador.setVentanaSolicitud(isolicitudes);
         miCoordinador.setSolicitudProdDao(miSolicitudProdDao);
+        miCoordinador.setVentanaProveedor(iproveedor);
         miCoordinador.setProveedorDao(miProveedorDao);
+
         miCoordinador.setVentanaCliente(icliente);
         miCoordinador.setClienteDao(miClienteDao);
- 
+
+        miCoordinador.setVentanaRepartidor(irepartidor);
+        miCoordinador.setRepartidorDao(miRepartidorDao);
+
         
         //Conexion
         miCoordinador.setConexion(miConexion);
