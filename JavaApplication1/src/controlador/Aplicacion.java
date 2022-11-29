@@ -19,6 +19,7 @@ import interfaz.iVRepartidor;
 import interfaz.iVRepre;
 import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
+import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
@@ -66,9 +67,16 @@ public class Aplicacion {
         empresaeDao miEmpresaeDao = new empresaeDao();
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         proveedorDao miProveedorDao = new proveedorDao();
+
+        clienteDao miClienteDao = new clienteDao();
+
         repartidorDao miRepartidorDao = new repartidorDao();
         gerenteDao miGerenteDao = new gerenteDao();
+ 
         envioDao miEnvioDao = new envioDao();
+
+
+ 
  
         
         // Relacionamos las clases coordinador
@@ -82,6 +90,9 @@ public class Aplicacion {
         iempresae.setCoordinador(miCoordinador);
         isolicitudes.setCoordinador(miCoordinador);
         iproveedor.setCoordinador(miCoordinador);
+
+        icliente.setCoordinador(miCoordinador);
+
         irepartidor.setCoordinador(miCoordinador);
         igerente.setCoordinador(miCoordinador);
         ienvio.setCoordinador(miCoordinador);
@@ -96,9 +107,16 @@ public class Aplicacion {
         miEmpresaeDao.setCoordinador(miCoordinador);
         miSolicitudProdDao.setCoordinador(miCoordinador);
         miProveedorDao.setCoordinador(miCoordinador);
+
+        miClienteDao.setCoordinador(miCoordinador);
+
         miRepartidorDao.setCoordinador(miCoordinador);
         miGerenteDao.setCoordinador(miCoordinador);
+ 
         miEnvioDao.setCoordinador(miCoordinador);
+
+
+ 
  
         
         //Relacionamos coordinador con las clases
@@ -119,13 +137,21 @@ public class Aplicacion {
         miCoordinador.setSolicitudProdDao(miSolicitudProdDao);
         miCoordinador.setVentanaProveedor(iproveedor);
         miCoordinador.setProveedorDao(miProveedorDao);
+
+        miCoordinador.setVentanaCliente(icliente);
+        miCoordinador.setClienteDao(miClienteDao);
+
         miCoordinador.setVentanaRepartidor(irepartidor);
         miCoordinador.setRepartidorDao(miRepartidorDao);
+
         miCoordinador.setVentanaGerente(igerente);
         miCoordinador.setGerenteDao(miGerenteDao);
         miCoordinador.setVentanaEnvio(ienvio);
         miCoordinador.setEnvioDao(miEnvioDao);
         
+
+
+ 
         
         //Conexion
         miCoordinador.setConexion(miConexion);
@@ -150,7 +176,7 @@ public class Aplicacion {
 
 
 
-        //login.setVisible(true);
+        login.setVisible(true);
         //iproveedor.setVisible(true);
 
         //icorreo.setVisible(true);

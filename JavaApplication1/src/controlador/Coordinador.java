@@ -2,6 +2,7 @@ package controlador;
 
 import java.sql.Connection;
 import interfaz.iLogin;
+import interfaz.iVCliente;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
@@ -21,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import modelo.Conexion;
 import modelo.Logica;
+import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
@@ -45,18 +47,26 @@ public class Coordinador {
     private iVEmpresae  ventanaEmpresae;
     private iVSolicitudes ventanaSolicitudProd;
     private iVProveedor ventanaProveedor;
+    private iVCliente ventanaCliente;
     private iVRepartidor ventanaRepartidor;
     private iVGerente ventanaGerente;
     private iVEnvio ventanaEnvio;
     
+
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
+
+    private empresaeDao miEmpresaeDao;
+    private clienteDao miClienteDao;
+
+
     private repartidorDao miRepartidorDao;
     private gerenteDao miGerenteDao;
-    private empresaeDao miEmpresaeDao;
+    
+
     private solicitudProdDao miSolicitudProdDao;
     private proveedorDao miProveedorDao;
     private envioDao miEnvioDao;
@@ -149,6 +159,14 @@ public class Coordinador {
         this.miProveedorDao = miProveedorDao;
     }
     
+
+    void setVentanaCliente(iVCliente icliente) {
+        this.ventanaCliente = icliente;
+    }
+
+    void setClienteDao(clienteDao miClienteDao) {
+        this.miClienteDao = miClienteDao;
+    }
     
     void setVentanaRepartidor(iVRepartidor irepartidor) {
         this.ventanaRepartidor = irepartidor;
@@ -156,6 +174,7 @@ public class Coordinador {
     
     void setRepartidorDao(repartidorDao miRepartidorDao) {
         this.miRepartidorDao = miRepartidorDao;
+
     }
 
    void setVentanaGerente(iVGerente igerente) {
@@ -166,6 +185,7 @@ public class Coordinador {
         this.miGerenteDao = miGerenteDao;
     }
     
+ 
     void setVentanaEnvio(iVEnvio ienvio) {
         this.ventanaEnvio = ienvio;
     }
@@ -174,6 +194,8 @@ public class Coordinador {
         this.miEnvioDao = miEnvioDao;
     }
     
+
+ 
    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
@@ -397,6 +419,63 @@ public class Coordinador {
     
     public void cerrarSolicitudProdPanEliminar(){
         ventanaSolicitudProd.enviarPanelEliminar().setVisible(false);
+    }
+    
+    
+    
+    public void abrirVentanaClientes(){
+        
+        ventanaCliente.setVisible(true);
+        abrirClientePanLeer();
+        cerrarClientePanActualizar();
+        cerrarClientePanAgregar();
+        cerrarClientePanEliminar();
+        JTable tablaClienteLeer = ventanaCliente.enviarTabla_Leer();
+        mostrarClienteProdLeer(tablaClienteLeer);
+    }
+    
+    public void cerrarVentanaClientes(){
+        ventanaCliente.setVisible(false);
+    }
+    
+    public void abrirClientePanLeer(){
+        ventanaCliente.enviarPanelLeer().setVisible(true);
+        JTable tablaClienteLeer = ventanaCliente.enviarTabla_Leer();
+        mostrarClienteProdLeer(tablaClienteLeer);
+    }
+    
+    public void cerrarClientePanLeer(){
+        ventanaCliente.enviarPanelLeer().setVisible(false);
+    }
+    
+    public void abrirClientePanActualizar(){
+        ventanaCliente.enviarPanelActualizar().setVisible(true);
+        JComboBox comboClienteActu = ventanaCliente.enviarComboClienteAct();
+        llenarComboClienteAct(comboClienteActu);
+    }
+    
+    public void cerrarClientePanActualizar(){
+        ventanaCliente.enviarPanelActualizar().setVisible(false);
+    }
+    
+    public void abrirClientePanAgregar(){
+        ventanaCliente.enviarPanelAgregar().setVisible(true);
+    }
+    
+    public void cerrarClientePanAgregar(){
+        ventanaCliente.enviarPanelAgregar().setVisible(false);
+    }
+    
+    public void abrirClientePanEliminar(){
+        ventanaCliente.enviarPanelEliminar().setVisible(true);
+        JTable tablaClienteEli = ventanaCliente.enviarTabla_Eliminar();
+        JComboBox comboClienteEli = ventanaCliente.enviarComboClienteEli();
+        mostrarClientesDel(tablaClienteEli);
+        llenarComboClienteEli(comboClienteEli);
+    }
+    
+    public void cerrarClientePanEliminar(){
+        ventanaCliente.enviarPanelEliminar().setVisible(false);
     }
     
     
@@ -688,6 +767,40 @@ public class Coordinador {
     private void llenarComboSoliciEli(JComboBox comboSoliProdEli) {
         
     }
+
+    private void mostrarClienteProdLeer(JTable tablaClienteLeer) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miClienteDao.obtenerClientes("select cliNit, empNombre, empRUT, cliNumCamara, cliCodigoCertficadoBancario,"
+                + "repCedula,dirDireccion,corCorreo,telNumero from vw_cliente");
+        modelo.setColumnIdentifiers(new Object[] {"NIT","Nombre Cliente", "RUT", "Número Camara y Comercio","Cert. Bancario", "Cédula Representante","Dirección","Correo","Teléfono"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getLong("cliNit"),rs.getString("empNombre"),rs.getLong("cliNumCamara"), rs.getLong("cliCodigoCertficadoBancario"),
+                rs.getInt("repCedula"),rs.getString("dirDireccion"),rs.getString("corCorreo"),rs.getLong("telNumero")});
+                
+            }
+            tablaClienteLeer.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    private void llenarComboClienteAct(JComboBox comboClienteActu) {
+        
+    }
+
+    private void mostrarClientesDel(JTable tablaClienteEli) {
+        
+    }
+
+    private void llenarComboClienteEli(JComboBox comboClienteEli) {
+        
+    }
+
+    
+
 
     
     
