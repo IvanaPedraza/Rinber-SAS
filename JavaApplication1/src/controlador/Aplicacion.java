@@ -22,6 +22,7 @@ import interfaz.iVTelefono;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.envioDao;
 import modelo.dao.gerenteDao;
 import modelo.dao.proveedorDao;
 import modelo.dao.repartidorDao;
@@ -67,6 +68,7 @@ public class Aplicacion {
         proveedorDao miProveedorDao = new proveedorDao();
         repartidorDao miRepartidorDao = new repartidorDao();
         gerenteDao miGerenteDao = new gerenteDao();
+        envioDao miEnvioDao = new envioDao();
  
         
         // Relacionamos las clases coordinador
@@ -82,6 +84,7 @@ public class Aplicacion {
         iproveedor.setCoordinador(miCoordinador);
         irepartidor.setCoordinador(miCoordinador);
         igerente.setCoordinador(miCoordinador);
+        ienvio.setCoordinador(miCoordinador);
  
         
         //se repite para todos las demas ventanas
@@ -95,6 +98,7 @@ public class Aplicacion {
         miProveedorDao.setCoordinador(miCoordinador);
         miRepartidorDao.setCoordinador(miCoordinador);
         miGerenteDao.setCoordinador(miCoordinador);
+        miEnvioDao.setCoordinador(miCoordinador);
  
         
         //Relacionamos coordinador con las clases
@@ -117,6 +121,11 @@ public class Aplicacion {
         miCoordinador.setProveedorDao(miProveedorDao);
         miCoordinador.setVentanaRepartidor(irepartidor);
         miCoordinador.setRepartidorDao(miRepartidorDao);
+        miCoordinador.setVentanaGerente(igerente);
+        miCoordinador.setGerenteDao(miGerenteDao);
+        miCoordinador.setVentanaEnvio(ienvio);
+        miCoordinador.setEnvioDao(miEnvioDao);
+        
         
         //Conexion
         miCoordinador.setConexion(miConexion);
@@ -131,11 +140,13 @@ public class Aplicacion {
         //login.setVisible(true);
         //iempresae.setVisible(true);
         //iempresae.setVisible(true);
+        //igerente.setVisible(true);
 
         //login.setVisible(true);
         // iproveedor.setVisible(true);
         //login.setVisible(true);
         //iproveedor.setVisible(true);
+        ienvio.setVisible(true);
 
 
 

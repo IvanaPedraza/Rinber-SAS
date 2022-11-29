@@ -5,6 +5,7 @@ import interfaz.iLogin;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
+import interfaz.iVEnvio;
 import interfaz.iVGerente;
 import interfaz.iVPVendedor;
 import interfaz.iVProveedor;
@@ -23,6 +24,7 @@ import modelo.Logica;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.envioDao;
 import modelo.dao.gerenteDao;
 import modelo.dao.proveedorDao;
 import modelo.dao.repartidorDao;
@@ -45,6 +47,7 @@ public class Coordinador {
     private iVProveedor ventanaProveedor;
     private iVRepartidor ventanaRepartidor;
     private iVGerente ventanaGerente;
+    private iVEnvio ventanaEnvio;
     
     
     private correoDao miCorreoDao;
@@ -56,6 +59,8 @@ public class Coordinador {
     private empresaeDao miEmpresaeDao;
     private solicitudProdDao miSolicitudProdDao;
     private proveedorDao miProveedorDao;
+    private envioDao miEnvioDao;
+    
 
     private Logica miLogica;
     private Connection miConexionActual;
@@ -160,6 +165,15 @@ public class Coordinador {
     void setGerenteDao(gerenteDao miGerenteDao) {
         this.miGerenteDao = miGerenteDao;
     }
+    
+    void setVentanaEnvio(iVEnvio ienvio) {
+        this.ventanaEnvio = ienvio;
+    }
+    
+    void setEnvioDao(envioDao miEnvioDao) {
+        this.miEnvioDao = miEnvioDao;
+    }
+    
    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
@@ -315,6 +329,18 @@ public class Coordinador {
     
     public void cerrarVentanaGerente(){
         ventanaGerente.setVisible(false);
+    }
+    
+    public void abrirVentanaEnvio(){
+        ventanaEnvio.setVisible(true);
+        JTable tablaEnvio = ventanaEnvio.enviarTabla();
+        mostrarEnvio(tablaEnvio);
+        
+    }
+   
+    
+    public void cerrarVentanaEnvio(){
+        ventanaEnvio.setVisible(false);
     }
     
 
@@ -610,6 +636,24 @@ public class Coordinador {
         }
     }
     
+     
+     public void mostrarEnvio(JTable table) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miEnvioDao.obtenerEnvio("select envID, epnNit, envFechaSalida, envFechaLlegada, numOrden, cliNit, empNombre, dirDireccion, dirCiudad, dirLocalidad, dirBarrio, emailCliente, telCliente, cedulaRepartidor, repaPlacas, perNombre, perApellido, telRepartidor from vw_envio");
+        modelo.setColumnIdentifiers(new Object[] {"NIT","Seguro","Nombre","RUT","Cédula Representante", "Dirección", "Correo", "Teléfono"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("envID"),rs.getLong("epnNit"),rs.getString("envFechaSalida"),rs.getString("envFechaLlegada"),rs.getInt("numOrden"), rs.getLong("cliNit"), rs.getString("empNombre"), rs.getString("dirDireccion"),rs.getString("dirCiudad"),rs.getString("dirLocalidad"), rs.getString("dirBarrio"), rs.getString("emailCliente"), rs.getLong("telCliente"),rs.getLong("cedulaRepartidor"), rs.getString("repaPlacas"), rs.getString("perNombre"),rs.getString("perApellido"),rs.getLong("telRepartidor")});
+                
+            }
+            table.setModel(modelo);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
     private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -645,6 +689,7 @@ public class Coordinador {
         
     }
 
+    
     
 }
 
