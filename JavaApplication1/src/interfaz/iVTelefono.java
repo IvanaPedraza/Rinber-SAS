@@ -208,6 +208,11 @@ public class iVTelefono extends javax.swing.JFrame {
 
         btn_direccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton direccion.png"))); // NOI18N
         btn_direccion.setBorder(null);
+        btn_direccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_direccionActionPerformed(evt);
+            }
+        });
 
         btn_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton proveedor.png"))); // NOI18N
         btn_proveedor.setBorder(null);
@@ -654,6 +659,11 @@ public class iVTelefono extends javax.swing.JFrame {
         miCoordinador.cerrarVentanaTelefono();
         miCoordinador.abrirVentanaRepresentante();
     }//GEN-LAST:event_btn_repreLegalActionPerformed
+
+    private void btn_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_direccionActionPerformed
+        miCoordinador.cerrarVentanaTelefono();
+        miCoordinador.abrirVentanaDireccion();
+    }//GEN-LAST:event_btn_direccionActionPerformed
 
 
 

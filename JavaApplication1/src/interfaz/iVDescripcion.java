@@ -299,6 +299,11 @@ public class iVDescripcion extends javax.swing.JFrame {
 
         btn_repreLegal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton representante.png"))); // NOI18N
         btn_repreLegal.setBorder(null);
+        btn_repreLegal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_repreLegalActionPerformed(evt);
+            }
+        });
 
         btn_direccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton direccion.png"))); // NOI18N
         btn_direccion.setBorder(null);
@@ -1157,15 +1162,11 @@ public class iVDescripcion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed
-        iVCorreo icorreo = new iVCorreo();
-        this.setVisible(false);
-        icorreo.setVisible(true);
+        
     }//GEN-LAST:event_btn_correoActionPerformed
 
     private void btn_telefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_telefonoActionPerformed
-        iVTelefono itelefono = new iVTelefono();
-        this.setVisible(false);
-        itelefono.setVisible(true);
+        
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
@@ -1221,6 +1222,11 @@ public class iVDescripcion extends javax.swing.JFrame {
        this.btn_eliminar.setBackground(new Color(87, 156, 194));
        this.btn_eliminar.setForeground(Color.white);
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void btn_repreLegalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_repreLegalActionPerformed
+       
+        
+    }//GEN-LAST:event_btn_repreLegalActionPerformed
 
 
 

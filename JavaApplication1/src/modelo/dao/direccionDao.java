@@ -114,5 +114,22 @@ public class direccionDao {
                 
         return resultado;
     }
+
+    public String eliminarDireccion(String direccionSeleccionada) {
+        Connection connection = miCoordinador.obtenerConexion();
+        String respuesta="";
+        try{
+            String sentencia = "delete from direccion where dirDireccion = ?";
+            PreparedStatement preStatement = connection.prepareStatement(sentencia);
+            preStatement.setString(1, direccionSeleccionada);
+            preStatement.executeUpdate();
+            respuesta = "OK";
+        }catch(SQLException e){
+            System.out.println(e);
+            respuesta = "ERROR";
+        }
+        
+        return respuesta;
+    }
     
 }

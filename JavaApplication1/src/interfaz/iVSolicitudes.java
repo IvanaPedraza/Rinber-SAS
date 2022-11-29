@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 
 import controlador.Escalar;
 import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
@@ -21,19 +23,17 @@ public class iVSolicitudes extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
     private Color azul = new Color(23, 60, 104);
+    /*
     private void inicializar(){
-        this.p_seccionEliminar.setVisible(false);
-        this.p_seccionActualizar.setVisible(false);
-        this.p_seccionAgregar.setVisible(false);
-        this.p_seccionLeer.setVisible(true);
         this.btn_leer.setBackground(new Color(87, 156, 194));
         this.btn_leer.setForeground(Color.white);
     }
+    */
     private void ocultaPanel(){
-        this.p_seccionEliminar.setVisible(false);
-        this.p_seccionActualizar.setVisible(false);
-        this.p_seccionLeer.setVisible(false);
-        this.p_seccionAgregar.setVisible(false);
+        miCoordinador.cerrarSolicitudProdPanLeer();
+        miCoordinador.cerrarSolicitudProdPanActualizar();
+        miCoordinador.cerrarSolicitudProdPanLeer();
+        miCoordinador.cerrarSolicitudProdPanAgregar();
     }
     
     private void colorBotones(){
@@ -118,27 +118,66 @@ public class iVSolicitudes extends javax.swing.JFrame {
         
         
         JTableHeader th;
-        th = this.tabla.getTableHeader();
+        th = this.tablaSol_Leer.getTableHeader();
         Font fuente = new Font("Century Gothic", Font.BOLD, 18);
         th.setFont(fuente);
-        tabla.getTableHeader().setBackground(azul);
-        tabla.getTableHeader().setForeground(Color.white);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaSol_Leer.getTableHeader().setBackground(azul);
+        tablaSol_Leer.getTableHeader().setForeground(Color.white);
+        //tablaSol_Leer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         JTableHeader th2;
-        th2 = this.tabla2.getTableHeader();
+        th2 = this.tablaSol_Eli.getTableHeader();
         Font fuente2 = new Font("Century Gothic", Font.BOLD, 18);
         th2.setFont(fuente2);
-        tabla2.getTableHeader().setBackground(azul);
-        tabla2.getTableHeader().setForeground(Color.white);
-        tabla2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaSol_Eli.getTableHeader().setBackground(azul);
+        tablaSol_Eli.getTableHeader().setForeground(Color.white);
+        //tablaSol_Eli.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        inicializar();
+        
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
+    
+    public JPanel enviarPanelLeer() {
+        return p_seccionLeer;
+    }
+    
+    public JPanel enviarPanelAgregar() {
+
+        return p_seccionAgregar;
+    }
+
+    public JPanel enviarPanelActualizar() {
+
+        return p_seccionActualizar;
+    }
+
+    public JPanel enviarPanelEliminar() {
+
+        return p_seccionEliminar;
+    }
+    
+    public JTable enviarTabla_Leer() {
+        return tablaSol_Leer;
+    }
+
+    public JTable enviarTabla_Eliminar() {
+        return tablaSol_Eli;
+    }
+    
+    public JComboBox enviarComboSolicitudesAct() {
+        return cb_solicitudesAct;
+    }
+    
+    public JComboBox enviarComboSolicitudesEli() {
+        return cb_solicitudesEli;
+    }
+    
+    
+    
+    
     
     /**
      * Componentes logicos
@@ -194,18 +233,18 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_seccionEliminar = new javax.swing.JPanel();
         p_scroll3 = new javax.swing.JPanel();
         scroll_tabla1 = new javax.swing.JScrollPane();
-        tabla2 = new javax.swing.JTable();
+        tablaSol_Eli = new javax.swing.JTable();
         p_eliminar = new javax.swing.JPanel();
         subtitulo14 = new javax.swing.JLabel();
         subtitulo15 = new javax.swing.JLabel();
-        cb_direcciones2 = new javax.swing.JComboBox<>();
+        cb_solicitudesEli = new javax.swing.JComboBox<>();
         btn_elim = new javax.swing.JButton();
         p_seccionLeer = new javax.swing.JPanel();
         subtitulo = new javax.swing.JLabel();
         txtbusqueda = new javax.swing.JTextField();
         p_scroll2 = new javax.swing.JPanel();
         scroll_tabla = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        tablaSol_Leer = new javax.swing.JTable();
         btn_buscar = new javax.swing.JButton();
         p_seccionActualizar = new javax.swing.JPanel();
         p_actualizar = new javax.swing.JPanel();
@@ -220,7 +259,7 @@ public class iVSolicitudes extends javax.swing.JFrame {
         subtitulo8 = new javax.swing.JLabel();
         txtdniva = new javax.swing.JTextField();
         txtdnfecha = new javax.swing.JTextField();
-        cb_nitcliente = new javax.swing.JComboBox<>();
+        cb_solicitudesAct = new javax.swing.JComboBox<>();
         subtitulo9 = new javax.swing.JLabel();
         txtfechaAct = new javax.swing.JTextField();
         txtivaAct = new javax.swing.JTextField();
@@ -617,10 +656,10 @@ public class iVSolicitudes extends javax.swing.JFrame {
 
         p_scroll3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla2.setAutoCreateRowSorter(true);
-        tabla2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tabla2.setForeground(new java.awt.Color(11, 43, 90));
-        tabla2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaSol_Eli.setAutoCreateRowSorter(true);
+        tablaSol_Eli.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tablaSol_Eli.setForeground(new java.awt.Color(11, 43, 90));
+        tablaSol_Eli.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -664,24 +703,24 @@ public class iVSolicitudes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla2.setEnabled(false);
-        tabla2.setGridColor(new java.awt.Color(0, 0, 0));
-        tabla2.setOpaque(false);
-        tabla2.setRequestFocusEnabled(false);
-        tabla2.setRowHeight(30);
-        tabla2.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        tabla2.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla2.setShowGrid(true);
-        tabla2.getTableHeader().setResizingAllowed(false);
-        tabla2.getTableHeader().setReorderingAllowed(false);
-        scroll_tabla1.setViewportView(tabla2);
-        if (tabla2.getColumnModel().getColumnCount() > 0) {
-            tabla2.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(5).setPreferredWidth(200);
+        tablaSol_Eli.setEnabled(false);
+        tablaSol_Eli.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaSol_Eli.setOpaque(false);
+        tablaSol_Eli.setRequestFocusEnabled(false);
+        tablaSol_Eli.setRowHeight(30);
+        tablaSol_Eli.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaSol_Eli.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tablaSol_Eli.setShowGrid(true);
+        tablaSol_Eli.getTableHeader().setResizingAllowed(false);
+        tablaSol_Eli.getTableHeader().setReorderingAllowed(false);
+        scroll_tabla1.setViewportView(tablaSol_Eli);
+        if (tablaSol_Eli.getColumnModel().getColumnCount() > 0) {
+            tablaSol_Eli.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaSol_Eli.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaSol_Eli.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablaSol_Eli.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tablaSol_Eli.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tablaSol_Eli.getColumnModel().getColumn(5).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout p_scroll3Layout = new javax.swing.GroupLayout(p_scroll3);
@@ -723,11 +762,11 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_eliminar.add(subtitulo15);
         subtitulo15.setBounds(30, 10, 120, 50);
 
-        cb_direcciones2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        cb_direcciones2.setForeground(new java.awt.Color(11, 43, 90));
-        cb_direcciones2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        p_eliminar.add(cb_direcciones2);
-        cb_direcciones2.setBounds(10, 90, 170, 40);
+        cb_solicitudesEli.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cb_solicitudesEli.setForeground(new java.awt.Color(11, 43, 90));
+        cb_solicitudesEli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        p_eliminar.add(cb_solicitudesEli);
+        cb_solicitudesEli.setBounds(10, 90, 170, 40);
 
         btn_elim.setBackground(new java.awt.Color(23, 60, 104));
         btn_elim.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -766,10 +805,10 @@ public class iVSolicitudes extends javax.swing.JFrame {
 
         p_scroll2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla.setAutoCreateRowSorter(true);
-        tabla.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tabla.setForeground(new java.awt.Color(11, 43, 90));
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tablaSol_Leer.setAutoCreateRowSorter(true);
+        tablaSol_Leer.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tablaSol_Leer.setForeground(new java.awt.Color(11, 43, 90));
+        tablaSol_Leer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -813,24 +852,24 @@ public class iVSolicitudes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setEnabled(false);
-        tabla.setGridColor(new java.awt.Color(0, 0, 0));
-        tabla.setOpaque(false);
-        tabla.setRequestFocusEnabled(false);
-        tabla.setRowHeight(30);
-        tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla.setShowGrid(true);
-        tabla.getTableHeader().setResizingAllowed(false);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        scroll_tabla.setViewportView(tabla);
-        if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(5).setPreferredWidth(200);
+        tablaSol_Leer.setEnabled(false);
+        tablaSol_Leer.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaSol_Leer.setOpaque(false);
+        tablaSol_Leer.setRequestFocusEnabled(false);
+        tablaSol_Leer.setRowHeight(30);
+        tablaSol_Leer.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaSol_Leer.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tablaSol_Leer.setShowGrid(true);
+        tablaSol_Leer.getTableHeader().setResizingAllowed(false);
+        tablaSol_Leer.getTableHeader().setReorderingAllowed(false);
+        scroll_tabla.setViewportView(tablaSol_Leer);
+        if (tablaSol_Leer.getColumnModel().getColumnCount() > 0) {
+            tablaSol_Leer.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaSol_Leer.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaSol_Leer.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablaSol_Leer.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tablaSol_Leer.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tablaSol_Leer.getColumnModel().getColumn(5).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout p_scroll2Layout = new javax.swing.GroupLayout(p_scroll2);
@@ -927,12 +966,12 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_actualizar.add(txtdnfecha);
         txtdnfecha.setBounds(170, 180, 500, 30);
 
-        cb_nitcliente.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cb_nitcliente.setForeground(new java.awt.Color(11, 43, 90));
-        cb_nitcliente.setMaximumRowCount(200);
-        cb_nitcliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        p_actualizar.add(cb_nitcliente);
-        cb_nitcliente.setBounds(30, 90, 640, 30);
+        cb_solicitudesAct.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cb_solicitudesAct.setForeground(new java.awt.Color(11, 43, 90));
+        cb_solicitudesAct.setMaximumRowCount(200);
+        cb_solicitudesAct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        p_actualizar.add(cb_solicitudesAct);
+        cb_solicitudesAct.setBounds(30, 90, 640, 30);
 
         subtitulo9.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo9.setForeground(new java.awt.Color(11, 43, 90));
@@ -1015,11 +1054,11 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_agregar.add(subtitulo3);
         subtitulo3.setBounds(50, 240, 130, 40);
         p_agregar.add(txtid);
-        txtid.setBounds(130, 60, 490, 40);
+        txtid.setBounds(220, 60, 400, 40);
         p_agregar.add(txtfecha);
-        txtfecha.setBounds(130, 120, 490, 40);
+        txtfecha.setBounds(220, 120, 400, 40);
         p_agregar.add(txtcompra);
-        txtcompra.setBounds(190, 240, 430, 40);
+        txtcompra.setBounds(220, 240, 400, 40);
 
         decorador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador1);
@@ -1055,7 +1094,7 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_agregar.add(subtitulo13);
         subtitulo13.setBounds(50, 180, 90, 40);
         p_agregar.add(txtiva);
-        txtiva.setBounds(150, 180, 470, 40);
+        txtiva.setBounds(220, 180, 400, 40);
 
         subtitulo18.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo18.setForeground(new java.awt.Color(11, 43, 90));
@@ -1077,9 +1116,9 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_agregar.add(subtitulo19);
         subtitulo19.setBounds(50, 360, 160, 40);
         p_agregar.add(txtnitcliente);
-        txtnitcliente.setBounds(210, 360, 410, 40);
+        txtnitcliente.setBounds(220, 360, 400, 40);
         p_agregar.add(txtcvendedor);
-        txtcvendedor.setBounds(230, 300, 390, 40);
+        txtcvendedor.setBounds(220, 300, 400, 40);
 
         p_seccionAgregar.add(p_agregar);
         p_agregar.setBounds(9, 11, 700, 510);
@@ -1184,7 +1223,7 @@ public class iVSolicitudes extends javax.swing.JFrame {
 
     private void btn_leerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_leerActionPerformed
         ocultaPanel();
-        this.p_seccionLeer.setVisible(true);
+        miCoordinador.abrirSolicitudProdPanLeer();
         colorBotones();
         this.btn_leer.setBackground(new Color(87, 156, 194));
         this.btn_leer.setForeground(Color.white);
@@ -1251,8 +1290,8 @@ public class iVSolicitudes extends javax.swing.JFrame {
     private javax.swing.JButton btn_repreLegal;
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JButton btn_telefono;
-    private javax.swing.JComboBox<String> cb_direcciones2;
-    private javax.swing.JComboBox<String> cb_nitcliente;
+    private javax.swing.JComboBox<String> cb_solicitudesAct;
+    private javax.swing.JComboBox<String> cb_solicitudesEli;
     private javax.swing.JLabel decorador1;
     private javax.swing.JLabel decorador12;
     private javax.swing.JLabel decorador13;
@@ -1297,8 +1336,8 @@ public class iVSolicitudes extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo7;
     private javax.swing.JLabel subtitulo8;
     private javax.swing.JLabel subtitulo9;
-    private javax.swing.JTable tabla;
-    private javax.swing.JTable tabla2;
+    private javax.swing.JTable tablaSol_Eli;
+    private javax.swing.JTable tablaSol_Leer;
     private javax.swing.JLabel titulo1;
     private javax.swing.JLabel titulo10;
     private javax.swing.JLabel titulo12;

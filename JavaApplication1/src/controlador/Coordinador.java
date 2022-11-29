@@ -7,6 +7,7 @@ import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
 import interfaz.iVPVendedor;
 import interfaz.iVRepre;
+import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
 import java.awt.Color;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
 import modelo.dao.representanteDao;
+import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
 import modelo.vo.direccionVo;
 
@@ -32,14 +34,21 @@ public class Coordinador {
     private iVRepre ventanaRepresentante;
     private iVTelefono ventanaTelefono;
     private iVDireccion ventanaDireccion;
+ 
     private iVEmpresae  ventanaEmpresae;
+
+    private iVSolicitudes ventanaSolicitudProd;
+ 
     
     private correoDao miCorreoDao;
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
+
     private empresaeDao miEmpresaeDao;
-    
+
+    private solicitudProdDao miSolicitudProdDao;
+
     private Logica miLogica;
     private Connection miConexionActual;
     private Conexion miConexion;
@@ -95,11 +104,22 @@ public class Coordinador {
         this.miDireccionDao = miDireccionDao;
     }
     
+
     void setEmpresaeDao(empresaeDao miEmpresaeDao) {
         this.miEmpresaeDao = miEmpresaeDao;
     }
     
     
+
+    void setVentanaSolicitud(iVSolicitudes solicitudes) {
+        this.ventanaSolicitudProd = solicitudes;
+    }
+
+    void setSolicitudProdDao(solicitudProdDao miSolicitudProdDao) {
+        this.miSolicitudProdDao = miSolicitudProdDao;
+    }
+    
+
     
     
     public String validarIngreso(String usuario, String contrasena){
@@ -160,7 +180,7 @@ public class Coordinador {
         cerrarDireccionPanAgregar();
         cerrarDireccionPanEliminar();
         JTable tablaDireccionLeer = ventanaDireccion.enviarTabla_Leer();
-        mostrarDireccionesAgr(tablaDireccionLeer);
+        mostrarDireccionesLeer(tablaDireccionLeer);
     }
     
     public void cerrarVentanaDireccion(){
@@ -170,7 +190,7 @@ public class Coordinador {
     public void abrirDireccionPanLeer(){
         ventanaDireccion.enviarPanelLeer().setVisible(true);
         JTable tablaDireccionLeer = ventanaDireccion.enviarTabla_Leer();
-        mostrarDireccionesAgr(tablaDireccionLeer);
+        mostrarDireccionesLeer(tablaDireccionLeer);
     }
     
     public void cerrarDireccionPanLeer(){
@@ -197,6 +217,10 @@ public class Coordinador {
     
     public void abrirDireccionPanEliminar(){
         ventanaDireccion.enviarPanelEliminar().setVisible(true);
+        JTable tablaDireccionEli = ventanaDireccion.enviarTabla_Eliminar();
+        JComboBox comboDireccionesEli = ventanaDireccion.enviarComboDireccionesEli();
+        mostrarDireccionesDel(tablaDireccionEli);
+        llenarComboDirecEli(comboDireccionesEli);
     }
     
     public void cerrarDireccionPanEliminar(){
@@ -204,6 +228,7 @@ public class Coordinador {
     }
     
     
+
     public void abrirVentanaEmpresae(){
         ventanaEmpresae.setVisible(true);
         JTable tablaEmpresae = ventanaEmpresae.enviarTabla();
@@ -215,6 +240,64 @@ public class Coordinador {
         ventanaEmpresae.setVisible(false);
     }
     
+
+    public void abrirVentanaSolicitudes(){
+        
+        ventanaSolicitudProd.setVisible(true);
+        abrirSolicitudProdPanLeer();
+        cerrarSolicitudProdPanActualizar();
+        cerrarSolicitudProdPanAgregar();
+        cerrarSolicitudProdPanEliminar();
+        JTable tablaSolicitudesLeer = ventanaSolicitudProd.enviarTabla_Leer();
+        mostrarSolicitudesProdLeer(tablaSolicitudesLeer);
+    }
+    
+    public void cerrarVentanaSolicitudes(){
+        ventanaDireccion.setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanLeer(){
+        ventanaSolicitudProd.enviarPanelLeer().setVisible(true);
+        JTable tablaSolicitudesLeer = ventanaSolicitudProd.enviarTabla_Leer();
+        mostrarSolicitudesProdLeer(tablaSolicitudesLeer);
+    }
+    
+    public void cerrarSolicitudProdPanLeer(){
+        ventanaSolicitudProd.enviarPanelLeer().setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanActualizar(){
+        ventanaSolicitudProd.enviarPanelActualizar().setVisible(true);
+        JComboBox comboSolicitudesActu = ventanaSolicitudProd.enviarComboSolicitudesAct();
+        llenarComboSoliciAct(comboSolicitudesActu);
+    }
+    
+    public void cerrarSolicitudProdPanActualizar(){
+        ventanaSolicitudProd.enviarPanelActualizar().setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanAgregar(){
+        ventanaSolicitudProd.enviarPanelAgregar().setVisible(true);
+    }
+    
+    public void cerrarSolicitudProdPanAgregar(){
+        ventanaSolicitudProd.enviarPanelAgregar().setVisible(false);
+    }
+    
+    public void abrirSolicitudProdPanEliminar(){
+        ventanaSolicitudProd.enviarPanelEliminar().setVisible(true);
+        JTable tablaSoliProdEli = ventanaSolicitudProd.enviarTabla_Eliminar();
+        JComboBox comboSoliProdEli = ventanaSolicitudProd.enviarComboSolicitudesEli();
+        mostrarSolicitudesProdDel(tablaSoliProdEli);
+        llenarComboSoliciEli(comboSoliProdEli);
+    }
+    
+    public void cerrarSolicitudProdPanEliminar(){
+        ventanaSolicitudProd.enviarPanelEliminar().setVisible(false);
+    }
+    
+    
+
     //Demas permisos
     
     public String darIngreso(String user, String password){
@@ -241,7 +324,7 @@ public class Coordinador {
         DefaultTableModel modelo = new DefaultTableModel();
         
         ResultSet rs = miCorreoDao.obtenerCorreos("select corCorreo, tipoCorreo from correo");
-        modelo.setColumnIdentifiers(new Object[] {"corCorreo","tipoCorreo"});
+        modelo.setColumnIdentifiers(new Object[] {"Correo","Tipo"});
         
         try{
             while(rs.next()){
@@ -289,7 +372,24 @@ public class Coordinador {
         }
     }
 
-    public void mostrarDireccionesAgr(JTable table){
+    public void mostrarDireccionesLeer(JTable table){
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion, dirCiudad, dirLocalidad, dirBarrio from direccion");
+        modelo.setColumnIdentifiers(new Object[] {"Dirección","Ciudad", "Localidad", "Barrio"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("dirDireccion"),rs.getString("dirCiudad"),rs.getString("dirLocalidad"), rs.getString("dirBarrio")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public void mostrarDireccionesDel(JTable table){
         DefaultTableModel modelo = new DefaultTableModel();
         
         ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion, dirCiudad, dirLocalidad, dirBarrio from direccion");
@@ -327,6 +427,23 @@ public class Coordinador {
             System.out.println(e);
         }
     }
+    
+    public void llenarComboDirecEli(JComboBox combo){
+        
+        ResultSet rs = miDireccionDao.obtenerDirecciones("select dirDireccion from direccion");
+        try{
+            combo.removeAllItems();
+            while(rs.next()){
+                
+                combo.addItem(rs.getObject("dirDireccion"));
+            }
+            
+            combo.setSelectedIndex(0);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
 
     public direccionVo consultarDireccion(String direccionDirec) {
         
@@ -341,6 +458,7 @@ public class Coordinador {
         return miDireccionDao.actualizarDireccion(direccionActu, direccionSeleccionada);
     }
 
+
     
 
     public void mostrarEmpresae(JTable tablaEmpresae) {
@@ -351,14 +469,55 @@ public class Coordinador {
         
         try{
             while(rs.next()){
-                modelo.addRow(new Object[]{rs.getLong("NIT"),rs.getLong("Seguro"),rs.getString("Nombre"),rs.getLong("RUT"),rs.getLong("Cédula Representante"), rs.getString("Dirección"), rs.getString("Correo"), rs.getLong("Teléfono")});
+                modelo.addRow(new Object[]{rs.getLong("empNit"),rs.getLong("epnNumeroSeguro"),rs.getString("empNombre"),rs.getLong("empRUT"),rs.getLong("repCedula"), rs.getString("dirDireccion"), rs.getString("corCorreo"), rs.getLong("telNumero")});
                 
             }
             tablaEmpresae.setModel(modelo);
+            
         }catch(Exception e){
             System.out.println(e);
         }
     }
+
+    public String eliminarDireccion(String direccionSeleccionada) {
+        return miDireccionDao.eliminarDireccion(direccionSeleccionada);
+    }
+
+    private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miSolicitudProdDao.obtenerSolicitudes("select numSolicitud, fechaFacturacion, totalIva, totalCompra, "
+                + "nitCliente, nombreCliente, venCedula, venNombre from vw_solprod");
+        modelo.setColumnIdentifiers(new Object[] {"Número Solicitud","Fecha Facturación", "Total IVA", "Total Compra", "NIT Cliente",
+                "Nombre Cliente", "Cédula Vendedor", "Nombre Vendedor"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("numSolicitud"),rs.getDate("fechaFacturacion"),rs.getDouble("totalIva"), rs.getDouble("totalCompra"),
+                                            rs.getString("nitCliente"),rs.getString("nombreCliente"),rs.getInt("venCedula"),rs.getString("venNombre")});
+                
+            }
+            tablaSolicitudesLeer.setModel(modelo);
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+
+    private void llenarComboSoliciAct(JComboBox comboDireccionesActu) {
+        
+    }
+
+    private void mostrarSolicitudesProdDel(JTable tablaSoliProdEli) {
+        
+    }
+
+    private void llenarComboSoliciEli(JComboBox comboSoliProdEli) {
+        
+    }
+
+
     
     
     
