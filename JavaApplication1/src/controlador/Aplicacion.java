@@ -22,9 +22,12 @@ import interfaz.iVTelefono;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.proveedorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
+
+
 public class Aplicacion {
     
     public void iniciarSistema(){
@@ -57,10 +60,9 @@ public class Aplicacion {
         representanteDao miRepresentanteDao = new representanteDao();
         telefonoDao miTelefonoDao = new telefonoDao();
         direccionDao miDireccionDao = new direccionDao();
-
         empresaeDao miEmpresaeDao = new empresaeDao();
-
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
+        proveedorDao miProveedorDao = new proveedorDao();
  
         
         // Relacionamos las clases coordinador
@@ -71,10 +73,9 @@ public class Aplicacion {
         irepre_legal.setCoordinador(miCoordinador);
         itelefono.setCoordinador(miCoordinador);
         idireccion.setCoordinador(miCoordinador);
- 
         iempresae.setCoordinador(miCoordinador);
-
         isolicitudes.setCoordinador(miCoordinador);
+        iproveedor.setCoordinador(miCoordinador);
  
         
         //se repite para todos las demas ventanas
@@ -83,10 +84,9 @@ public class Aplicacion {
         miRepresentanteDao.setCoordinador(miCoordinador);
         miTelefonoDao.setCoordinador(miCoordinador);
         miDireccionDao.setCoordinador(miCoordinador);
- 
         miEmpresaeDao.setCoordinador(miCoordinador);
-
         miSolicitudProdDao.setCoordinador(miCoordinador);
+        miProveedorDao.setCoordinador(miCoordinador);
  
         
         //Relacionamos coordinador con las clases
@@ -101,11 +101,10 @@ public class Aplicacion {
         miCoordinador.setTelefonoDao(miTelefonoDao);
         miCoordinador.setVentanaDireccion(idireccion);
         miCoordinador.setDireccionDao(miDireccionDao);
- 
         miCoordinador.setEmpresaeDao(miEmpresaeDao);
-
         miCoordinador.setVentanaSolicitud(isolicitudes);
         miCoordinador.setSolicitudProdDao(miSolicitudProdDao);
+        miCoordinador.setProveedorDao(miProveedorDao);
  
         
         //Conexion
@@ -125,11 +124,11 @@ public class Aplicacion {
         //login.setVisible(true);
         // iproveedor.setVisible(true);
         //login.setVisible(true);
-        // iproveedor.setVisible(true);
+        //iproveedor.setVisible(true);
 
 
 
-        login.setVisible(true);
+        //login.setVisible(true);
         //iproveedor.setVisible(true);
 
         //icorreo.setVisible(true);

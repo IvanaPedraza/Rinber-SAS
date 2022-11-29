@@ -92,6 +92,10 @@ public class iVProveedor extends javax.swing.JFrame {
         this.miCoordinador = miCoordinador;
     }
     
+     public JTable enviarTabla(){
+        return tabla;
+    }
+    
     /**
      * Componentes logicos
      */
@@ -207,6 +211,11 @@ public class iVProveedor extends javax.swing.JFrame {
 
         btn_proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boton_seleccionado.png"))); // NOI18N
         btn_proveedor.setBorder(null);
+        btn_proveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_proveedorActionPerformed(evt);
+            }
+        });
 
         btn_empresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/imgiVPV/boton empresa.png"))); // NOI18N
         btn_empresa.setBorder(null);
@@ -404,7 +413,7 @@ public class iVProveedor extends javax.swing.JFrame {
                     .addComponent(btn_directorio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_empresa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(titulo9, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52))
+                .addGap(119, 119, 119))
         );
         p_botonesLayout.setVerticalGroup(
             p_botonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -667,6 +676,10 @@ public class iVProveedor extends javax.swing.JFrame {
         idireccion.setVisible(true);
     }//GEN-LAST:event_btn_direccionActionPerformed
 
+    private void btn_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_proveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_proveedorActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -716,4 +729,6 @@ public class iVProveedor extends javax.swing.JFrame {
     private javax.swing.JLabel titulo9;
     private javax.swing.JTextField txtbusqueda;
     // End of variables declaration//GEN-END:variables
+
+   
 }
