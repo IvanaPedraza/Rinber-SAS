@@ -23,6 +23,7 @@ import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
 import modelo.dao.proveedorDao;
+import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
@@ -63,6 +64,7 @@ public class Aplicacion {
         empresaeDao miEmpresaeDao = new empresaeDao();
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         proveedorDao miProveedorDao = new proveedorDao();
+        repartidorDao miRepartidorDao = new repartidorDao();
  
         
         // Relacionamos las clases coordinador
@@ -76,6 +78,7 @@ public class Aplicacion {
         iempresae.setCoordinador(miCoordinador);
         isolicitudes.setCoordinador(miCoordinador);
         iproveedor.setCoordinador(miCoordinador);
+        irepartidor.setCoordinador(miCoordinador);
  
         
         //se repite para todos las demas ventanas
@@ -87,6 +90,7 @@ public class Aplicacion {
         miEmpresaeDao.setCoordinador(miCoordinador);
         miSolicitudProdDao.setCoordinador(miCoordinador);
         miProveedorDao.setCoordinador(miCoordinador);
+        miRepartidorDao.setCoordinador(miCoordinador);
  
         
         //Relacionamos coordinador con las clases
@@ -101,11 +105,14 @@ public class Aplicacion {
         miCoordinador.setTelefonoDao(miTelefonoDao);
         miCoordinador.setVentanaDireccion(idireccion);
         miCoordinador.setDireccionDao(miDireccionDao);
+        miCoordinador.setVentanaEmpresae(iempresae);
         miCoordinador.setEmpresaeDao(miEmpresaeDao);
         miCoordinador.setVentanaSolicitud(isolicitudes);
         miCoordinador.setSolicitudProdDao(miSolicitudProdDao);
+        miCoordinador.setVentanaProveedor(iproveedor);
         miCoordinador.setProveedorDao(miProveedorDao);
- 
+        miCoordinador.setVentanaRepartidor(irepartidor);
+        miCoordinador.setRepartidorDao(miRepartidorDao);
         
         //Conexion
         miCoordinador.setConexion(miConexion);

@@ -92,6 +92,11 @@ public class iVRepartidor extends javax.swing.JFrame {
         this.miCoordinador = miCoordinador;
     }
     
+     public JTable enviarTabla(){
+        return tabla;
+    }
+    
+    
     /**
      * Componentes logicos
      */
