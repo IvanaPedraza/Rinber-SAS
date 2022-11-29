@@ -19,6 +19,7 @@ import interfaz.iVRepartidor;
 import interfaz.iVRepre;
 import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
+import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
@@ -63,6 +64,7 @@ public class Aplicacion {
         empresaeDao miEmpresaeDao = new empresaeDao();
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         proveedorDao miProveedorDao = new proveedorDao();
+        clienteDao miClienteDao = new clienteDao();
  
         
         // Relacionamos las clases coordinador
@@ -76,7 +78,7 @@ public class Aplicacion {
         iempresae.setCoordinador(miCoordinador);
         isolicitudes.setCoordinador(miCoordinador);
         iproveedor.setCoordinador(miCoordinador);
- 
+        icliente.setCoordinador(miCoordinador);
         
         //se repite para todos las demas ventanas
         miLogica.setCoordinador(miCoordinador);
@@ -87,6 +89,7 @@ public class Aplicacion {
         miEmpresaeDao.setCoordinador(miCoordinador);
         miSolicitudProdDao.setCoordinador(miCoordinador);
         miProveedorDao.setCoordinador(miCoordinador);
+        miClienteDao.setCoordinador(miCoordinador);
  
         
         //Relacionamos coordinador con las clases
@@ -105,6 +108,8 @@ public class Aplicacion {
         miCoordinador.setVentanaSolicitud(isolicitudes);
         miCoordinador.setSolicitudProdDao(miSolicitudProdDao);
         miCoordinador.setProveedorDao(miProveedorDao);
+        miCoordinador.setVentanaCliente(icliente);
+        miCoordinador.setClienteDao(miClienteDao);
  
         
         //Conexion
@@ -128,7 +133,7 @@ public class Aplicacion {
 
 
 
-        //login.setVisible(true);
+        login.setVisible(true);
         //iproveedor.setVisible(true);
 
         //icorreo.setVisible(true);

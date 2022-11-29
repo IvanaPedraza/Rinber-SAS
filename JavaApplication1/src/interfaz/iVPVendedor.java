@@ -679,7 +679,8 @@ public class iVPVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_txtturnoActionPerformed
 
     private void btn_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_clienteActionPerformed
-        // TODO add your handling code here:
+        miCoordinador.cerrarVentanaPrincipal();
+        miCoordinador.abrirVentanaClientes();
     }//GEN-LAST:event_btn_clienteActionPerformed
 
     private void btn_correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_correoActionPerformed

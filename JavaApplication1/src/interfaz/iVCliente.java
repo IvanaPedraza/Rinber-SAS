@@ -11,6 +11,8 @@ import javax.swing.JOptionPane;
 
 import controlador.Escalar;
 import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.JTableHeader;
 
@@ -117,26 +119,62 @@ public class iVCliente extends javax.swing.JFrame {
         this.titulo12.setText(t3);
         
         JTableHeader th;
-        th = this.tabla.getTableHeader();
+        th = this.tablaLeer.getTableHeader();
         Font fuente = new Font("Century Gothic", Font.BOLD, 18);
         th.setFont(fuente);
-        tabla.getTableHeader().setBackground(azul);
-        tabla.getTableHeader().setForeground(Color.white);
-        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tablaLeer.getTableHeader().setBackground(azul);
+        tablaLeer.getTableHeader().setForeground(Color.white);
+        tablaLeer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         JTableHeader th2;
-        th2 = this.tabla2.getTableHeader();
+        th2 = this.tablaEliminar.getTableHeader();
         Font fuente2 = new Font("Century Gothic", Font.BOLD, 18);
         th2.setFont(fuente2);
-        tabla2.getTableHeader().setBackground(azul);
-        tabla2.getTableHeader().setForeground(Color.white);
+        tablaEliminar.getTableHeader().setBackground(azul);
+        tablaEliminar.getTableHeader().setForeground(Color.white);
         //tabla2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        inicializar();
+        
     }
     
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
+    }
+    
+    public JPanel enviarPanelLeer() {
+
+        return p_seccionLeer;
+    }
+
+    public JPanel enviarPanelAgregar() {
+
+        return p_seccionAgregar;
+    }
+
+    public JPanel enviarPanelActualizar() {
+
+        return p_seccionActualizar;
+    }
+
+    public JPanel enviarPanelEliminar() {
+
+        return p_seccionEliminar;
+    }
+
+    public JTable enviarTabla_Leer() {
+        return tablaLeer;
+    }
+
+    public JTable enviarTabla_Eliminar() {
+        return tablaEliminar;
+    }
+
+    public JComboBox enviarComboClienteAct() {
+        return cb_clienteAct;
+    }
+
+    public JComboBox enviarComboClienteEli() {
+        return cb_clienteEli;
     }
     
     /**
@@ -255,7 +293,7 @@ public class iVCliente extends javax.swing.JFrame {
         subtitulo8 = new javax.swing.JLabel();
         txtdnlocorreo = new javax.swing.JTextField();
         txtdnnombre = new javax.swing.JTextField();
-        cb_nitcliente = new javax.swing.JComboBox<>();
+        cb_clienteAct = new javax.swing.JComboBox<>();
         subtitulo9 = new javax.swing.JLabel();
         txtnombreAct = new javax.swing.JTextField();
         subtitulo10 = new javax.swing.JLabel();
@@ -278,16 +316,16 @@ public class iVCliente extends javax.swing.JFrame {
         txtbusqueda = new javax.swing.JTextField();
         p_scroll2 = new javax.swing.JPanel();
         scroll_tabla = new javax.swing.JScrollPane();
-        tabla = new javax.swing.JTable();
+        tablaLeer = new javax.swing.JTable();
         btn_buscar = new javax.swing.JButton();
         p_seccionEliminar = new javax.swing.JPanel();
         p_scroll3 = new javax.swing.JPanel();
         scroll_tabla1 = new javax.swing.JScrollPane();
-        tabla2 = new javax.swing.JTable();
+        tablaEliminar = new javax.swing.JTable();
         p_eliminar = new javax.swing.JPanel();
         subtitulo14 = new javax.swing.JLabel();
         subtitulo15 = new javax.swing.JLabel();
-        cb_direcciones2 = new javax.swing.JComboBox<>();
+        cb_clienteEli = new javax.swing.JComboBox<>();
         btn_elim = new javax.swing.JButton();
         p_opciones = new javax.swing.JPanel();
         btn_regresar = new javax.swing.JButton();
@@ -935,12 +973,12 @@ public class iVCliente extends javax.swing.JFrame {
         p_actualizar.add(txtdnnombre);
         txtdnnombre.setBounds(170, 170, 500, 22);
 
-        cb_nitcliente.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
-        cb_nitcliente.setForeground(new java.awt.Color(11, 43, 90));
-        cb_nitcliente.setMaximumRowCount(200);
-        cb_nitcliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        p_actualizar.add(cb_nitcliente);
-        cb_nitcliente.setBounds(30, 90, 640, 30);
+        cb_clienteAct.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cb_clienteAct.setForeground(new java.awt.Color(11, 43, 90));
+        cb_clienteAct.setMaximumRowCount(200);
+        cb_clienteAct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        p_actualizar.add(cb_clienteAct);
+        cb_clienteAct.setBounds(30, 90, 640, 30);
 
         subtitulo9.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo9.setForeground(new java.awt.Color(11, 43, 90));
@@ -1053,10 +1091,10 @@ public class iVCliente extends javax.swing.JFrame {
 
         p_scroll2.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla.setAutoCreateRowSorter(true);
-        tabla.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tabla.setForeground(new java.awt.Color(11, 43, 90));
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
+        tablaLeer.setAutoCreateRowSorter(true);
+        tablaLeer.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tablaLeer.setForeground(new java.awt.Color(11, 43, 90));
+        tablaLeer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -1100,27 +1138,27 @@ public class iVCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla.setEnabled(false);
-        tabla.setGridColor(new java.awt.Color(0, 0, 0));
-        tabla.setOpaque(false);
-        tabla.setRequestFocusEnabled(false);
-        tabla.setRowHeight(30);
-        tabla.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        tabla.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla.setShowGrid(true);
-        tabla.getTableHeader().setResizingAllowed(false);
-        tabla.getTableHeader().setReorderingAllowed(false);
-        scroll_tabla.setViewportView(tabla);
-        if (tabla.getColumnModel().getColumnCount() > 0) {
-            tabla.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(6).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(7).setPreferredWidth(200);
-            tabla.getColumnModel().getColumn(8).setPreferredWidth(200);
+        tablaLeer.setEnabled(false);
+        tablaLeer.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaLeer.setOpaque(false);
+        tablaLeer.setRequestFocusEnabled(false);
+        tablaLeer.setRowHeight(30);
+        tablaLeer.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaLeer.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tablaLeer.setShowGrid(true);
+        tablaLeer.getTableHeader().setResizingAllowed(false);
+        tablaLeer.getTableHeader().setReorderingAllowed(false);
+        scroll_tabla.setViewportView(tablaLeer);
+        if (tablaLeer.getColumnModel().getColumnCount() > 0) {
+            tablaLeer.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(6).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(7).setPreferredWidth(200);
+            tablaLeer.getColumnModel().getColumn(8).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout p_scroll2Layout = new javax.swing.GroupLayout(p_scroll2);
@@ -1165,10 +1203,10 @@ public class iVCliente extends javax.swing.JFrame {
 
         p_scroll3.setBackground(new java.awt.Color(255, 255, 255));
 
-        tabla2.setAutoCreateRowSorter(true);
-        tabla2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
-        tabla2.setForeground(new java.awt.Color(11, 43, 90));
-        tabla2.setModel(new javax.swing.table.DefaultTableModel(
+        tablaEliminar.setAutoCreateRowSorter(true);
+        tablaEliminar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
+        tablaEliminar.setForeground(new java.awt.Color(11, 43, 90));
+        tablaEliminar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null},
@@ -1212,27 +1250,27 @@ public class iVCliente extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabla2.setEnabled(false);
-        tabla2.setGridColor(new java.awt.Color(0, 0, 0));
-        tabla2.setOpaque(false);
-        tabla2.setRequestFocusEnabled(false);
-        tabla2.setRowHeight(30);
-        tabla2.setSelectionBackground(new java.awt.Color(255, 255, 255));
-        tabla2.setSelectionForeground(new java.awt.Color(11, 43, 90));
-        tabla2.setShowGrid(true);
-        tabla2.getTableHeader().setResizingAllowed(false);
-        tabla2.getTableHeader().setReorderingAllowed(false);
-        scroll_tabla1.setViewportView(tabla2);
-        if (tabla2.getColumnModel().getColumnCount() > 0) {
-            tabla2.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(2).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(3).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(4).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(5).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(6).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(7).setPreferredWidth(200);
-            tabla2.getColumnModel().getColumn(8).setPreferredWidth(200);
+        tablaEliminar.setEnabled(false);
+        tablaEliminar.setGridColor(new java.awt.Color(0, 0, 0));
+        tablaEliminar.setOpaque(false);
+        tablaEliminar.setRequestFocusEnabled(false);
+        tablaEliminar.setRowHeight(30);
+        tablaEliminar.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaEliminar.setSelectionForeground(new java.awt.Color(11, 43, 90));
+        tablaEliminar.setShowGrid(true);
+        tablaEliminar.getTableHeader().setResizingAllowed(false);
+        tablaEliminar.getTableHeader().setReorderingAllowed(false);
+        scroll_tabla1.setViewportView(tablaEliminar);
+        if (tablaEliminar.getColumnModel().getColumnCount() > 0) {
+            tablaEliminar.getColumnModel().getColumn(0).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(3).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(4).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(5).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(6).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(7).setPreferredWidth(200);
+            tablaEliminar.getColumnModel().getColumn(8).setPreferredWidth(200);
         }
 
         javax.swing.GroupLayout p_scroll3Layout = new javax.swing.GroupLayout(p_scroll3);
@@ -1274,11 +1312,11 @@ public class iVCliente extends javax.swing.JFrame {
         p_eliminar.add(subtitulo15);
         subtitulo15.setBounds(60, 10, 60, 50);
 
-        cb_direcciones2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
-        cb_direcciones2.setForeground(new java.awt.Color(11, 43, 90));
-        cb_direcciones2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        p_eliminar.add(cb_direcciones2);
-        cb_direcciones2.setBounds(10, 90, 170, 40);
+        cb_clienteEli.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        cb_clienteEli.setForeground(new java.awt.Color(11, 43, 90));
+        cb_clienteEli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        p_eliminar.add(cb_clienteEli);
+        cb_clienteEli.setBounds(10, 90, 170, 40);
 
         btn_elim.setBackground(new java.awt.Color(23, 60, 104));
         btn_elim.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -1466,8 +1504,8 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JButton btn_repreLegal;
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JButton btn_telefono;
-    private javax.swing.JComboBox<String> cb_direcciones2;
-    private javax.swing.JComboBox<String> cb_nitcliente;
+    private javax.swing.JComboBox<String> cb_clienteAct;
+    private javax.swing.JComboBox<String> cb_clienteEli;
     private javax.swing.JComboBox<String> cb_tipo1;
     private javax.swing.JComboBox<String> cb_tipo2;
     private javax.swing.JLabel decorador1;
@@ -1539,8 +1577,8 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo7;
     private javax.swing.JLabel subtitulo8;
     private javax.swing.JLabel subtitulo9;
-    private javax.swing.JTable tabla;
-    private javax.swing.JTable tabla2;
+    private javax.swing.JTable tablaEliminar;
+    private javax.swing.JTable tablaLeer;
     private javax.swing.JLabel titulo1;
     private javax.swing.JLabel titulo10;
     private javax.swing.JLabel titulo12;
