@@ -6,6 +6,7 @@ import interfaz.iVCorreo;
 import interfaz.iVDireccion;
 import interfaz.iVEmpresae;
 import interfaz.iVPVendedor;
+import interfaz.iVProveedor;
 import interfaz.iVRepre;
 import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
@@ -20,6 +21,7 @@ import modelo.Logica;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
+import modelo.dao.proveedorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
@@ -34,10 +36,9 @@ public class Coordinador {
     private iVRepre ventanaRepresentante;
     private iVTelefono ventanaTelefono;
     private iVDireccion ventanaDireccion;
- 
     private iVEmpresae  ventanaEmpresae;
-
     private iVSolicitudes ventanaSolicitudProd;
+    private iVProveedor ventanaProveedor;
  
     
     private correoDao miCorreoDao;
@@ -48,6 +49,7 @@ public class Coordinador {
     private empresaeDao miEmpresaeDao;
 
     private solicitudProdDao miSolicitudProdDao;
+    private proveedorDao miProveedorDao;
 
     private Logica miLogica;
     private Connection miConexionActual;
@@ -119,9 +121,14 @@ public class Coordinador {
         this.miSolicitudProdDao = miSolicitudProdDao;
     }
     
+    
+    void setProveedorDao(proveedorDao miProveedorDao) {
+        this.miProveedorDao = miProveedorDao;
+    }
 
     
     
+   
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
     }
@@ -238,6 +245,18 @@ public class Coordinador {
     
     public void cerrarVentanaEmpresae(){
         ventanaEmpresae.setVisible(false);
+    }
+    
+    
+     public void abrirVentanaProveedor(){
+        ventanaProveedor.setVisible(true);
+        JTable tablaProveedor = ventanaProveedor.enviarTabla();
+        mostrarProveedor(tablaProveedor);
+        
+    }
+    
+    public void cerrarVentanaProveedor(){
+        ventanaProveedor.setVisible(false);
     }
     
 
@@ -457,9 +476,11 @@ public class Coordinador {
     public String actualizarDireccion(direccionVo direccionActu, String direccionSeleccionada) {
         return miDireccionDao.actualizarDireccion(direccionActu, direccionSeleccionada);
     }
-
-
     
+    public String eliminarDireccion(String direccionSeleccionada) {
+        return miDireccionDao.eliminarDireccion(direccionSeleccionada);
+    }
+
 
     public void mostrarEmpresae(JTable tablaEmpresae) {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -478,10 +499,27 @@ public class Coordinador {
             System.out.println(e);
         }
     }
-
-    public String eliminarDireccion(String direccionSeleccionada) {
-        return miDireccionDao.eliminarDireccion(direccionSeleccionada);
+    
+     public void mostrarProveedor(JTable table) {
+        //System.out.println(miConexionActual);
+    
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miProveedorDao.obtenerProveedor("select proTipoProducto, proNit, enviosNit, empNombre, empRUT, repCedula, dirDireccion, corCorreo from vw_proveedor");
+        modelo.setColumnIdentifiers(new Object[] {"Tipo Producto","NIT Proveedor", "NIT Empresa Envios", "Nombre", "RUT", "Cédula representante", "Dirección", "Correo"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getString("proTipoProducto"),rs.getLong("proNit"), rs.getLong("enviosNit"),rs.getString("empNombre"),rs.getLong("empRUT"),rs.getLong("repCedula"),rs.getString("dirDireccion"),rs.getString("corCorreo")});
+                
+            }
+            table.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
+
+    
 
     private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -516,11 +554,7 @@ public class Coordinador {
     private void llenarComboSoliciEli(JComboBox comboSoliProdEli) {
         
     }
-
-
-    
-    
-    
-
     
 }
+
+    
