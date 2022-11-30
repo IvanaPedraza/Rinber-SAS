@@ -20,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import modelo.Conexion;
 import modelo.Logica;
 import modelo.dao.clienteDao;
@@ -33,11 +34,17 @@ import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
+import modelo.dao.vendedorDao;
+import modelo.vo.clienteVo;
 import modelo.vo.direccionVo;
+import modelo.vo.solicitudProductoVo;
+import modelo.vo.vendedorActual;
 
 
 public class Coordinador {
 
+    private String usuarioActual;
+    
     private iLogin login;
     private iVPVendedor ventanaPrincipal;
     private iVCorreo ventanaCorreo;
@@ -58,6 +65,7 @@ public class Coordinador {
     private representanteDao miRepresentanteDao;
     private telefonoDao miTelefonoDao;
     private direccionDao miDireccionDao;
+    private vendedorDao miVendedorDao;
 
     private empresaeDao miEmpresaeDao;
     private clienteDao miClienteDao;
@@ -71,13 +79,17 @@ public class Coordinador {
     private proveedorDao miProveedorDao;
     private envioDao miEnvioDao;
     
+    
+    
 
     private Logica miLogica;
     private Connection miConexionActual;
     private Conexion miConexion;
     
     
-    
+    void setUsuarioActual(String usuario){
+        this.usuarioActual = miConexion.devolverUsuario();
+    }
 
     void setLogin(iLogin login) {
         this.login = login;
@@ -208,6 +220,7 @@ public class Coordinador {
     //Apertura y cerrado de ventanas
     public void abrirVentanaPrincipal() {
         ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.consultarUsuario();
     }
     
     public void cerrarVentanaPrincipal() {
@@ -403,6 +416,10 @@ public class Coordinador {
     
     public void abrirSolicitudProdPanAgregar(){
         ventanaSolicitudProd.enviarPanelAgregar().setVisible(true);
+        JComboBox comboSoliProdAgre = ventanaSolicitudProd.enviarComboSolicitudesAgre();
+        llenarComboSolicitudAgre(comboSoliProdAgre);
+        JTextField campoVendedor = ventanaSolicitudProd.enviarVendedor();
+        campoVendedor.setText(miConexion.devolverUsuario());
     }
     
     public void cerrarSolicitudProdPanAgregar(){
@@ -460,6 +477,7 @@ public class Coordinador {
     
     public void abrirClientePanAgregar(){
         ventanaCliente.enviarPanelAgregar().setVisible(true);
+        
     }
     
     public void cerrarClientePanAgregar(){
@@ -498,6 +516,11 @@ public class Coordinador {
     public Connection obtenerConexion(){
         
         return miConexion.getConnection();
+    }
+    
+    public String devolverUsuario(){
+        String usuarioActual = miConexion.devolverUsuario();
+        return usuarioActual;
     }
     
     public void mostrarCorreos(JTable table) {
@@ -786,22 +809,111 @@ public class Coordinador {
             System.out.println(e);
         }
     }
-
-    private void llenarComboClienteAct(JComboBox comboClienteActu) {
-        
+    
+    public String agregarNuevaSolicitud(solicitudProductoVo nuevaSolicitud, String clienteSeleccionado){
+        return miSolicitudProdDao.agregarSolicitud(nuevaSolicitud,clienteSeleccionado);
     }
 
-    private void mostrarClientesDel(JTable tablaClienteEli) {
+    private void llenarComboSolicitudAgre(JComboBox combo) {
+        ResultSet rs = miSolicitudProdDao.obtenerSolicitudes("select cliNit from solicitud_producto");
+        try{
+            combo.removeAllItems();
+            while(rs.next()){
+                
+                combo.addItem(rs.getObject("cliNit"));
+            }
+            
+            combo.setSelectedIndex(0);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
+    public String agregarNuevoCliente(clienteVo nuevoCliente){
+        return miClienteDao.agregarCliente(nuevoCliente);
+    }
+   
+    
+    public void llenarComboClienteAct(JComboBox combo){
         
+        ResultSet rs = miClienteDao.obtenerClientes("select cliNit from cliente");
+        try{
+            combo.removeAllItems();
+            while(rs.next()){
+                
+                combo.addItem(rs.getObject("cliNit"));
+            }
+            
+            combo.setSelectedIndex(0);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public String actualizarCliente(clienteVo clienteActu, Long clienteSeleccionado) {
+        return miClienteDao.actualizarCliente(clienteActu, clienteSeleccionado);
+    }
+
+    public clienteVo consultarCliente(Long valorSeleccionado) {
+        return miClienteDao.consultarCliente(valorSeleccionado);
+    }
+    
+    /*
+    public boolean validarCampos(clienteVo clienteActu) {
+        return miLogica.validarCampos(clienteActu);
+    }
+    */
+
+    private void mostrarClientesDel(JTable tablaClienteEli) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miClienteDao.obtenerClientes("select cliNit, empNombre, empRUT, cliNumCamara, cliCodigoCertficadoBancario,"
+                + "repCedula,dirDireccion,corCorreo,telNumero from vw_cliente");
+        modelo.setColumnIdentifiers(new Object[] {"NIT","Nombre Cliente", "RUT", "Número Camara y Comercio","Cert. Bancario", "Cédula Representante","Dirección","Correo","Teléfono"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getLong("cliNit"),rs.getString("empNombre"),rs.getLong("cliNumCamara"), rs.getLong("cliCodigoCertficadoBancario"),
+                rs.getInt("repCedula"),rs.getString("dirDireccion"),rs.getString("corCorreo"),rs.getLong("telNumero")});
+                
+            }
+            tablaClienteEli.setModel(modelo);
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     private void llenarComboClienteEli(JComboBox comboClienteEli) {
-        
+        ResultSet rs = miClienteDao.obtenerClientes("select cliNit from cliente");
+        try{
+            comboClienteEli.removeAllItems();
+            while(rs.next()){
+                
+                comboClienteEli.addItem(rs.getObject("cliNit"));
+            }
+            
+            comboClienteEli.setSelectedIndex(0);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+
+    public String eliminarCliente(Long clienteSeleccionado) {
+        return miClienteDao.eliminarCliente(clienteSeleccionado);
+    }
+
+    public vendedorActual  mostrarInfoVendedor() {
+        return miVendedorDao.consultarVendedor(miConexion.devolverUsuario());
+    }
+
+    void setVendedorDao(vendedorDao miVendedorDao) {
+        this.miVendedorDao = miVendedorDao;
     }
 
     
-
-
     
     
 }

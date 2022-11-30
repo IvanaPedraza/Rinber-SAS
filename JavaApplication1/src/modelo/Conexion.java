@@ -26,6 +26,11 @@ public class Conexion {
        this.password = password;
        System.out.println("Se define: " + user + " " + password);
     }
+    
+    
+    public String devolverUsuario(){
+        return this.user;
+    }
 	//constructor de la clase
 	public void Conexion(){
 		try {

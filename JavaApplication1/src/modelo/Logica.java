@@ -1,6 +1,7 @@
 package modelo;
 
 import controlador.Coordinador;
+import modelo.vo.clienteVo;
 import modelo.vo.direccionVo;
 
 
@@ -76,6 +77,8 @@ public class Logica {
         }
             
     }
+
+    
 
     
 }

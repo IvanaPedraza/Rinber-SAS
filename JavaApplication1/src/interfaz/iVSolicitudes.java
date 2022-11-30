@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import controlador.Escalar;
 import java.awt.Font;
+import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -18,6 +19,7 @@ import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import modelo.vo.solicitudProductoVo;
 
 public class iVSolicitudes extends javax.swing.JFrame {
     
@@ -175,9 +177,38 @@ public class iVSolicitudes extends javax.swing.JFrame {
         return cb_solicitudesEli;
     }
     
+    public JTextField enviarVendedor(){
+        return txtcvendedor;
+    }
     
+    private void registrarNuevaSoli() {
+
+        solicitudProductoVo nuevaSolicitud = new solicitudProductoVo();
+        Long clienteSeleccionado = (Long) cb_clientes.getSelectedItem();
+        nuevaSolicitud.setNumSolicitud(Integer.parseInt(txtid.getText().trim()));
+        nuevaSolicitud.setTotalIva(Double.parseDouble(txtiva.getText().trim()));
+        nuevaSolicitud.setTotalCompra(Double.parseDouble(txtcompra.getText().trim()));
+        nuevaSolicitud.setNitCliente(clienteSeleccionado);
+        nuevaSolicitud.setVenCedula(Integer.parseInt(miCoordinador.devolverUsuario()));
+        Date nuevaFecha = new Date(2022/11/9);
+        nuevaSolicitud.setFechaFacturacion(nuevaFecha);
+
+        String retorno = miCoordinador.agregarNuevaSolicitud(nuevaSolicitud,String.valueOf(clienteSeleccionado));
+
+        if (retorno.equals("OK")) {
+            JOptionPane.showMessageDialog(null, "¡La dirección fue agregada con éxito!");
+            txtid.setText("");
+            txtiva.setText("");
+            txtcompra.setText("");
+            txtcvendedor.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, "La dirección no se pudo agregar, verifique el error.");
+        }
+    }
     
-    
+    public JComboBox enviarComboSolicitudesAgre() {
+        return cb_clientes;
+    }
     
     /**
      * Componentes logicos
@@ -272,13 +303,10 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_agregar = new javax.swing.JPanel();
         titulo1 = new javax.swing.JLabel();
         subtitulo1 = new javax.swing.JLabel();
-        subtitulo2 = new javax.swing.JLabel();
         subtitulo3 = new javax.swing.JLabel();
         txtid = new javax.swing.JTextField();
-        txtfecha = new javax.swing.JTextField();
         txtcompra = new javax.swing.JTextField();
         decorador1 = new javax.swing.JLabel();
-        decorador2 = new javax.swing.JLabel();
         decorador3 = new javax.swing.JLabel();
         btn_enviar = new javax.swing.JButton();
         decorador9 = new javax.swing.JLabel();
@@ -288,8 +316,8 @@ public class iVSolicitudes extends javax.swing.JFrame {
         decorador12 = new javax.swing.JLabel();
         decorador13 = new javax.swing.JLabel();
         subtitulo19 = new javax.swing.JLabel();
-        txtnitcliente = new javax.swing.JTextField();
         txtcvendedor = new javax.swing.JTextField();
+        cb_clientes = new javax.swing.JComboBox<>();
         p_opciones = new javax.swing.JPanel();
         btn_regresar = new javax.swing.JButton();
         btn_agregar = new javax.swing.JButton();
@@ -1042,35 +1070,23 @@ public class iVSolicitudes extends javax.swing.JFrame {
         p_agregar.add(subtitulo1);
         subtitulo1.setBounds(50, 60, 70, 40);
 
-        subtitulo2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo2.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo2.setText("Fecha");
-        p_agregar.add(subtitulo2);
-        subtitulo2.setBounds(50, 120, 80, 40);
-
         subtitulo3.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo3.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo3.setText("Total compra");
         p_agregar.add(subtitulo3);
-        subtitulo3.setBounds(50, 240, 130, 40);
+        subtitulo3.setBounds(50, 180, 130, 40);
         p_agregar.add(txtid);
         txtid.setBounds(220, 60, 400, 40);
-        p_agregar.add(txtfecha);
-        txtfecha.setBounds(220, 120, 400, 40);
         p_agregar.add(txtcompra);
-        txtcompra.setBounds(220, 240, 400, 40);
+        txtcompra.setBounds(220, 180, 400, 40);
 
         decorador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador1);
         decorador1.setBounds(10, 60, 30, 40);
 
-        decorador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
-        p_agregar.add(decorador2);
-        decorador2.setBounds(10, 120, 30, 40);
-
         decorador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador3);
-        decorador3.setBounds(10, 240, 30, 40);
+        decorador3.setBounds(10, 180, 30, 40);
 
         btn_enviar.setBackground(new java.awt.Color(23, 60, 104));
         btn_enviar.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
@@ -1082,46 +1098,51 @@ public class iVSolicitudes extends javax.swing.JFrame {
             }
         });
         p_agregar.add(btn_enviar);
-        btn_enviar.setBounds(460, 450, 180, 40);
+        btn_enviar.setBounds(470, 370, 180, 40);
 
         decorador9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador9);
-        decorador9.setBounds(10, 180, 30, 40);
+        decorador9.setBounds(10, 120, 30, 40);
 
         subtitulo13.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo13.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo13.setText("Total IVA");
         p_agregar.add(subtitulo13);
-        subtitulo13.setBounds(50, 180, 90, 40);
+        subtitulo13.setBounds(50, 120, 90, 40);
         p_agregar.add(txtiva);
-        txtiva.setBounds(220, 180, 400, 40);
+        txtiva.setBounds(220, 120, 400, 40);
 
         subtitulo18.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo18.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo18.setText("Cédula vendedor");
         p_agregar.add(subtitulo18);
-        subtitulo18.setBounds(50, 300, 170, 40);
+        subtitulo18.setBounds(50, 240, 170, 40);
 
         decorador12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador12);
-        decorador12.setBounds(10, 300, 30, 40);
+        decorador12.setBounds(10, 240, 30, 40);
 
         decorador13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador13);
-        decorador13.setBounds(10, 360, 30, 40);
+        decorador13.setBounds(10, 300, 30, 40);
 
         subtitulo19.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo19.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo19.setText("NIT cliente");
         p_agregar.add(subtitulo19);
-        subtitulo19.setBounds(50, 360, 160, 40);
-        p_agregar.add(txtnitcliente);
-        txtnitcliente.setBounds(220, 360, 400, 40);
+        subtitulo19.setBounds(50, 300, 160, 40);
         p_agregar.add(txtcvendedor);
-        txtcvendedor.setBounds(220, 300, 400, 40);
+        txtcvendedor.setBounds(220, 240, 400, 40);
+
+        cb_clientes.setFont(new java.awt.Font("Century Gothic", 0, 12)); // NOI18N
+        cb_clientes.setForeground(new java.awt.Color(11, 43, 90));
+        cb_clientes.setMaximumRowCount(200);
+        cb_clientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        p_agregar.add(cb_clientes);
+        cb_clientes.setBounds(220, 300, 400, 40);
 
         p_seccionAgregar.add(p_agregar);
-        p_agregar.setBounds(9, 11, 700, 510);
+        p_agregar.setBounds(9, 11, 700, 440);
 
         p_ventana.add(p_seccionAgregar);
         p_seccionAgregar.setBounds(460, 190, 720, 560);
@@ -1210,12 +1231,12 @@ public class iVSolicitudes extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
-    
+        registrarNuevaSoli();
     }//GEN-LAST:event_btn_enviarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         ocultaPanel();
-        this.p_seccionAgregar.setVisible(true);
+        miCoordinador.abrirSolicitudProdPanAgregar();
         colorBotones();
         this.btn_agregar.setBackground(new Color(87, 156, 194));
         this.btn_agregar.setForeground(Color.white);
@@ -1290,12 +1311,12 @@ public class iVSolicitudes extends javax.swing.JFrame {
     private javax.swing.JButton btn_repreLegal;
     private javax.swing.JButton btn_solicitudes;
     private javax.swing.JButton btn_telefono;
+    private javax.swing.JComboBox<String> cb_clientes;
     private javax.swing.JComboBox<String> cb_solicitudesAct;
     private javax.swing.JComboBox<String> cb_solicitudesEli;
     private javax.swing.JLabel decorador1;
     private javax.swing.JLabel decorador12;
     private javax.swing.JLabel decorador13;
-    private javax.swing.JLabel decorador2;
     private javax.swing.JLabel decorador3;
     private javax.swing.JLabel decorador5;
     private javax.swing.JLabel decorador6;
@@ -1329,7 +1350,6 @@ public class iVSolicitudes extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo15;
     private javax.swing.JLabel subtitulo18;
     private javax.swing.JLabel subtitulo19;
-    private javax.swing.JLabel subtitulo2;
     private javax.swing.JLabel subtitulo3;
     private javax.swing.JLabel subtitulo5;
     private javax.swing.JLabel subtitulo6;
@@ -1363,11 +1383,9 @@ public class iVSolicitudes extends javax.swing.JFrame {
     private javax.swing.JTextField txtdncompra;
     private javax.swing.JTextField txtdnfecha;
     private javax.swing.JTextField txtdniva;
-    private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txtfechaAct;
     private javax.swing.JTextField txtid;
     private javax.swing.JTextField txtiva;
     private javax.swing.JTextField txtivaAct;
-    private javax.swing.JTextField txtnitcliente;
     // End of variables declaration//GEN-END:variables
 }

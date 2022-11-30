@@ -241,21 +241,12 @@ public class iVDireccion extends javax.swing.JFrame {
         String actualiza = "";
         actualiza = miCoordinador.actualizarDireccion(direccionActu, direccionSeleccionada);
 
-        if (miCoordinador.validarCampos(direccionActu)) {
-            actualiza = miCoordinador.actualizarDireccion(direccionActu, direccionSeleccionada);
-        } else {
-            actualiza = "mas_datos";
-        }
-
         if (actualiza.equals("OK")) {
             JOptionPane.showMessageDialog(null, "Se ha modificado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
             limpiarCamposActu();
         } else {
-            if (actualiza.equals("mas_datos")) {
-                JOptionPane.showMessageDialog(null, "Debe ingresar los campos obligatorios", "Faltan datos", JOptionPane.WARNING_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al modificar", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            JOptionPane.showMessageDialog(null, "Error al modificar", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
 
     }
@@ -1221,6 +1212,11 @@ public class iVDireccion extends javax.swing.JFrame {
         cb_direcciones2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         cb_direcciones2.setForeground(new java.awt.Color(11, 43, 90));
         cb_direcciones2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_direcciones2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_direcciones2ActionPerformed(evt);
+            }
+        });
         p_eliminar.add(cb_direcciones2);
         cb_direcciones2.setBounds(10, 90, 170, 40);
 
@@ -1404,6 +1400,10 @@ public class iVDireccion extends javax.swing.JFrame {
     private void btn_direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_direccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_direccionActionPerformed
+
+    private void cb_direcciones2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_direcciones2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_direcciones2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

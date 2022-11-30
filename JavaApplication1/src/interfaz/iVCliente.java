@@ -18,6 +18,7 @@ import javax.swing.table.JTableHeader;
 
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import modelo.vo.clienteVo;
 
 public class iVCliente extends javax.swing.JFrame {
     
@@ -177,6 +178,158 @@ public class iVCliente extends javax.swing.JFrame {
         return cb_clienteEli;
     }
     
+    
+    private void registrarNuevoCli() {
+
+        clienteVo nuevoCliente = new clienteVo();
+
+        nuevoCliente.setNumCamara(Long.parseLong(txtncc.getText().trim()));
+        nuevoCliente.setCodCertificadoBanc(Long.parseLong(txtncb.getText().trim()));
+        nuevoCliente.setCliNit(Long.parseLong(txtnit.getText().trim()));
+        nuevoCliente.setNombreCliente(txtnombre.getText().trim());
+        nuevoCliente.setRutCliente(txtrut.getText().trim());
+        nuevoCliente.setRepreCedula(Integer.parseInt(txtcrrepresentante1.getText().trim()));
+        nuevoCliente.setRepreNombre(txtcr_nom_repre.getText().trim());
+        nuevoCliente.setRepreApellido(txtcr_apelli_repre.getText().trim());
+        nuevoCliente.setRepreCorreo(txt_repre_correo.getText().trim());
+        nuevoCliente.setRepreTelefono(Long.parseLong(txt_cli_repre_tel.getText().trim()));
+        nuevoCliente.setDireDireccion(txt_dire_cliente.getText().trim());
+        nuevoCliente.setDireCiudad(txt_ciudad_cliente.getText().trim());
+        nuevoCliente.setTeleNumero(Long.parseLong(txt_tele_cliente.getText().trim()));
+        nuevoCliente.setTeleTipo(txt_tele_tipo_cli.getText().trim());
+        nuevoCliente.setCorrCorreo(txtcorreo.getText().trim());
+        nuevoCliente.setCorreoTipo(txt_corr_tipo_cli.getText().trim());
+
+        String retorno = miCoordinador.agregarNuevoCliente(nuevoCliente);
+
+        if (retorno.equals("OK")) {
+            JOptionPane.showMessageDialog(null, "¡El cliente fue agregado con éxito!");
+            limpiarCamposCrear();
+        } else {
+            JOptionPane.showMessageDialog(null, "El cliente no se pudo agregar, verifique el error.");
+        }
+    }
+    
+    
+    private void consultarCliente() {
+        Long valorSeleccionado = (Long) cb_clienteAct.getSelectedItem();
+        clienteVo clienteConsulta = miCoordinador.consultarCliente(valorSeleccionado);
+
+        if (clienteConsulta != null) {
+            txtnombreAct.setText(clienteConsulta.getNombreCliente());
+            txtcorreoAct.setText(clienteConsulta.getCorrCorreo());
+            txtdn_tipo_correo.setText(clienteConsulta.getCorreoTipo());
+            txtnumeroAct.setText(String.valueOf(clienteConsulta.getTeleNumero()));
+            txtdn_tipo_tele.setText(clienteConsulta.getTeleTipo());
+        } else {
+            //JOptionPane.showMessageDialog(null, "La dirección no se encuentra en el sistema.");
+        }
+    }
+    
+    private void actualizarCliente() {
+        Long clienteSeleccionado = (Long) cb_clienteAct.getSelectedItem();
+        clienteVo clienteActu = new clienteVo();
+
+        if (txtdnnombre.getText().length() != 0) {
+            clienteActu.setNombreCliente(txtdnnombre.getText().trim());
+        } else {
+            clienteActu.setNombreCliente(txtnombreAct.getText().trim());
+        }
+        if (txtdn_correoAct.getText().length() != 0) {
+            clienteActu.setCorrCorreo(txtdn_correoAct.getText().trim());
+        } else {
+            clienteActu.setCorrCorreo(txtcorreoAct.getText());
+        }
+        
+        clienteActu.setCorreoTipo(txtdn_tipo_correo.getText());
+        
+        if (txtdn_telefonoAct.getText().length() != 0) {
+            clienteActu.setTeleNumero(Long.valueOf(txtdn_telefonoAct.getText().trim()));
+        } else {
+            clienteActu.setTeleNumero(Long.valueOf(txtnumeroAct.getText()));
+        }
+        
+        clienteActu.setTeleTipo(txtdn_tipo_tele.getText());
+        
+        
+        
+        //demas atributos no afectan en nada la actualizacion
+        long certiBanc = 1000000000;
+        long repreTel = 1000000;
+        clienteActu.setCodCertificadoBanc(certiBanc);
+        clienteActu.setRutCliente("Rut 1");
+        clienteActu.setRepreCedula(2000000);
+        clienteActu.setRepreNombre("Nombre 1");
+        clienteActu.setRepreApellido("Apellido 1");
+        clienteActu.setRepreCorreo("Correo 1");
+        clienteActu.setRepreTelefono(repreTel);
+        clienteActu.setDireCiudad("Ciudad 1");
+        clienteActu.setDireDireccion("Direccion 1");
+        
+        String actualiza = "";
+        actualiza = miCoordinador.actualizarCliente(clienteActu, clienteSeleccionado);
+
+        if (actualiza.equals("OK")) {
+            JOptionPane.showMessageDialog(null, "Se ha modificado correctamente.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+            limpiarCamposActu();
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al modificar", "Error", JOptionPane.ERROR_MESSAGE);
+            
+        }
+
+    }
+    
+    private void eliminarCliente() {
+        Long clienteSeleccionado = (Long) cb_clienteEli.getSelectedItem();
+        String eliminar = "";
+        if (!clienteSeleccionado.equals("")) {
+
+            int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro de eliminar " + clienteSeleccionado + "?");
+            if (JOptionPane.OK_OPTION == resp) {
+                eliminar = miCoordinador.eliminarCliente(clienteSeleccionado);
+                if (eliminar.equals("OK")) {
+                    JOptionPane.showMessageDialog(null, "Se ha eliminado correctamente.", "Información",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    miCoordinador.abrirClientePanEliminar();
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar, seleccione otro cliente.", "Información",
+                            JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un cliente a eliminar.", "Información",
+                    JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    
+    private void limpiarCamposCrear(){
+        txtncc.setText("");
+        txtncb.setText("");
+        txtnit.setText("");
+        txtnombre.setText("");
+        txtrut.setText("");
+        txtcrrepresentante1.setText("");
+        txtcr_nom_repre.setText("");
+        txtcr_apelli_repre.setText("");
+        txt_repre_correo.setText("");
+        txt_cli_repre_tel.setText("");
+        txt_dire_cliente.setText("");
+        txt_ciudad_cliente.setText("");
+        txt_tele_cliente.setText("");
+        txt_tele_tipo_cli.setText("");
+        txtcorreo.setText("");
+        txt_corr_tipo_cli.setText("");
+    }
+    
+    private void limpiarCamposActu() {
+        txtdnnombre.setText("");
+        txtdn_correoAct.setText("");
+        txtdn_tipo_correo.setText("");
+        txtdn_telefonoAct.setText("");
+        txtdn_tipo_tele.setText("");
+    }
     /**
      * Componentes logicos
      */
@@ -252,32 +405,32 @@ public class iVCliente extends javax.swing.JFrame {
         txtcorreo = new javax.swing.JTextField();
         subtitulo17 = new javax.swing.JLabel();
         decorador11 = new javax.swing.JLabel();
-        txttipo1 = new javax.swing.JTextField();
+        txt_corr_tipo_cli = new javax.swing.JTextField();
         subtitulo18 = new javax.swing.JLabel();
         decorador12 = new javax.swing.JLabel();
         decorador13 = new javax.swing.JLabel();
         subtitulo19 = new javax.swing.JLabel();
-        txtdcliente = new javax.swing.JTextField();
-        txtcrrepresentante = new javax.swing.JTextField();
-        txttipo2 = new javax.swing.JTextField();
+        txt_cli_repre_tel = new javax.swing.JTextField();
+        txtcr_nom_repre = new javax.swing.JTextField();
+        txt_repre_correo = new javax.swing.JTextField();
         subtitulo20 = new javax.swing.JLabel();
         decorador14 = new javax.swing.JLabel();
-        txttcliente = new javax.swing.JTextField();
+        txt_tele_cliente = new javax.swing.JTextField();
         subtitulo21 = new javax.swing.JLabel();
         decorador15 = new javax.swing.JLabel();
         decorador17 = new javax.swing.JLabel();
         subtitulo25 = new javax.swing.JLabel();
-        txttipo3 = new javax.swing.JTextField();
+        txt_tele_tipo_cli = new javax.swing.JTextField();
         subtitulo26 = new javax.swing.JLabel();
         decorador18 = new javax.swing.JLabel();
         txtcrrepresentante1 = new javax.swing.JTextField();
         subtitulo27 = new javax.swing.JLabel();
         decorador19 = new javax.swing.JLabel();
-        txtdcliente1 = new javax.swing.JTextField();
+        txt_dire_cliente = new javax.swing.JTextField();
         subtitulo28 = new javax.swing.JLabel();
         decorador20 = new javax.swing.JLabel();
-        txttipo5 = new javax.swing.JTextField();
-        txtcrrepresentante2 = new javax.swing.JTextField();
+        txt_ciudad_cliente = new javax.swing.JTextField();
+        txtcr_apelli_repre = new javax.swing.JTextField();
         subtitulo29 = new javax.swing.JLabel();
         decorador21 = new javax.swing.JLabel();
         p_seccionActualizar = new javax.swing.JPanel();
@@ -291,7 +444,7 @@ public class iVCliente extends javax.swing.JFrame {
         subtitulo7 = new javax.swing.JLabel();
         decorador8 = new javax.swing.JLabel();
         subtitulo8 = new javax.swing.JLabel();
-        txtdnlocorreo = new javax.swing.JTextField();
+        txtdn_tipo_correo = new javax.swing.JTextField();
         txtdnnombre = new javax.swing.JTextField();
         cb_clienteAct = new javax.swing.JComboBox<>();
         subtitulo9 = new javax.swing.JLabel();
@@ -301,16 +454,11 @@ public class iVCliente extends javax.swing.JFrame {
         subtitulo11 = new javax.swing.JLabel();
         txtnumeroAct = new javax.swing.JTextField();
         btn_act = new javax.swing.JButton();
-        subtitulo22 = new javax.swing.JLabel();
-        decorador16 = new javax.swing.JLabel();
-        subtitulo23 = new javax.swing.JLabel();
-        txtdndireccion = new javax.swing.JTextField();
-        txtdireccionAct = new javax.swing.JTextField();
         subtitulo12 = new javax.swing.JLabel();
-        txtdnnumero1 = new javax.swing.JTextField();
+        txtdn_tipo_tele = new javax.swing.JTextField();
         subtitulo24 = new javax.swing.JLabel();
-        cb_tipo2 = new javax.swing.JComboBox<>();
-        cb_tipo1 = new javax.swing.JComboBox<>();
+        txtdn_correoAct = new javax.swing.JTextField();
+        txtdn_telefonoAct = new javax.swing.JTextField();
         p_seccionLeer = new javax.swing.JPanel();
         subtitulo = new javax.swing.JLabel();
         txtbusqueda = new javax.swing.JTextField();
@@ -799,8 +947,8 @@ public class iVCliente extends javax.swing.JFrame {
         decorador11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador11);
         decorador11.setBounds(430, 260, 30, 30);
-        p_agregar.add(txttipo1);
-        txttipo1.setBounds(510, 260, 170, 30);
+        p_agregar.add(txt_corr_tipo_cli);
+        txt_corr_tipo_cli.setBounds(510, 260, 170, 30);
 
         subtitulo18.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo18.setForeground(new java.awt.Color(11, 43, 90));
@@ -821,12 +969,12 @@ public class iVCliente extends javax.swing.JFrame {
         subtitulo19.setText("Dirección cliente");
         p_agregar.add(subtitulo19);
         subtitulo19.setBounds(50, 420, 160, 30);
-        p_agregar.add(txtdcliente);
-        txtdcliente.setBounds(260, 380, 140, 30);
-        p_agregar.add(txtcrrepresentante);
-        txtcrrepresentante.setBounds(190, 340, 170, 30);
-        p_agregar.add(txttipo2);
-        txttipo2.setBounds(510, 380, 170, 30);
+        p_agregar.add(txt_cli_repre_tel);
+        txt_cli_repre_tel.setBounds(260, 380, 140, 30);
+        p_agregar.add(txtcr_nom_repre);
+        txtcr_nom_repre.setBounds(190, 340, 170, 30);
+        p_agregar.add(txt_repre_correo);
+        txt_repre_correo.setBounds(510, 380, 170, 30);
 
         subtitulo20.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo20.setForeground(new java.awt.Color(11, 43, 90));
@@ -837,8 +985,8 @@ public class iVCliente extends javax.swing.JFrame {
         decorador14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador14);
         decorador14.setBounds(380, 460, 30, 30);
-        p_agregar.add(txttcliente);
-        txttcliente.setBounds(200, 460, 170, 30);
+        p_agregar.add(txt_tele_cliente);
+        txt_tele_cliente.setBounds(200, 460, 170, 30);
 
         subtitulo21.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo21.setForeground(new java.awt.Color(11, 43, 90));
@@ -859,8 +1007,8 @@ public class iVCliente extends javax.swing.JFrame {
         subtitulo25.setText("Ciudad");
         p_agregar.add(subtitulo25);
         subtitulo25.setBounds(480, 420, 80, 30);
-        p_agregar.add(txttipo3);
-        txttipo3.setBounds(460, 460, 220, 30);
+        p_agregar.add(txt_tele_tipo_cli);
+        txt_tele_tipo_cli.setBounds(460, 460, 220, 30);
 
         subtitulo26.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo26.setForeground(new java.awt.Color(11, 43, 90));
@@ -883,8 +1031,8 @@ public class iVCliente extends javax.swing.JFrame {
         decorador19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador19);
         decorador19.setBounds(10, 340, 30, 30);
-        p_agregar.add(txtdcliente1);
-        txtdcliente1.setBounds(210, 420, 230, 30);
+        p_agregar.add(txt_dire_cliente);
+        txt_dire_cliente.setBounds(210, 420, 230, 30);
 
         subtitulo28.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo28.setForeground(new java.awt.Color(11, 43, 90));
@@ -895,10 +1043,10 @@ public class iVCliente extends javax.swing.JFrame {
         decorador20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
         p_agregar.add(decorador20);
         decorador20.setBounds(410, 380, 30, 30);
-        p_agregar.add(txttipo5);
-        txttipo5.setBounds(550, 420, 130, 30);
-        p_agregar.add(txtcrrepresentante2);
-        txtcrrepresentante2.setBounds(540, 340, 140, 30);
+        p_agregar.add(txt_ciudad_cliente);
+        txt_ciudad_cliente.setBounds(550, 420, 130, 30);
+        p_agregar.add(txtcr_apelli_repre);
+        txtcr_apelli_repre.setBounds(540, 340, 140, 30);
 
         subtitulo29.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo29.setForeground(new java.awt.Color(11, 43, 90));
@@ -968,8 +1116,8 @@ public class iVCliente extends javax.swing.JFrame {
         subtitulo8.setText("Número teléfonico");
         p_actualizar.add(subtitulo8);
         subtitulo8.setBounds(70, 290, 180, 40);
-        p_actualizar.add(txtdnlocorreo);
-        txtdnlocorreo.setBounds(170, 250, 220, 22);
+        p_actualizar.add(txtdn_tipo_correo);
+        txtdn_tipo_correo.setBounds(450, 250, 220, 22);
         p_actualizar.add(txtdnnombre);
         txtdnnombre.setBounds(170, 170, 500, 22);
 
@@ -977,6 +1125,11 @@ public class iVCliente extends javax.swing.JFrame {
         cb_clienteAct.setForeground(new java.awt.Color(11, 43, 90));
         cb_clienteAct.setMaximumRowCount(200);
         cb_clienteAct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_clienteAct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_clienteActActionPerformed(evt);
+            }
+        });
         p_actualizar.add(cb_clienteAct);
         cb_clienteAct.setBounds(30, 90, 640, 30);
 
@@ -998,7 +1151,7 @@ public class iVCliente extends javax.swing.JFrame {
 
         txtcorreoAct.setEditable(false);
         p_actualizar.add(txtcorreoAct);
-        txtcorreoAct.setBounds(250, 220, 420, 20);
+        txtcorreoAct.setBounds(220, 220, 450, 20);
 
         subtitulo11.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo11.setForeground(new java.awt.Color(11, 43, 90));
@@ -1020,54 +1173,28 @@ public class iVCliente extends javax.swing.JFrame {
             }
         });
         p_actualizar.add(btn_act);
-        btn_act.setBounds(490, 490, 180, 40);
-
-        subtitulo22.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo22.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo22.setText("Dirección cliente");
-        p_actualizar.add(subtitulo22);
-        subtitulo22.setBounds(70, 370, 180, 40);
-
-        decorador16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/circulo (1).png"))); // NOI18N
-        p_actualizar.add(decorador16);
-        decorador16.setBounds(30, 370, 30, 40);
-
-        subtitulo23.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        subtitulo23.setForeground(new java.awt.Color(11, 43, 90));
-        subtitulo23.setText("Dato nuevo:");
-        p_actualizar.add(subtitulo23);
-        subtitulo23.setBounds(30, 410, 130, 20);
-        p_actualizar.add(txtdndireccion);
-        txtdndireccion.setBounds(170, 410, 500, 22);
-
-        txtdireccionAct.setEditable(false);
-        p_actualizar.add(txtdireccionAct);
-        txtdireccionAct.setBounds(260, 380, 410, 22);
+        btn_act.setBounds(490, 380, 180, 40);
 
         subtitulo12.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo12.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo12.setText("Dato nuevo:");
         p_actualizar.add(subtitulo12);
         subtitulo12.setBounds(30, 330, 130, 20);
-        p_actualizar.add(txtdnnumero1);
-        txtdnnumero1.setBounds(170, 330, 220, 22);
+        p_actualizar.add(txtdn_tipo_tele);
+        txtdn_tipo_tele.setBounds(450, 330, 220, 22);
 
         subtitulo24.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         subtitulo24.setForeground(new java.awt.Color(11, 43, 90));
         subtitulo24.setText("Tipo:");
         p_actualizar.add(subtitulo24);
         subtitulo24.setBounds(400, 330, 50, 20);
-
-        cb_tipo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        p_actualizar.add(cb_tipo2);
-        cb_tipo2.setBounds(460, 330, 210, 22);
-
-        cb_tipo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        p_actualizar.add(cb_tipo1);
-        cb_tipo1.setBounds(460, 250, 210, 22);
+        p_actualizar.add(txtdn_correoAct);
+        txtdn_correoAct.setBounds(170, 250, 220, 22);
+        p_actualizar.add(txtdn_telefonoAct);
+        txtdn_telefonoAct.setBounds(170, 330, 220, 22);
 
         p_seccionActualizar.add(p_actualizar);
-        p_actualizar.setBounds(6, 6, 710, 540);
+        p_actualizar.setBounds(6, 6, 710, 450);
 
         p_ventana.add(p_seccionActualizar);
         p_seccionActualizar.setBounds(460, 190, 720, 550);
@@ -1315,6 +1442,11 @@ public class iVCliente extends javax.swing.JFrame {
         cb_clienteEli.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
         cb_clienteEli.setForeground(new java.awt.Color(11, 43, 90));
         cb_clienteEli.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cb_clienteEli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cb_clienteEliActionPerformed(evt);
+            }
+        });
         p_eliminar.add(cb_clienteEli);
         cb_clienteEli.setBounds(10, 90, 170, 40);
 
@@ -1420,12 +1552,12 @@ public class iVCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_telefonoActionPerformed
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
-    
+        registrarNuevoCli();
     }//GEN-LAST:event_btn_enviarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
         ocultaPanel();
-        this.p_seccionAgregar.setVisible(true);
+        miCoordinador.abrirClientePanAgregar();
         colorBotones();
         this.btn_agregar.setBackground(new Color(87, 156, 194));
         this.btn_agregar.setForeground(Color.white);
@@ -1433,14 +1565,14 @@ public class iVCliente extends javax.swing.JFrame {
 
     private void btn_leerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_leerActionPerformed
         ocultaPanel();
-        this.p_seccionLeer.setVisible(true);
+        miCoordinador.abrirClientePanLeer();
         colorBotones();
         this.btn_leer.setBackground(new Color(87, 156, 194));
         this.btn_leer.setForeground(Color.white);
     }//GEN-LAST:event_btn_leerActionPerformed
 
     private void btn_actActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actActionPerformed
-        // TODO add your handling code here:
+        actualizarCliente();
     }//GEN-LAST:event_btn_actActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -1449,14 +1581,14 @@ public class iVCliente extends javax.swing.JFrame {
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
         ocultaPanel();
-        this.p_seccionActualizar.setVisible(true);
+        miCoordinador.abrirClientePanActualizar();
         colorBotones();
         this.btn_actualizar.setBackground(new Color(87, 156, 194));
         this.btn_actualizar.setForeground(Color.white);
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void btn_elimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elimActionPerformed
-        // TODO add your handling code here:
+        eliminarCliente();
     }//GEN-LAST:event_btn_elimActionPerformed
 
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
@@ -1467,7 +1599,7 @@ public class iVCliente extends javax.swing.JFrame {
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
        ocultaPanel();
-       this.p_seccionEliminar.setVisible(true);
+       miCoordinador.abrirClientePanEliminar();
        colorBotones();
        this.btn_eliminar.setBackground(new Color(87, 156, 194));
        this.btn_eliminar.setForeground(Color.white);
@@ -1476,6 +1608,14 @@ public class iVCliente extends javax.swing.JFrame {
     private void btn_gerenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_gerenteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_gerenteActionPerformed
+
+    private void cb_clienteActActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_clienteActActionPerformed
+        consultarCliente();
+    }//GEN-LAST:event_cb_clienteActActionPerformed
+
+    private void cb_clienteEliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_clienteEliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cb_clienteEliActionPerformed
 
 
 
@@ -1506,8 +1646,6 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JButton btn_telefono;
     private javax.swing.JComboBox<String> cb_clienteAct;
     private javax.swing.JComboBox<String> cb_clienteEli;
-    private javax.swing.JComboBox<String> cb_tipo1;
-    private javax.swing.JComboBox<String> cb_tipo2;
     private javax.swing.JLabel decorador1;
     private javax.swing.JLabel decorador10;
     private javax.swing.JLabel decorador11;
@@ -1515,7 +1653,6 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JLabel decorador13;
     private javax.swing.JLabel decorador14;
     private javax.swing.JLabel decorador15;
-    private javax.swing.JLabel decorador16;
     private javax.swing.JLabel decorador17;
     private javax.swing.JLabel decorador18;
     private javax.swing.JLabel decorador19;
@@ -1562,8 +1699,6 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JLabel subtitulo2;
     private javax.swing.JLabel subtitulo20;
     private javax.swing.JLabel subtitulo21;
-    private javax.swing.JLabel subtitulo22;
-    private javax.swing.JLabel subtitulo23;
     private javax.swing.JLabel subtitulo24;
     private javax.swing.JLabel subtitulo25;
     private javax.swing.JLabel subtitulo26;
@@ -1597,19 +1732,24 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JLabel titulo7;
     private javax.swing.JLabel titulo8;
     private javax.swing.JLabel titulo9;
+    private javax.swing.JTextField txt_ciudad_cliente;
+    private javax.swing.JTextField txt_cli_repre_tel;
+    private javax.swing.JTextField txt_corr_tipo_cli;
+    private javax.swing.JTextField txt_dire_cliente;
+    private javax.swing.JTextField txt_repre_correo;
+    private javax.swing.JTextField txt_tele_cliente;
+    private javax.swing.JTextField txt_tele_tipo_cli;
     private javax.swing.JTextField txtbusqueda;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtcorreoAct;
-    private javax.swing.JTextField txtcrrepresentante;
+    private javax.swing.JTextField txtcr_apelli_repre;
+    private javax.swing.JTextField txtcr_nom_repre;
     private javax.swing.JTextField txtcrrepresentante1;
-    private javax.swing.JTextField txtcrrepresentante2;
-    private javax.swing.JTextField txtdcliente;
-    private javax.swing.JTextField txtdcliente1;
-    private javax.swing.JTextField txtdireccionAct;
-    private javax.swing.JTextField txtdndireccion;
-    private javax.swing.JTextField txtdnlocorreo;
+    private javax.swing.JTextField txtdn_correoAct;
+    private javax.swing.JTextField txtdn_telefonoAct;
+    private javax.swing.JTextField txtdn_tipo_correo;
+    private javax.swing.JTextField txtdn_tipo_tele;
     private javax.swing.JTextField txtdnnombre;
-    private javax.swing.JTextField txtdnnumero1;
     private javax.swing.JTextField txtncb;
     private javax.swing.JTextField txtncc;
     private javax.swing.JTextField txtnit;
@@ -1617,10 +1757,5 @@ public class iVCliente extends javax.swing.JFrame {
     private javax.swing.JTextField txtnombreAct;
     private javax.swing.JTextField txtnumeroAct;
     private javax.swing.JTextField txtrut;
-    private javax.swing.JTextField txttcliente;
-    private javax.swing.JTextField txttipo1;
-    private javax.swing.JTextField txttipo2;
-    private javax.swing.JTextField txttipo3;
-    private javax.swing.JTextField txttipo5;
     // End of variables declaration//GEN-END:variables
 }

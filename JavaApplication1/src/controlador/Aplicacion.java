@@ -30,6 +30,7 @@ import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
 import modelo.dao.solicitudProdDao;
 import modelo.dao.telefonoDao;
+import modelo.dao.vendedorDao;
 
 
 public class Aplicacion {
@@ -74,6 +75,7 @@ public class Aplicacion {
         gerenteDao miGerenteDao = new gerenteDao();
  
         envioDao miEnvioDao = new envioDao();
+        vendedorDao miVendedorDao = new vendedorDao();
 
 
  
@@ -114,6 +116,7 @@ public class Aplicacion {
         miGerenteDao.setCoordinador(miCoordinador);
  
         miEnvioDao.setCoordinador(miCoordinador);
+        miVendedorDao.setCoordinador(miCoordinador);
 
 
  
@@ -123,6 +126,7 @@ public class Aplicacion {
         miCoordinador.setLogin(login);
         miCoordinador.setLogica(miLogica);
         miCoordinador.setVentanaPrincipal(ventanaPrincipal);
+        miCoordinador.setVendedorDao(miVendedorDao);
         miCoordinador.setVentanaCorreo(icorreo);
         miCoordinador.setCorreoDao(miCorreoDao);
         miCoordinador.setVentanaRepresentante(irepre_legal);
@@ -172,7 +176,7 @@ public class Aplicacion {
         // iproveedor.setVisible(true);
         //login.setVisible(true);
         //iproveedor.setVisible(true);
-        ienvio.setVisible(true);
+        //ienvio.setVisible(true);
 
 
 

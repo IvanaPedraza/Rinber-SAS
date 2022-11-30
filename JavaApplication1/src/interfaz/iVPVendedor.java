@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 
 import controlador.Escalar;
+import modelo.vo.vendedorActual;
 public class iVPVendedor extends javax.swing.JFrame {
     
     private Coordinador miCoordinador;
@@ -71,6 +72,19 @@ public class iVPVendedor extends javax.swing.JFrame {
     public void setCoordinador(Coordinador miCoordinador) {
         this.miCoordinador = miCoordinador;
     }
+    
+    public void consultarUsuario() {
+        vendedorActual vendedor = miCoordinador.mostrarInfoVendedor();
+        
+            txtnombre.setText(vendedor.getPerNombre());
+            txtapellido.setText(vendedor.getPerApellido());
+            txtcorreo.setText(vendedor.getCorCorreo());
+            txtcedula.setText(String.valueOf(vendedor.getVenCedula()));
+            txtnumero.setText(String.valueOf(vendedor.getTelNumero()));
+            txtturno.setText(vendedor.getVenTurno());
+        
+    }
+    
     
     /**
      * Componentes logicos
