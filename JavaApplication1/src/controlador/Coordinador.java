@@ -2,6 +2,7 @@ package controlador;
 
 import java.sql.Connection;
 import interfaz.iLogin;
+import interfaz.iVCatalogo;
 import interfaz.iVCliente;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
@@ -23,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import modelo.Conexion;
 import modelo.Logica;
+import modelo.dao.catalogoDao;
 import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
@@ -54,6 +56,7 @@ public class Coordinador {
     private iVGerente ventanaGerente;
     private iVEnvio ventanaEnvio;
     private iVProducto ventanaProducto;
+    private iVCatalogo ventanaCatalogo;
 
     
     private correoDao miCorreoDao;
@@ -73,6 +76,7 @@ public class Coordinador {
     private proveedorDao miProveedorDao;
     private envioDao miEnvioDao;
     private productoDao miProductoDao;
+    private catalogoDao miCatalogoDao;
     
 
     private Logica miLogica;
@@ -206,7 +210,16 @@ public class Coordinador {
         this.miProductoDao = miProductoDao;
     }
     
-   
+    
+    void setVentanaCatalogo(iVCatalogo icatalogo) {
+        this.ventanaCatalogo = icatalogo;
+    }
+    
+    void setCatalogoDao(catalogoDao miCatalogoDao) {
+        this.miCatalogoDao = miCatalogoDao;
+    }
+    
+    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
     }
@@ -385,6 +398,19 @@ public class Coordinador {
     
     public void cerrarVentanaProducto(){
         ventanaProducto.setVisible(false);
+    }
+    
+    
+    public void abrirVentanaCatologo(){
+        ventanaCatalogo.setVisible(true);
+        JTable tablaCatalogo = ventanaCatalogo.enviarTabla();
+        mostrarCatalogo(tablaCatalogo);
+        
+    }
+   
+    
+    public void cerrarVentanaCatalogo(){
+        ventanaCatalogo.setVisible(false);
     }
     
 
@@ -774,7 +800,23 @@ public class Coordinador {
         }
     }
      
-     
+     public void mostrarCatalogo(JTable table) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miCatalogoDao.obtenerCatalogo("select proCodigo, proNombre, proTipoProducto, proDescripcion, proDisponibilidad, Precio from vw_catalogo");
+        modelo.setColumnIdentifiers(new Object[] {"Código Producto","Nombre Producto","Tipo Producto","Descripción producto","Disponibilidad", "Precio"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("proCodigo"),rs.getInt("proNombre"),rs.getString("proTipoProducto"),rs.getString("proDescripcion"),rs.getDouble("proDisponibilidad"), rs.getByte("Precio")});
+                
+            }
+            table.setModel(modelo);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
      
 
     private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
@@ -842,8 +884,6 @@ public class Coordinador {
         
     }
 
-    
-    
     
 }
 

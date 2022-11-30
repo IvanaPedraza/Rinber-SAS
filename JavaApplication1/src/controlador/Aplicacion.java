@@ -1,7 +1,6 @@
 package controlador;
 
 import interfaz.iLogin;
-import interfaz.iVCatalogo;
 import interfaz.iVCliente;
 import interfaz.iVPVendedor;
 import modelo.Conexion;
@@ -19,6 +18,8 @@ import interfaz.iVRepartidor;
 import interfaz.iVRepre;
 import interfaz.iVSolicitudes;
 import interfaz.iVTelefono;
+import interfaz.iVCatalogo;
+import modelo.dao.catalogoDao;
 import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
@@ -76,6 +77,7 @@ public class Aplicacion {
         gerenteDao miGerenteDao = new gerenteDao();
  
         envioDao miEnvioDao = new envioDao();
+        catalogoDao miCatalogoDao = new catalogoDao();
 
 
  
@@ -99,6 +101,7 @@ public class Aplicacion {
         igerente.setCoordinador(miCoordinador);
         ienvio.setCoordinador(miCoordinador);
         iproducto.setCoordinador(miCoordinador);
+        icatalogo.setCoordinador(miCoordinador);
  
         
         //se repite para todos las demas ventanas
@@ -118,6 +121,7 @@ public class Aplicacion {
  
         miEnvioDao.setCoordinador(miCoordinador);
         miProductoDao.setCoordinador(miCoordinador);
+        miCatalogoDao.setCoordinador(miCoordinador);
 
 
  
@@ -154,6 +158,8 @@ public class Aplicacion {
         miCoordinador.setEnvioDao(miEnvioDao);
         miCoordinador.setVentanaProducto(iproducto);
         miCoordinador.setProductoDao(miProductoDao);
+        miCoordinador.setVentanaCatalogo(icatalogo);
+        miCoordinador.setCatalogoDao(miCatalogoDao);
         
 
 
@@ -173,6 +179,7 @@ public class Aplicacion {
         //iempresae.setVisible(true);
         //iempresae.setVisible(true);
         //igerente.setVisible(true);
+        icatalogo.setVisible(true);
 
         //login.setVisible(true);
         // iproveedor.setVisible(true);
@@ -182,7 +189,7 @@ public class Aplicacion {
 
 
 
-        login.setVisible(true);
+        //login.setVisible(true);
         //iproveedor.setVisible(true);
 
         //icorreo.setVisible(true);
