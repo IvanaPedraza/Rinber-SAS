@@ -25,6 +25,7 @@ import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
 import modelo.dao.envioDao;
 import modelo.dao.gerenteDao;
+import modelo.dao.productoDao;
 import modelo.dao.proveedorDao;
 import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
@@ -67,6 +68,7 @@ public class Aplicacion {
         empresaeDao miEmpresaeDao = new empresaeDao();
         solicitudProdDao miSolicitudProdDao = new solicitudProdDao();
         proveedorDao miProveedorDao = new proveedorDao();
+        productoDao miProductoDao = new productoDao();
 
         clienteDao miClienteDao = new clienteDao();
 
@@ -96,6 +98,7 @@ public class Aplicacion {
         irepartidor.setCoordinador(miCoordinador);
         igerente.setCoordinador(miCoordinador);
         ienvio.setCoordinador(miCoordinador);
+        iproducto.setCoordinador(miCoordinador);
  
         
         //se repite para todos las demas ventanas
@@ -114,6 +117,7 @@ public class Aplicacion {
         miGerenteDao.setCoordinador(miCoordinador);
  
         miEnvioDao.setCoordinador(miCoordinador);
+        miProductoDao.setCoordinador(miCoordinador);
 
 
  
@@ -148,6 +152,8 @@ public class Aplicacion {
         miCoordinador.setGerenteDao(miGerenteDao);
         miCoordinador.setVentanaEnvio(ienvio);
         miCoordinador.setEnvioDao(miEnvioDao);
+        miCoordinador.setVentanaProducto(iproducto);
+        miCoordinador.setProductoDao(miProductoDao);
         
 
 
@@ -172,7 +178,7 @@ public class Aplicacion {
         // iproveedor.setVisible(true);
         //login.setVisible(true);
         //iproveedor.setVisible(true);
-        ienvio.setVisible(true);
+        //ienvio.setVisible(true);
 
 
 
