@@ -2,6 +2,7 @@ package controlador;
 
 import java.sql.Connection;
 import interfaz.iLogin;
+import interfaz.iVCatalogo;
 import interfaz.iVCliente;
 import interfaz.iVCorreo;
 import interfaz.iVDireccion;
@@ -9,6 +10,7 @@ import interfaz.iVEmpresae;
 import interfaz.iVEnvio;
 import interfaz.iVGerente;
 import interfaz.iVPVendedor;
+import interfaz.iVProducto;
 import interfaz.iVProveedor;
 import interfaz.iVRepartidor;
 import interfaz.iVRepre;
@@ -23,12 +25,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import modelo.Conexion;
 import modelo.Logica;
+import modelo.dao.catalogoDao;
 import modelo.dao.clienteDao;
 import modelo.dao.correoDao;
 import modelo.dao.direccionDao;
 import modelo.dao.empresaeDao;
 import modelo.dao.envioDao;
 import modelo.dao.gerenteDao;
+import modelo.dao.productoDao;
 import modelo.dao.proveedorDao;
 import modelo.dao.repartidorDao;
 import modelo.dao.representanteDao;
@@ -58,7 +62,8 @@ public class Coordinador {
     private iVRepartidor ventanaRepartidor;
     private iVGerente ventanaGerente;
     private iVEnvio ventanaEnvio;
-    
+    private iVProducto ventanaProducto;
+    private iVCatalogo ventanaCatalogo;
 
     
     private correoDao miCorreoDao;
@@ -78,6 +83,8 @@ public class Coordinador {
     private solicitudProdDao miSolicitudProdDao;
     private proveedorDao miProveedorDao;
     private envioDao miEnvioDao;
+    private productoDao miProductoDao;
+    private catalogoDao miCatalogoDao;
     
     
     
@@ -206,9 +213,25 @@ public class Coordinador {
         this.miEnvioDao = miEnvioDao;
     }
     
-
- 
-   
+    
+    void setVentanaProducto(iVProducto iproducto) {
+        this.ventanaProducto = iproducto;
+    }
+    
+    void setProductoDao(productoDao miProductoDao) {
+        this.miProductoDao = miProductoDao;
+    }
+    
+    
+    void setVentanaCatalogo(iVCatalogo icatalogo) {
+        this.ventanaCatalogo = icatalogo;
+    }
+    
+    void setCatalogoDao(catalogoDao miCatalogoDao) {
+        this.miCatalogoDao = miCatalogoDao;
+    }
+    
+    
     public String validarIngreso(String usuario, String contrasena){
         return miLogica.validarIngreso(usuario,contrasena);
     }
@@ -376,6 +399,31 @@ public class Coordinador {
     
     public void cerrarVentanaEnvio(){
         ventanaEnvio.setVisible(false);
+    }
+    
+    public void abrirVentanaProducto(){
+        ventanaProducto.setVisible(true);
+        JTable tablaProducto = ventanaProducto.enviarTabla();
+        mostrarProducto(tablaProducto);
+        
+    }
+   
+    
+    public void cerrarVentanaProducto(){
+        ventanaProducto.setVisible(false);
+    }
+    
+    
+    public void abrirVentanaCatologo(){
+        ventanaCatalogo.setVisible(true);
+        JTable tablaCatalogo = ventanaCatalogo.enviarTabla();
+        mostrarCatalogo(tablaCatalogo);
+        
+    }
+   
+    
+    public void cerrarVentanaCatalogo(){
+        ventanaCatalogo.setVisible(false);
     }
     
 
@@ -756,6 +804,43 @@ public class Coordinador {
             System.out.println(e);
         }
     }
+     
+     public void mostrarProducto(JTable table) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miProductoDao.obtenerProducto("select proCodigo, proCantidad, proNombre, proDescripcion, proPrecioCompra, invId, proPrecioVenta, proTipoProducto, ordId, solId, proFechaIngreso, proFechaSalida, proDisponibilidad from producto");
+        modelo.setColumnIdentifiers(new Object[] {"Código","Cantidad","Nombre","Descripción producto","Precio compra", "ID inventario", "Precio Venta", "Tipo", "ID Orden de Compra", "ID Solicitud Cliente", "Fecha Ingreso", "Fecha Salida", "Disponibilidad"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("proCodigo"),rs.getInt("proCantidad"),rs.getString("proNombre"),rs.getString("proDescripcion"),rs.getDouble("proPrecioCompra"), rs.getByte("invId"), rs.getDouble("proPrecioVenta"), rs.getString("proTipoProducto"),rs.getInt("ordId"),rs.getInt("solId"), rs.getDate("proFechaIngreso"), rs.getDate("proFechaSalida"), rs.getInt("proDisponibilidad")});
+                
+            }
+            table.setModel(modelo);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+     
+     public void mostrarCatalogo(JTable table) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        ResultSet rs = miCatalogoDao.obtenerCatalogo("select proCodigo, proNombre, proTipoProducto, proDescripcion, proDisponibilidad, Precio from vw_catalogo");
+        modelo.setColumnIdentifiers(new Object[] {"Código Producto","Nombre Producto","Tipo Producto","Descripción producto","Disponibilidad", "Precio"});
+        
+        try{
+            while(rs.next()){
+                modelo.addRow(new Object[]{rs.getInt("proCodigo"),rs.getInt("proNombre"),rs.getString("proTipoProducto"),rs.getString("proDescripcion"),rs.getDouble("proDisponibilidad"), rs.getByte("Precio")});
+                
+            }
+            table.setModel(modelo);
+            
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+     
 
     private void mostrarSolicitudesProdLeer(JTable tablaSolicitudesLeer) {
         DefaultTableModel modelo = new DefaultTableModel();
@@ -913,9 +998,7 @@ public class Coordinador {
         this.miVendedorDao = miVendedorDao;
     }
 
-    
-    
-    
+
 }
 
     
